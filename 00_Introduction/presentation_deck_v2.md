@@ -356,9 +356,9 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 | Dimension | Input Required | AI Action | Output Generated |
 | :--- | :--- | :--- | :--- |
 | **1. Simulation** | Personas | Simulate user behaviors, stress-test logic | Persona test reports, edge case findings |
-| **2. Components** | Code signatures | Generate unit tests in parallel with code | Vitest tests (80%+ coverage) |
+| **2. Components** | Code signatures | Generate unit tests in parallel with code | **JS:** Vitest / **Python:** pytest |
 | **3. Contracts** | OpenAPI specs | Generate contract tests + mock servers | Contract test suites, mock APIs |
-| **4. Behavior** | Gherkin ACs + Wireframes | Generate semantic Playwright scripts | E2E test scripts (.spec.ts) |
-| **5. Resilience** | Usage profiles | Generate load tests, chaos scenarios | k6 scripts, synthetic data, chaos configs |
+| **4. Behavior** | Gherkin ACs + Wireframes | Generate Playwright/Selenium scripts | E2E test scripts |
+| **5. Resilience** | Usage profiles | Generate load tests, chaos scenarios | k6 / Locust scripts, chaos configs |
 
 
