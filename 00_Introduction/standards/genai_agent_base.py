@@ -1,5 +1,6 @@
 # Standardized Google Gen AI SDK Base Agent
 # Compliant with Google Agent Development Kit (ADK) standards (2025+)
+# Enhanced with: Guardrails, Context Management, HITL, Prompt-Ops
 
 import os
 from google import genai
@@ -7,15 +8,32 @@ from google.genai import types
 from rich.console import Console
 from dotenv import load_dotenv
 
+# Import new capabilities
+from guardrails import OutputGuardrails, ApprovalGate
+from context_manager import ContextManager, TokenBudget
+
 console = Console()
+
 
 class GenAIBaseAgent:
     """
     Base class for all Agents in the AI SDLC using the unified google-genai SDK.
     Compatible with both Vertex AI (Enterprise) and Gemini Developer API.
+    
+    Includes:
+    - Output Guardrails (PII detection, hallucination prevention)
+    - Approval Gates (Human-in-the-loop for critical actions)
+    - Context Management (smart document loading)
+    - Token Budget tracking
     """
     
-    def __init__(self, model_version: str = None, system_instruction: str = None):
+    def __init__(
+        self, 
+        model_version: str = None, 
+        system_instruction: str = None,
+        enable_guardrails: bool = True,
+        require_approval: bool = False
+    ):
         load_dotenv()
         
         # 1. Configuration
@@ -26,7 +44,6 @@ class GenAIBaseAgent:
         self.model_version = model_version or os.getenv("GEMINI_MODEL", "gemini-1.5-pro-002")
         
         # 2. Initialize Unified Client (Vertex AI Mode)
-        # Setting vertexai=True uses Cloud Logging and IAM Auth automatically
         if self.project_id:
             try:
                 self.client = genai.Client(
@@ -67,17 +84,48 @@ class GenAIBaseAgent:
         ]
         
         self.system_instruction = system_instruction
+        
+        # 4. Initialize Enhanced Capabilities
+        self.guardrails = OutputGuardrails() if enable_guardrails else None
+        self.approval_gate = ApprovalGate(auto_approve=not require_approval)
+        self.context_manager = ContextManager()
+        self.token_budget = TokenBudget()
+        
         console.print(f"[green]Agent Ready. Model: {self.model_version}[/green]")
+        if enable_guardrails:
+            console.print("[dim]Guardrails: Enabled | Context Manager: Active[/dim]")
 
-    def generate(self, prompt: str, temperature: float = 0.2, use_grounding: bool = False) -> str:
-        """Wrapper for generate_content using the unified SDK pattern."""
+    def generate(
+        self, 
+        prompt: str, 
+        temperature: float = 0.2, 
+        use_grounding: bool = False,
+        validate_output: bool = True,
+        context: dict = None
+    ) -> str:
+        """
+        Wrapper for generate_content using the unified SDK pattern.
+        
+        Args:
+            prompt: The prompt to send to the model
+            temperature: Creativity setting (0.0-1.0)
+            use_grounding: Enable Google Search grounding
+            validate_output: Run guardrails on output
+            context: Optional context for guardrail validation
+        
+        Returns:
+            Generated text, or empty string on error
+        """
         tools = []
         if use_grounding:
-            # Enable Google Search Grounding
             tools.append(types.Tool(google_search=types.GoogleSearch()))
             console.print("[yellow]Using Google Search Grounding for this request...[/yellow]")
 
         try:
+            # Track token usage
+            prompt_tokens = self.count_tokens(prompt)
+            self.token_budget.spend(prompt_tokens, "input prompt")
+            
             response = self.client.models.generate_content(
                 model=self.model_version,
                 contents=prompt,
@@ -90,17 +138,63 @@ class GenAIBaseAgent:
                     tools=tools
                 )
             )
-            # if response.candidates[0].content.parts[0].text:
-            return response.text
+            
+            output = response.text
+            
+            # Track output tokens
+            output_tokens = self.count_tokens(output)
+            self.token_budget.spend(output_tokens, "output")
+            
+            # Run guardrails if enabled
+            if validate_output and self.guardrails:
+                is_valid, issues = self.guardrails.validate(output, context or {})
+                if not is_valid:
+                    console.print(f"[yellow]⚠️ Guardrail warnings: {issues}[/yellow]")
+                    # Optionally sanitize
+                    output = self.guardrails.sanitize(output)
+            
+            return output
 
-            return response.text
         except Exception as e:
             console.print(f"[red]Gen AI Generation Error: {e}[/red]")
             return ""
 
+    def generate_with_approval(
+        self,
+        prompt: str,
+        action_description: str,
+        **kwargs
+    ) -> str:
+        """
+        Generate content but require human approval before returning.
+        Use for critical outputs like saving files or creating tickets.
+        """
+        output = self.generate(prompt, **kwargs)
+        
+        if not output:
+            return output
+        
+        if self.approval_gate.require_approval(action_description, output):
+            return output
+        else:
+            return ""  # Rejected
+
+    def load_context(
+        self,
+        paths: list,
+        prioritize: list = None
+    ) -> str:
+        """
+        Load documents using the context manager.
+        Handles large files, prioritization, and token limits.
+        """
+        return self.context_manager.load_documents(
+            paths=paths,
+            prioritize=prioritize
+        )
+
     def count_tokens(self, prompt: str) -> int:
         """Helper to check costs."""
-        # Note: Token counting syntax varies slightly in v1; implementing safe fallback
         try:
             response = self.client.models.count_tokens(
                 model=self.model_version,
@@ -108,4 +202,14 @@ class GenAIBaseAgent:
             )
             return response.total_tokens
         except:
-            return 0
+            # Fallback estimate
+            return len(prompt) // 4
+
+    def get_token_report(self) -> str:
+        """Get token usage report for this session."""
+        return self.token_budget.report()
+
+    def get_approval_audit(self) -> list:
+        """Get audit log of all approval decisions."""
+        return self.approval_gate.get_audit_log()
+

@@ -1,15 +1,22 @@
 # User Slide Content V2 (Framework-Consistent Edition)
 
-## Slide 1: THE THREE PILLARS OF AI-AUGMENTED SDLC
+## Slide 1: THE FIVE PILLARS OF AI-AUGMENTED SDLC
 *From Static Docs to Living, Agent-Generated Artifacts*
 
-### Pillar 1: Documentation as Code
+### Pillar 1: VS Code as Home Base
+**One environment for everything:**
+*   **Gemini Code Assist** – AI pair programmer in the editor
+*   **Slash Commands** – `/prd-discover`, `/epic-split`, `/arch-design`
+*   **Integrated Terminal** – Run agents directly
+*   **Git Integration** – Commit, push, PR without leaving the IDE
+
+### Pillar 2: Documentation as Code
 Everything that describes the system lives **in Git, as text**:
 *   **`.md` files** – Markdown for all documentation (PRD, Epics, Stories, ADRs)
 *   **Version Controlled** – Changes tracked, reviewable in PRs, rollback possible
 *   **`.gemini/STYLEGUIDE.md`** – Teaches AI assistants about project conventions
 
-### Pillar 2: Diagrams as Code
+### Pillar 3: Diagrams as Code
 Visuals are **generated from text**, not drawn manually:
 | Domain | Tool | Output |
 |:-------|:-----|:-------|
@@ -18,32 +25,30 @@ Visuals are **generated from text**, not drawn manually:
 | **Data** | DBML | Entity-Relationship Diagrams |
 | **APIs** | OpenAPI | Swagger UI, Client SDKs |
 
-**Why?** Diagrams stay in sync with code. No more "implementation drift."
-
-### Pillar 3: Agent-Generated Artifacts
+### Pillar 4: Agent-Generated Artifacts
 Outputs are **created by AI Agents**, not written from scratch:
 *   **PRD Agent** → Generates requirements from stakeholder input
 *   **Epic Agent** → Decomposes PRD into vertical slices
 *   **Story Agent** → Creates Jira-ready tickets with Gherkin ACs
 *   **Architecture Agent** → Produces C4, DBML, OpenAPI from requirements
 
-**Session State:** Agents persist state across sessions (`open_questions.md`, `session_log.md`, `entities.md`) so no context is lost.
+**Session State:** Agents persist state across sessions (`open_questions.md`, `session_log.md`, `entities.md`).
 
-### Pillar 4: Git Version Control
+### Pillar 5: Git Version Control
 **Git is the single source of truth:**
 *   **All artifacts in one repo** – Docs, diagrams, code, and tests together
 *   **Pull Request workflow** – Every change is reviewed (by humans AND AI)
 *   **Full history** – Roll back any document to any point in time
-*   **Collaboration** – Teams work on branches, merge with confidence
 
 ```mermaid
 flowchart LR
-    A[Human Input] --> B[AI Agent]
-    B --> C[Markdown Artifacts]
-    C --> D[Git Repository]
-    D --> E[CI/CD Pipeline]
-    B --> F[Session State]
-    F --> B
+    A[Human Input] --> B[VS Code + Gemini]
+    B --> C[AI Agent]
+    C --> D[Markdown Artifacts]
+    D --> E[Git Repository]
+    E --> F[CI/CD Pipeline]
+    C --> G[Session State]
+    G --> C
 ```
 
 

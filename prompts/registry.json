@@ -1,0 +1,81 @@
+{
+    "prompts": {
+        "PRD_GEN": {
+            "latest": "v1",
+            "description": "Synthesizes stakeholder documents into a PRD",
+            "versions": {
+                "v1": {
+                    "path": "01_Requirements/prompts/PRD_GEN-synthesize-prd.md",
+                    "created_at": "2026-01-27T09:00:00"
+                }
+            },
+            "test_cases": null
+        },
+        "PRD_GAP": {
+            "latest": "v1",
+            "description": "Identifies gaps in a draft PRD",
+            "versions": {
+                "v1": {
+                    "path": "01_Requirements/prompts/PRD_GAP-identify-gaps.md",
+                    "created_at": "2026-01-27T09:00:00"
+                }
+            },
+            "test_cases": null
+        },
+        "EPIC_GEN": {
+            "latest": "v1",
+            "description": "Decomposes PRD into Epics using SPIDR",
+            "versions": {
+                "v1": {
+                    "path": "02_Elaboration/prompts/EPIC_GEN-decompose-epics.md",
+                    "created_at": "2026-01-27T09:00:00"
+                }
+            },
+            "test_cases": null
+        },
+        "STORY_GEN": {
+            "latest": "v1",
+            "description": "Generates User Stories from Epics",
+            "versions": {
+                "v1": {
+                    "path": "02_Elaboration/prompts/STORY_GEN-generate-stories.md",
+                    "created_at": "2026-01-27T09:00:00"
+                }
+            },
+            "test_cases": null
+        },
+        "ARCH_C4": {
+            "latest": "v1",
+            "description": "Generates C4 Mermaid diagrams",
+            "versions": {
+                "v1": {
+                    "path": "04_Architecture/prompts/ARCH_001-generate-c4.md",
+                    "created_at": "2026-01-27T09:00:00"
+                }
+            },
+            "test_cases": null
+        },
+        "ARCH_DBML": {
+            "latest": "v1",
+            "description": "Generates DBML data models",
+            "versions": {
+                "v1": {
+                    "path": "04_Architecture/prompts/ARCH_002-generate-dbml.md",
+                    "created_at": "2026-01-27T09:00:00"
+                }
+            },
+            "test_cases": null
+        },
+        "ARCH_OPENAPI": {
+            "latest": "v1",
+            "description": "Generates OpenAPI specifications",
+            "versions": {
+                "v1": {
+                    "path": "04_Architecture/prompts/ARCH_003-generate-openapi.md",
+                    "created_at": "2026-01-27T09:00:00"
+                }
+            },
+            "test_cases": null
+        }
+    }
+}
