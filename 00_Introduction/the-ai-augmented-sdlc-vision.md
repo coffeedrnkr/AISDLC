@@ -51,18 +51,16 @@ The workflow is a traceable and automated process from concept to deployment:
 
 ## 5. Foundational Guides
 
-This process is supported by a library of eight foundational documents that define standards and procedures.
+This process is supported by a library of foundational documents that define standards and procedures.
 
-| Guide                                       | Purpose                                                                 |
-| :------------------------------------------ | :---------------------------------------------------------------------- |
-| **1. The Project Requirements Document (PRD) Guide** | Defines the project's strategic goals.                                  |
-| **2. The Architecture Hub Guide**           | Defines the technical blueprint and system architecture.                |
-| **3. The Interaction Hub Guide**            | Defines the AI's personality and conversational logic.                  |
-| **4. The Quality & Testing Strategy Guide** | Defines procedures for quality assurance and bug prevention.            |
-| **5. The DevOps & CI/CD Strategy Guide**    | Defines the build, deployment, and operations processes.                |
-| **6. The Epic Crafting Guide**              | Defines the process for breaking down a PRD into epics.                 |
-| **7. The Story Authoring Guide**            | Defines the process for creating developer-ready, AI-optimized stories. |
-| **8. The Asset & Pattern Library Guide**    | Provides an index of reusable code, patterns, and prompts.              |
+| Guide | Purpose | Location |
+| :---- | :------ | :------- |
+| **PRD Guide** | Defines the project's strategic goals and discovery process. | [`01_Requirements/prd-guide.md`](../01_Requirements/prd-guide.md) |
+| **Quality & Testing Strategy** | Defines procedures for quality assurance, testing philosophy, and metrics. | [`06_Testing/quality-and-testing-strategy-guide.md`](../06_Testing/quality-and-testing-strategy-guide.md) |
+| **DevOps & CI/CD Strategy** | Defines build, deployment, IaC, and disaster recovery processes. | [`devops-and-cicd-strategy-guide.md`](devops-and-cicd-strategy-guide.md) |
+| **Asset & Pattern Library** | Index of reusable code, architecture patterns, prompts, and design system. | [`asset-and-pattern-library.md`](asset-and-pattern-library.md) |
+
+> **Note:** Architecture, Epic, and Story guidance is now embedded directly in the respective agents' prompts and USER_GUIDE.md files. See the [Agent Registry](../REGISTRY.md) for available agents.
 
 ---
 

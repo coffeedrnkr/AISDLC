@@ -134,13 +134,3 @@ Ready to build?
 *   **Design:** [UX Architect Framework](ux-architect-framework.md) (For Step 1: Context)
 *   **Architecture:** [Architecture Hub Guide](architecture-hub-guide.md) (For Step 1: Context)
 *   **Testing:** [Quality & Testing Strategy Guide](quality-and-testing-strategy-guide.md) (For Step 2: Gherkin ACs)
-
-## 7. Next Steps & Related Frameworks
-
-Ready to build?
-👉 **[Go to the Developer Playbook](developer-playbook.md)** for the practical "Day in the Life" guide to implementing this story in VS Code.
-
-**Related Reference Guides:**
-*   **Design:** [UX Architect Framework](ux-architect-framework.md) (For Step 1: Context)
-*   **Architecture:** [Architecture Hub Guide](architecture-hub-guide.md) (For Step 1: Context)
-*   **Testing:** [Quality & Testing Strategy Guide](quality-and-testing-strategy-guide.md) (For Step 2: Gherkin ACs)
