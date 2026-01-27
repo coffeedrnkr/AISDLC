@@ -450,8 +450,46 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 | Stage | What Happens | AI Role | Human Role |
 |:------|:-------------|:--------|:-----------|
-| **Plan** | Test strategy created | 🤖 AI drafts | ✍️ Human reviews |
-| **Script** | Test code generated | 🤖 AI writes | ✍️ Human reviews |
+| **Plan** | Test strategy created | 🤖 AI drafts | ✅ Human reviews |
+| **Script** | Test code generated | 🤖 AI writes | ✅ Human reviews |
 | **Execute** | Tests run in CI | - | 🔧 Automated |
-| **Defects** | Failures tracked | - | ✍️ Human triages |
+| **Defects** | Failures tracked | - | ✅ Human triages |
 | **Automation** | CI pipeline maintained | - | 🔧 GitOps |
+
+---
+
+### AI-Driven Test Generation Workflow
+
+When a story moves to "Ready for Development":
+
+1. 🤖 **Parse Gherkin ACs** → Generate test skeletons (Playwright)
+2. 🤖 **Suggest Edge Cases** → AI adds commented-out additional tests
+3. 🤖 **Create PR** → Test file committed, assigned to QA Engineer
+4. ✅ **Human Reviews** → QA implements step definitions, reviews coverage
+
+> Result: By the time a developer starts, the test framework is already in place.
+
+---
+
+### Test Data Management
+
+| Strategy | What | When |
+|:---------|:-----|:-----|
+| **Ephemeral Environments** | Pristine, isolated DB per test run | Every PR |
+| **Seed Data** | Version-controlled synthetic data | Environment creation |
+| **Dynamic Data** | Tests create/teardown own data via API | During execution |
+
+> Golden Rule: Tests never share mutable state.
+
+---
+
+### When to Test Manually (Don't Over-Automate)
+
+| Test Type | Why Manual | Frequency |
+|:----------|:-----------|:----------|
+| **UX Feel** | Animations, responsiveness, "polish" | Every sprint |
+| **Exploratory** | Uncover unexpected edge cases | 2-3 hrs per sprint |
+| **Accessibility** | Screen reader, keyboard nav | Before release |
+| **Usability Studies** | Real users on new features | Per feature |
+
+> Philosophy: Automate the repetitive, humanize the creative.
