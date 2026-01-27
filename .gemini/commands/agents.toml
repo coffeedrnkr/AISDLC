@@ -1,0 +1,52 @@
+# Gemini Code Assist - Agent Registry
+# This file defines custom slash commands to trigger local AI Agents.
+
+# 1. PRD Discovery (Interactive)
+[[commands]]
+name = "prd-discover"
+description = "Run the PRD Discovery Agent in interactive mode to mine for requirements."
+command = "python 01_Requirements/prd_agent/prd_agent.py --interactive"
+
+# 2. Epic Decomposition (SPIDR)
+[[commands]]
+name = "epic-split"
+description = "Split a PRD into Epics using SPIDR methodology."
+# Usage: /epic-split --prd inputs/PRD.md
+command = "python 02_Elaboration/epic_decomposition_agent/epic_decomposition_agent.py"
+
+# 3. Epic Elaboration (9 Tools)
+[[commands]]
+name = "epic-elaborate"
+description = "Interactively flesh out an Epic with 9 discovery tools."
+# Usage: /epic-elaborate --epic outputs/EPIC-001.md --interactive
+command = "python 02_Elaboration/epic_elaboration_agent/epic_elaboration_agent.py"
+
+# 4. user Story Generation
+[[commands]]
+name = "story-gen"
+description = "Generate User Stories from an elaborated Epic."
+command = "python 02_Elaboration/story_agent/story_agent.py"
+
+# 5. UX - Personas
+[[commands]]
+name = "ux-personas"
+description = "Generate User Personas from a PRD."
+command = "python 03_UX_Design/ux_agent/ux_agent.py --task personas"
+
+# 6. Architecture - System Design
+[[commands]]
+name = "arch-design"
+description = "Generate System Design from a PRD."
+command = "python 04_Architecture/architecture_agent/architecture_agent.py --task system_design"
+
+# 7. Code Governance - Review
+[[commands]]
+name = "code-review"
+description = "Run static analysis and AI governance review."
+command = "python 05_Implementation/code_governance_agent/code_governance_agent.py"
+
+# 8. Integration - CI Check
+[[commands]]
+name = "ci-check"
+description = "Run pre-release readiness checks."
+command = "python 05_Implementation/integration_agent/integration_agent.py --check-all"
