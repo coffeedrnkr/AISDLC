@@ -1,6 +1,6 @@
 # User Slide Content V2 (Framework-Consistent Edition)
 
-## Slide 1: THE FIVE PILLARS OF AI-AUGMENTED SDLC
+## Slide 1: THE SIX PILLARS OF AI-AUGMENTED SDLC
 
 ### Pillar 1: VS Code as Home Base
 **One environment for everything:**
@@ -46,58 +46,26 @@ Outputs are **created by AI Agents**, not written from scratch:
 *   **Pull Request workflow** – Every change is reviewed (by humans AND AI)
 *   **Full history** – Roll back any document to any point in time
 
+### Pillar 6: AI Governance
+**Built-in safeguards — no guidelines to memorize:**
+
+| Capability | Type | What It Does |
+|:-----------|:-----|:-------------|
+| **Guardrails** | Automatic | PII detection, hallucination prevention, output limits |
+| **Human-in-the-Loop** | On-Demand | Approval gates before saves, deployments, ticket creation |
+| **Prompt-Ops** | Automatic | Versioned prompts, testing, A/B comparison |
+| **Context Management** | Automatic | Smart chunking, token tracking, summarization |
+
 ```mermaid
 flowchart LR
     A[Human Input] --> B[VS Code + Gemini]
     B --> C[AI Agent]
-    C --> D[Markdown Artifacts]
-    D --> E[Git Repository]
-    E --> F[CI/CD Pipeline]
-    C --> G[Session State]
-    G --> C
-```
-
-
-## Slide 1.5: AI GOVERNANCE (Built-in Safeguards)
-*Automation that enforces best practices — no guidelines to memorize.*
-
-### Guardrails (Automatic)
-Every AI output is validated before use:
-*   **PII Detection** – Emails, SSNs, credit cards auto-masked
-*   **Hallucination Prevention** – Validates file paths actually exist
-*   **Output Limits** – Prevents runaway generation (>50K chars)
-*   **Schema Validation** – Checks JSON/YAML structure
-
-### Human-in-the-Loop (On-Demand)
-Approval gates pause before critical actions:
-*   **Save Files** – Preview content before writing to disk
-*   **Create Tickets** – Review before pushing to Jira
-*   **Deploy** – Confirm before modifying production
-*   **Audit Trail** – All decisions logged for compliance
-
-### Prompt-Ops (Version Control for Prompts)
-Treat prompts like code:
-*   **Registry** – Central catalog (`prompts/registry.json`) with versions
-*   **Testing** – Run prompts against test cases before deploying
-*   **A/B Comparison** – Compare prompt versions for quality
-
-### Context Management (Automatic)
-Smart handling of large documents:
-*   **Prioritization** – Load relevant files first
-*   **Chunking** – Split by function/class/section
-*   **Token Tracking** – Monitor costs, warn at limits
-*   **Summarization** – Auto-summarize oversized files
-
-```mermaid
-flowchart TD
-    A[AI Output] --> B{Guardrails}
-    B -->|PII Found| C[Mask & Warn]
-    B -->|Clean| D{HITL Required?}
-    D -->|Yes| E[Show Preview]
-    E --> F{User Approves?}
-    F -->|Yes| G[Execute Action]
-    F -->|No| H[Cancel + Log]
-    D -->|No| G
+    C --> D{Guardrails}
+    D --> E[Markdown Artifacts]
+    E --> F[Git Repository]
+    F --> G[CI/CD Pipeline]
+    C --> H[Session State]
+    H --> C
 ```
 
 
