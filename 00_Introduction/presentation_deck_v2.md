@@ -8,6 +8,8 @@
 *   **Slash Commands** – `/prd-discover`, `/epic-split`, `/arch-design`
 *   **Integrated Terminal** – Gemini CLI - Run agents directly
 *   **Git Integration** – Commit, push, PR without leaving the IDE
+*   **Jira Integration** – Sync without leaving the IDE
+
 
 ### Pillar 2: Documentation as Code
 Everything that describes the system lives **in Git, as text**:
@@ -34,11 +36,14 @@ Outputs are **created by AI Agents**, not written from scratch:
 | **Elaboration** | Epic Elaboration | `/epic-elaborate` | CRUD, State, Edge cases |
 | **Elaboration** | Story Agent | `/story-gen` | Jira-ready User Stories |
 | **UX Design** | UX Agent | `/ux-personas` | Personas, Wireframes |
+| **Interfaces** | Interface Agent | `/interface-discover` | Context diagram, Interface catalog |
+| **Interfaces** | Interface Agent | `/interface-spec` | Detailed interface specs |
 | **Architecture** | Architecture Agent | `/arch-design` | C4, DBML, OpenAPI |
 | **Implementation** | Code Governance | `/code-review` | Static analysis + AI review |
 | **Testing** | Test Plan Agent | `/test-plan` | Test plans, unit/E2E stubs |
 | **Testing** | Simulation Agent | `/simulate-persona` | Persona edge cases |
 | **Testing** | Resilience Agent | `/load-test`, `/chaos-test` | Load scripts, chaos scenarios |
+| **Testing** | Interface Agent | `/interface-test` | Contract tests from specs |
 | **Integration** | Integration Agent | `/ci-check` | Release readiness check |
 
 **Session State:** Agents persist context across sessions (`open_questions.md`, `session_log.md`, `entities.md`).
@@ -72,7 +77,7 @@ flowchart LR
 ```
 
 
-## Slide 1.5: JIRA INTEGRATION (Required API Calls)
+## Slide 2: JIRA INTEGRATION (Required API Calls)
 
 **Bi-directional sync between Markdown artifacts and Jira tickets:**
 
@@ -98,7 +103,7 @@ flowchart LR
 - CI: GitHub Actions with Jira Issue to Markdown Action
 
 
-## Slide 2: REQUIREMENTS (The 3-Layer Framework)
+## Slide 3: REQUIREMENTS (The 3-Layer Framework)
 
 ### 1. The Framework
 Requirements are organized into 3 interlocking layers:
@@ -119,7 +124,7 @@ Requirements are organized into 3 interlocking layers:
 **AI Actions:** NotebookLM synthesizes → AI extracts epics → AI generates Gherkin → AI creates wireframes  
 **Outputs:** Structured PRD, Epic docs with acceptance criteria, UX flows
 
-## Slide 3: REQUIREMENTS (The States of Information)
+## Slide 4: REQUIREMENTS (The States of Information)
 **How AI processes information in 3 states:**
 
 *   **(Solid) Documentation – NotebookLM:**
@@ -133,7 +138,7 @@ Requirements are organized into 3 interlocking layers:
     *   Mind mapping, form-filling, BDD/Gherkin translation
     *   Requirements traceability automation
 
-## Slide 3.5: EPIC DECOMPOSITION (Vertical Value Streams)
+## Slide 5: EPIC DECOMPOSITION (Vertical Value Streams)
 
 ### 1. The Framework: Vertical Slicing + SPIDR
 **Two types of epics:**
@@ -160,7 +165,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 | Artifact | Format | Content | Storage |
 | :--- | :--- | :--- | :--- |
 | **Epic Document** | Markdown | Scope, Success metrics, Dependencies, Story themes | `docs/epics/epic-*.md` |
-| **Epic AC** | Gherkin | High-level acceptance criteria | Inside epic doc |
+| **Epic Acceptance Criteria** | Gherkin | High-level acceptance criteria | Inside epic doc |
 | **Jira Epic** | Jira ticket | Synced from doc | Jira (linked to PRD) |
 
 ### 3. The AI Workflow
@@ -177,7 +182,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 
 **Live Jira Sync:** Epic docs (markdown) ↔ Jira epics (bi-directional, auto-creates traceability links)
 
-## Slide 3.6: USER STORY ELABORATION (The AI-Ready Prompt Package)
+## Slide 6: USER STORY ELABORATION (The AI-Ready Prompt Package)
 
 ### 1. The Framework: Epic to Stories
 **Story Decomposition:**
@@ -237,7 +242,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 
 **Live Jira Sync:** Story docs ↔ Jira tickets (bi-directional, all context links auto-populated)
 
-## Slide 4.5: UX DESIGN (The UX Architect Framework)
+## Slide 7: UX DESIGN (The UX Architect Framework)
 
 ### 1. The Framework: 4-Step Workflow
 
@@ -260,7 +265,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 **AI Actions:** Maps flows → Generates wireframes → Evaluates heuristics → Tests with personas  
 **Outputs:** User Journeys, Flow Diagrams, Wireframes, State Diagrams
 
-## Slide 4.6: SYSTEM-WIDE UX (The Holistic Advantage)
+## Slide 8: SYSTEM-WIDE UX (The Holistic Advantage)
 
 **The AI Capability:**
 *   **Information Architecture:** Consistent navigation across all features
@@ -270,7 +275,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 **The Result:** Cohesive, conflict-free UX in one shot.
 
 
-## Slide 5: ARCHITECTURE (The Architecture Hub)
+## Slide 9: ARCHITECTURE (The Architecture Hub)
 
 ### 1. The Framework
 The Architecture Hub is a centralized, version-controlled repository of technical contracts covering:
@@ -291,7 +296,7 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 **AI Actions:** Reads prompt-hub/ARCH_001-004 → Generates diagrams  
 **Outputs:** Mermaid (C4, Sequence), DBML (ERD), Python code (Infrastructure diagrams)
 
-## Slide 6: ARCHITECTURE (Pillars #2 & #3)
+## Slide 10: ARCHITECTURE (Pillars #2 & #3)
 
 ### 2. The Outputs (continued)
 
@@ -313,7 +318,54 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 *   The **HOW** (API & Data)
 *   The **SAFE/SCALABLE** (IAM, Governance, Resiliency) - *for later*
 
-## Slide 6.5: IMPLEMENTATION (The Context-Driven Developer)
+## Slide 11: INTERFACES (The 4 Layers of Integration)
+
+### AI Discovers, Documents, and Tests Interfaces
+
+> "All system connections must be discovered, documented, tested, and tracked."
+
+### The 4 Layers
+
+| Layer | What | When | AI Command | Output |
+|:------|:-----|:-----|:-----------|:-------|
+| **1. Context** | Visual map of ALL connections | PRD/Architecture | `/interface-discover` | C4 Context Diagram |
+| **2. Catalog** | Master inventory | Epic Decomposition | `/interface-discover` | Interface Catalog |
+| **3. Specification** | Detailed per-interface | Story/Architecture | `/interface-spec` | INT-*.md specs |
+| **4. Testing** | Contract tests | Testing | `/interface-test` | Pact/pandera tests |
+
+---
+
+### Interface Types
+
+| Type | Direction | Examples | Protocol |
+|:-----|:----------|:---------|:---------|
+| **API** | In/Out/Both | REST, gRPC, SOAP | HTTPS, HTTP/2 |
+| **File - Inbound** | We receive | SFTP pickup, S3 drop | SFTP, S3 |
+| **File - Outbound** | We send | SFTP push, S3 upload | SFTP, S3, FTP |
+| **Event** | Publish/Subscribe | Pub/Sub, Kafka, webhooks | Various |
+
+---
+
+### Interface Catalog Example
+
+| ID | System | Type | Direction | Protocol | Frequency | Owner |
+|:---|:-------|:-----|:----------|:---------|:----------|:------|
+| INT-001 | Payment Gateway | API | Outbound | REST | Real-time | Platform |
+| INT-002 | Claims Feed | File-In | Inbound | SFTP/CSV | Daily 2am | Claims |
+| INT-003 | Accounting Export | File-Out | Outbound | S3/Parquet | Hourly | Finance |
+| INT-004 | Policy Events | Event | Outbound | Pub/Sub | Real-time | Platform |
+
+---
+
+### AI Workflow
+
+1. 🤖 **Discover:** Parse PRD/code → Generate Context Diagram + Catalog
+2. 🤖 **Specify:** Generate detailed specs (endpoints, schemas, mapping, errors)
+3. 🤖 **Test:** Generate contract tests, schema validation, mocks
+
+**HITL:** Interface specs reviewed before implementation
+
+## Slide 12: IMPLEMENTATION (The Context-Driven Developer)
 
 ### 1. The Framework: AI-Paired Workflow
 **Philosophy:** Context-Driven Development (The "Prompt Package" Approach)
@@ -348,7 +400,7 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 ---
 
-## Slide 7: TESTING (The 5 Dimensions of Quality)
+## Slide 13: TESTING (The 5 Dimensions of Quality)
 
 ### AI Generates, Tools Execute
 

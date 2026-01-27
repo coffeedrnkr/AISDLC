@@ -18,6 +18,9 @@ These agents can be triggered directly from Gemini Code Assist using the slash c
 | :--- | :--- | :--- |
 | **`/ux-personas`** | **UX Agent** | Generates detailed User Personas based on key requirements. |
 | **`/ux-wireframe`** | **UX Agent** | Creates text-based wireframe descriptions for specific stories. |
+| **`/interface-discover`** | **Interface Agent** | Discovers all system interfaces from PRD/architecture (APIs, files, events). |
+| **`/interface-spec`** | **Interface Agent** | Generates detailed spec for a specific interface (API, file, or event). |
+| **`/interface-test`** | **Interface Agent** | Generates contract tests from interface specification. |
 | **`/arch-design`** | **Architecture Agent** | Generates High-Level System Design (HLD) documents. |
 | **`/arch-dbml`** | **Architecture Agent** | Generates DBML database schemas. |
 

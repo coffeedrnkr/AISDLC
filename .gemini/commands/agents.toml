@@ -33,7 +33,25 @@ name = "ux-personas"
 description = "Generate User Personas from a PRD."
 command = "python 03_UX_Design/ux_agent/ux_agent.py --task personas"
 
-# 6. Architecture - System Design
+# 6. Interface Discovery
+[[commands]]
+name = "interface-discover"
+description = "Discover all system interfaces from PRD/architecture docs."
+command = "python 04_Architecture/interface_agent/interface_agent.py --task discover"
+
+# 7. Interface Specification
+[[commands]]
+name = "interface-spec"
+description = "Generate detailed spec for a specific interface."
+command = "python 04_Architecture/interface_agent/interface_agent.py --task spec"
+
+# 8. Interface Tests
+[[commands]]
+name = "interface-test"
+description = "Generate contract tests from interface specification."
+command = "python 04_Architecture/interface_agent/interface_agent.py --task test"
+
+# 9. Architecture - System Design
 [[commands]]
 name = "arch-design"
 description = "Generate System Design from a PRD."
