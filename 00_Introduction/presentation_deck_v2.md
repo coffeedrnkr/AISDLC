@@ -52,7 +52,7 @@ Outputs are **created by AI Agents**, not written from scratch:
 | Capability | Type | What It Does |
 |:-----------|:-----|:-------------|
 | **Guardrails** | Automatic | PII detection, hallucination prevention, output limits |
-| **Human-in-the-Loop** | On-Demand | Approval gates before saves, deployments, ticket creation |
+| **Human-in-the-Loop** | Always | **VS Code**: Accept/Reject diffs before file changes apply. **Agents**: Preview before saves. |
 | **Prompt-Ops** | Automatic | Versioned prompts, testing, A/B comparison |
 | **Context Management** | Automatic | Smart chunking, token tracking, summarization |
 
