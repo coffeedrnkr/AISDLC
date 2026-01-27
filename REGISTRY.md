@@ -26,6 +26,7 @@ These agents can be triggered directly from Gemini Code Assist using the slash c
 | Command | Agent | Description |
 | :--- | :--- | :--- |
 | **`/code-review`** | **Governance Agent** | Runs Static Analysis (Ruff/Bandit) + AI Governance Review against standards. |
+| **`/test-plan`** | **Test Plan Agent** | Generates test strategy and test cases from user stories. |
 | **`/ci-check`** | **Integration Agent** | Checks for missing artifacts, runs tests, and verifies release readiness. |
 
 ---

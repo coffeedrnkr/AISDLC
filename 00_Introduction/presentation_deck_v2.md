@@ -36,6 +36,7 @@ Outputs are **created by AI Agents**, not written from scratch:
 | **UX Design** | UX Agent | `/ux-personas` | Personas, Wireframes |
 | **Architecture** | Architecture Agent | `/arch-design` | C4, DBML, OpenAPI |
 | **Implementation** | Code Governance | `/code-review` | Static analysis + AI review |
+| **Testing** | Test Plan Agent | `/test-plan` | Test strategy from stories |
 | **Integration** | Integration Agent | `/ci-check` | Release readiness check |
 
 **Session State:** Agents persist context across sessions (`open_questions.md`, `session_log.md`, `entities.md`).
@@ -69,6 +70,32 @@ flowchart LR
 ```
 
 
+## Slide 1.5: JIRA INTEGRATION (Required API Calls)
+
+**Bi-directional sync between Markdown artifacts and Jira tickets:**
+
+| Operation | Jira API Call | When Used |
+|:----------|:--------------|:----------|
+| **Create Epic** | `POST /rest/api/3/issue` (type: Epic) | After Epic decomposition |
+| **Create Story** | `POST /rest/api/3/issue` (type: Story) | After story generation |
+| **Link to Parent** | `POST /rest/api/3/issueLink` | Link Story → Epic → PRD |
+| **Update Status** | `PUT /rest/api/3/issue/{id}/transitions` | On status change |
+| **Add Attachment** | `POST /rest/api/3/issue/{id}/attachments` | Attach Gherkin, diagrams |
+| **Sync Description** | `PUT /rest/api/3/issue/{id}` | Update from markdown |
+| **Read Issue** | `GET /rest/api/3/issue/{id}` | Sync back to local |
+| **Search Issues** | `GET /rest/api/3/search` (JQL) | Find related items |
+
+**Traceability Links:**
+- PRD Section → Epic (via `issueLink` type: "relates to")
+- Epic → Stories (via `issueLink` type: "parent of")
+- Story → Test Cases (via custom link type)
+
+**Existing Tools Used:**
+- VS Code: Atlassian for VS Code extension
+- CLI: `jira-cli` or custom Python wrapper
+- CI: GitHub Actions with Jira Issue to Markdown Action
+
+
 ## Slide 2: REQUIREMENTS (The 3-Layer Framework)
 
 ### 1. The Framework
@@ -98,7 +125,7 @@ Requirements are organized into 3 interlocking layers:
     *   Includes regulatory docs, SOPs, legacy code summaries, database schemas
 *   **(Liquid) Conversation – AI Transcription:**
     *   Meeting transcripts captured by AI
-    *   Real-time synthesis of stakeholder discussions
+    *   AI synthesis of stakeholder discussions (from transcripts)
 *   **(Gas) Unspoken Ideas – AI Brainstorming:**
     *   Edge case stress-testing, persona simulation
     *   Mind mapping, form-filling, BDD/Gherkin translation
@@ -106,7 +133,7 @@ Requirements are organized into 3 interlocking layers:
 
 ## Slide 3.5: EPIC DECOMPOSITION (Vertical Value Streams)
 
-### 1. The Framework: Vertical Slicing
+### 1. The Framework: Vertical Slicing + SPIDR
 **Two types of epics:**
 *   **Business Epics:** User-facing capability that delivers end-to-end value (from PRD functional requirements)
 *   **Enabler Epics:** Infrastructure or services needed to support business epics (from Architecture Hub)
@@ -115,11 +142,17 @@ Requirements are organized into 3 interlocking layers:
 *   Every epic cuts through all layers: **UI → API → Database**
 *   **Why for AI:** Provides complete context for code generation (user click → data persistence)
 
-**Decomposition Steps:**
-1. Identify user outcomes from PRD
-2. Map to personas who benefit
-3. Define the capability needed (this becomes the epic)
-4. Validate it's vertical (spans UI/API/DB)
+**SPIDR Splitting Patterns:**
+| Pattern | When to Use | Example |
+|:--------|:------------|:--------|
+| **Spike** | Unknowns need research first | "Evaluate payment gateways" |
+| **Path** | Happy path vs. error handling | "Submit claim" vs. "Handle rejection" |
+| **Interface** | Different platforms/complexities | "Mobile checkout" vs. "Web checkout" |
+| **Data** | Different data sources/types | "Import CSV" vs. "API sync" |
+| **Rules** | Complex business logic splits | "Simple quote" vs. "Multi-car quote" |
+
+**Quality Gate: INVEST Check**
+Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Testable
 
 ### 2. The Outputs
 | Artifact | Format | Content | Storage |
