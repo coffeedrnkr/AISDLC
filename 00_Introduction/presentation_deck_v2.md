@@ -1,13 +1,12 @@
 # User Slide Content V2 (Framework-Consistent Edition)
 
 ## Slide 1: THE FIVE PILLARS OF AI-AUGMENTED SDLC
-*From Static Docs to Living, Agent-Generated Artifacts*
 
 ### Pillar 1: VS Code as Home Base
 **One environment for everything:**
 *   **Gemini Code Assist** – AI pair programmer in the editor
 *   **Slash Commands** – `/prd-discover`, `/epic-split`, `/arch-design`
-*   **Integrated Terminal** – Run agents directly
+*   **Integrated Terminal** – Gemini CLI - Run agents directly
 *   **Git Integration** – Commit, push, PR without leaving the IDE
 
 ### Pillar 2: Documentation as Code
@@ -27,12 +26,19 @@ Visuals are **generated from text**, not drawn manually:
 
 ### Pillar 4: Agent-Generated Artifacts
 Outputs are **created by AI Agents**, not written from scratch:
-*   **PRD Agent** → Generates requirements from stakeholder input
-*   **Epic Agent** → Decomposes PRD into vertical slices
-*   **Story Agent** → Creates Jira-ready tickets with Gherkin ACs
-*   **Architecture Agent** → Produces C4, DBML, OpenAPI from requirements
 
-**Session State:** Agents persist state across sessions (`open_questions.md`, `session_log.md`, `entities.md`).
+| Phase | Agent | Slash Command | Output |
+|:------|:------|:--------------|:-------|
+| **Requirements** | PRD Agent | `/prd-discover` | PRD from stakeholder input |
+| **Elaboration** | Epic Decomposition | `/epic-split` | Epics using SPIDR |
+| **Elaboration** | Epic Elaboration | `/epic-elaborate` | CRUD, State, Edge cases |
+| **Elaboration** | Story Agent | `/story-gen` | Jira-ready User Stories |
+| **UX Design** | UX Agent | `/ux-personas` | Personas, Wireframes |
+| **Architecture** | Architecture Agent | `/arch-design` | C4, DBML, OpenAPI |
+| **Implementation** | Code Governance | `/code-review` | Static analysis + AI review |
+| **Integration** | Integration Agent | `/ci-check` | Release readiness check |
+
+**Session State:** Agents persist context across sessions (`open_questions.md`, `session_log.md`, `entities.md`).
 
 ### Pillar 5: Git Version Control
 **Git is the single source of truth:**
