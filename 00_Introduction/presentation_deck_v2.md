@@ -52,6 +52,49 @@ flowchart LR
 ```
 
 
+## Slide 1.5: AI GOVERNANCE (Built-in Safeguards)
+*Automation that enforces best practices — no guidelines to memorize.*
+
+### Guardrails (Automatic)
+Every AI output is validated before use:
+*   **PII Detection** – Emails, SSNs, credit cards auto-masked
+*   **Hallucination Prevention** – Validates file paths actually exist
+*   **Output Limits** – Prevents runaway generation (>50K chars)
+*   **Schema Validation** – Checks JSON/YAML structure
+
+### Human-in-the-Loop (On-Demand)
+Approval gates pause before critical actions:
+*   **Save Files** – Preview content before writing to disk
+*   **Create Tickets** – Review before pushing to Jira
+*   **Deploy** – Confirm before modifying production
+*   **Audit Trail** – All decisions logged for compliance
+
+### Prompt-Ops (Version Control for Prompts)
+Treat prompts like code:
+*   **Registry** – Central catalog (`prompts/registry.json`) with versions
+*   **Testing** – Run prompts against test cases before deploying
+*   **A/B Comparison** – Compare prompt versions for quality
+
+### Context Management (Automatic)
+Smart handling of large documents:
+*   **Prioritization** – Load relevant files first
+*   **Chunking** – Split by function/class/section
+*   **Token Tracking** – Monitor costs, warn at limits
+*   **Summarization** – Auto-summarize oversized files
+
+```mermaid
+flowchart TD
+    A[AI Output] --> B{Guardrails}
+    B -->|PII Found| C[Mask & Warn]
+    B -->|Clean| D{HITL Required?}
+    D -->|Yes| E[Show Preview]
+    E --> F{User Approves?}
+    F -->|Yes| G[Execute Action]
+    F -->|No| H[Cancel + Log]
+    D -->|No| G
+```
+
+
 ## Slide 2: REQUIREMENTS (The 3-Layer Framework)
 
 ### 1. The Framework
