@@ -51,7 +51,25 @@ name = "test-plan"
 description = "Generate test strategy and test cases from user stories."
 command = "python 06_Testing/test_plan_agent/main.py"
 
-# 9. Integration - CI Check
+# 9. Persona Simulation Testing
+[[commands]]
+name = "simulate-persona"
+description = "Generate persona-based edge cases and stress tests."
+command = "python 06_Testing/simulation_agent/simulation_agent.py"
+
+# 10. Load Testing
+[[commands]]
+name = "load-test"
+description = "Generate k6/Locust load test scripts from API specs."
+command = "python 06_Testing/resilience_agent/resilience_agent.py --task load"
+
+# 11. Chaos Engineering (requires approval)
+[[commands]]
+name = "chaos-test"
+description = "Generate chaos engineering scenarios (requires approval)."
+command = "python 06_Testing/resilience_agent/resilience_agent.py --task chaos"
+
+# 12. Integration - CI Check
 [[commands]]
 name = "ci-check"
 description = "Run pre-release readiness checks."

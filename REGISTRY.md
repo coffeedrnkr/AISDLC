@@ -27,6 +27,9 @@ These agents can be triggered directly from Gemini Code Assist using the slash c
 | :--- | :--- | :--- |
 | **`/code-review`** | **Governance Agent** | Runs Static Analysis (Ruff/Bandit) + AI Governance Review against standards. |
 | **`/test-plan`** | **Test Plan Agent** | Generates test strategy and test cases from user stories. |
+| **`/simulate-persona`** | **Simulation Agent** | Generates persona-based edge cases and stress tests. |
+| **`/load-test`** | **Resilience Agent** | Generates k6/Locust load test scripts from API specs. |
+| **`/chaos-test`** | **Resilience Agent** | Generates chaos engineering scenarios (requires approval). |
 | **`/ci-check`** | **Integration Agent** | Checks for missing artifacts, runs tests, and verifies release readiness. |
 
 ---

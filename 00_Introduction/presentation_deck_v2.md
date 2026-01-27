@@ -36,7 +36,9 @@ Outputs are **created by AI Agents**, not written from scratch:
 | **UX Design** | UX Agent | `/ux-personas` | Personas, Wireframes |
 | **Architecture** | Architecture Agent | `/arch-design` | C4, DBML, OpenAPI |
 | **Implementation** | Code Governance | `/code-review` | Static analysis + AI review |
-| **Testing** | Test Plan Agent | `/test-plan` | Test strategy from stories |
+| **Testing** | Test Plan Agent | `/test-plan` | Test plans, unit/E2E stubs |
+| **Testing** | Simulation Agent | `/simulate-persona` | Persona edge cases |
+| **Testing** | Resilience Agent | `/load-test`, `/chaos-test` | Load scripts, chaos scenarios |
 | **Integration** | Integration Agent | `/ci-check` | Release readiness check |
 
 **Session State:** Agents persist context across sessions (`open_questions.md`, `session_log.md`, `entities.md`).
@@ -348,17 +350,56 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 ## Slide 7: TESTING (The 5 Dimensions of Quality)
 
-### 1. The Framework
-5 dimensions that span Pre-Code → Production
+### Testing is Continuous — Not a Phase
 
-### 2. The Outputs & 3. The AI Workflow
+Testing happens **throughout development**, not after code is written:
 
-| Dimension | Input Required | AI Action | Output Generated |
-| :--- | :--- | :--- | :--- |
-| **1. Simulation** | Personas | Simulate user behaviors, stress-test logic | Persona test reports, edge case findings |
-| **2. Components** | Code signatures | Generate unit tests in parallel with code | **JS:** Vitest / **Python:** pytest |
-| **3. Contracts** | OpenAPI specs | Generate contract tests + mock servers | Contract test suites, mock APIs |
-| **4. Behavior** | Gherkin ACs + Wireframes | Generate Playwright/Selenium scripts | E2E test scripts |
-| **5. Resilience** | Usage profiles | Generate load tests, chaos scenarios | k6 / Locust scripts, chaos configs |
+| When | Dimension | What Happens |
+|:-----|:----------|:-------------|
+| **During Requirements** | 1. Simulation | Personas stress-tested, edge cases identified |
+| **During Story Writing** | 4. Behavior | Gherkin ACs → Test scenarios drafted |
+| **During Architecture** | 3. Contracts | API specs → Contract tests generated |
+| **During Implementation** | 2. Components | Unit tests written alongside code (TDD) |
+| **Before Release** | 5. Resilience | Load tests, chaos scenarios executed |
 
+---
 
+### Test Artifacts Generated
+
+| Artifact | Agent | Slash Command | Output |
+|:---------|:------|:--------------|:-------|
+| **Test Plans** | Test Plan Agent | `/test-plan` | Coverage matrix, test IDs, data requirements |
+| **Unit Tests** | Test Plan Agent | `/test-plan` | pytest / Vitest stubs with assertions |
+| **E2E Scripts** | Test Plan Agent | `/test-plan` | Playwright `.spec.ts` files |
+| **Simulation Reports** | Simulation Agent | `/simulate-persona` | Edge cases per persona |
+| **Load Scripts** | Resilience Agent | `/load-test` | k6 / Locust scripts |
+| **Chaos Scenarios** | Resilience Agent | `/chaos-test` | Chaos Mesh YAML (requires approval) |
+
+---
+
+### The 5 Dimensions
+
+| Dimension | Input | AI Action | Output |
+|:----------|:------|:----------|:-------|
+| **1. Simulation** | Personas | Simulate user behaviors, find edge cases | Persona test reports |
+| **2. Components** | Code | Generate unit tests (TDD: Red→Green→Refactor) | pytest / Vitest |
+| **3. Contracts** | OpenAPI specs | Generate contract tests + mock servers | Contract suites |
+| **4. Behavior** | Gherkin ACs | Generate E2E scripts with semantic locators | Playwright scripts |
+| **5. Resilience** | Architecture | Generate load tests, chaos experiments | k6, Locust, Chaos Mesh |
+
+---
+
+### Test Lifecycle & Tracking
+
+| Stage | Artifact | Storage | Tracked In |
+|:------|:---------|:--------|:-----------|
+| **Plan** | Test Plan | `docs/test-plans/` | Git |
+| **Script** | Test Code | `tests/` | Git |
+| **Execute** | Results | CI artifacts | GitHub Actions |
+| **Defects** | Bug Tickets | Jira | Linked to story |
+| **Automation** | CI Pipeline | `.github/workflows/` | Git |
+
+**Human-in-the-Loop:**
+- Test plans reviewed before execution
+- Chaos scenarios require explicit approval
+- Defects triaged by humans
