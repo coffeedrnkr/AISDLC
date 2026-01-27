@@ -350,30 +350,35 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 ## Slide 7: TESTING (The 5 Dimensions of Quality)
 
-### Testing is Continuous — Not a Phase
+### AI Generates, Tools Execute
 
-Testing happens **throughout development**, not after code is written:
-
-| When | Dimension | What Happens |
-|:-----|:----------|:-------------|
-| **During Requirements** | 1. Simulation | Personas stress-tested, edge cases identified |
-| **During Story Writing** | 4. Behavior | Gherkin ACs → Test scenarios drafted |
-| **During Architecture** | 3. Contracts | API specs → Contract tests generated |
-| **During Implementation** | 2. Components | Unit tests written alongside code (TDD) |
-| **Before Release** | 5. Resilience | Load tests, chaos scenarios executed |
+**🤖 AI (Gemini) generates:** Test plans, test code, load scripts, chaos scenarios  
+**🔧 Tools execute:** pytest, Playwright, k6, Locust run the generated tests
 
 ---
 
-### Test Artifacts Generated
+### Testing is Continuous — Not a Phase
 
-| Artifact | Agent | Slash Command | Output |
-|:---------|:------|:--------------|:-------|
-| **Test Plans** | Test Plan Agent | `/test-plan` | Coverage matrix, test IDs, data requirements |
-| **Unit Tests** | Test Plan Agent | `/test-plan` | pytest / Vitest stubs with assertions |
-| **E2E Scripts** | Test Plan Agent | `/test-plan` | Playwright `.spec.ts` files |
-| **Simulation Reports** | Simulation Agent | `/simulate-persona` | Edge cases per persona |
-| **Load Scripts** | Resilience Agent | `/load-test` | k6 / Locust scripts |
-| **Chaos Scenarios** | Resilience Agent | `/chaos-test` | Chaos Mesh YAML (requires approval) |
+| When | Dimension | AI Does |
+|:-----|:----------|:--------|
+| **During Requirements** | 1. Simulation | AI simulates personas, finds edge cases |
+| **During Story Writing** | 4. Behavior | AI generates E2E scripts from Gherkin |
+| **During Architecture** | 3. Contracts | AI generates contract tests from OpenAPI |
+| **During Implementation** | 2. Components | AI generates unit tests (TDD support) |
+| **Before Release** | 5. Resilience | AI generates load scripts, chaos experiments |
+
+---
+
+### AI-Generated Test Artifacts
+
+| Artifact | AI Agent | Command | What AI Generates |
+|:---------|:---------|:--------|:------------------|
+| **Test Plans** | Test Plan Agent | `/test-plan` | Coverage matrix, test IDs, traceability |
+| **Unit Tests** | Test Plan Agent | `/test-plan` | pytest / Vitest code with assertions |
+| **E2E Scripts** | Test Plan Agent | `/test-plan` | Playwright `.spec.ts` with semantic locators |
+| **Simulation Reports** | Simulation Agent | `/simulate-persona` | Edge cases, accessibility tests per persona |
+| **Load Scripts** | Resilience Agent | `/load-test` | k6 / Locust scripts with thresholds |
+| **Chaos YAML** | Resilience Agent | `/chaos-test` | Chaos Mesh configs (requires approval) |
 
 ---
 
@@ -381,25 +386,20 @@ Testing happens **throughout development**, not after code is written:
 
 | Dimension | Input | AI Action | Output |
 |:----------|:------|:----------|:-------|
-| **1. Simulation** | Personas | Simulate user behaviors, find edge cases | Persona test reports |
-| **2. Components** | Code | Generate unit tests (TDD: Red→Green→Refactor) | pytest / Vitest |
-| **3. Contracts** | OpenAPI specs | Generate contract tests + mock servers | Contract suites |
-| **4. Behavior** | Gherkin ACs | Generate E2E scripts with semantic locators | Playwright scripts |
-| **5. Resilience** | Architecture | Generate load tests, chaos experiments | k6, Locust, Chaos Mesh |
+| **1. Simulation** | Personas | 🤖 AI simulates user behaviors | Persona test reports |
+| **2. Components** | Code | 🤖 AI generates unit tests | pytest / Vitest |
+| **3. Contracts** | OpenAPI specs | 🤖 AI generates contract tests | Contract suites |
+| **4. Behavior** | Gherkin ACs | 🤖 AI generates E2E scripts | Playwright scripts |
+| **5. Resilience** | Architecture | 🤖 AI generates load/chaos tests | k6, Locust, Chaos Mesh |
 
 ---
 
 ### Test Lifecycle & Tracking
 
-| Stage | Artifact | Storage | Tracked In |
-|:------|:---------|:--------|:-----------|
-| **Plan** | Test Plan | `docs/test-plans/` | Git |
-| **Script** | Test Code | `tests/` | Git |
-| **Execute** | Results | CI artifacts | GitHub Actions |
-| **Defects** | Bug Tickets | Jira | Linked to story |
-| **Automation** | CI Pipeline | `.github/workflows/` | Git |
-
-**Human-in-the-Loop:**
-- Test plans reviewed before execution
-- Chaos scenarios require explicit approval
-- Defects triaged by humans
+| Stage | What Happens | AI Role | Human Role |
+|:------|:-------------|:--------|:-----------|
+| **Plan** | Test strategy created | 🤖 AI drafts | ✍️ Human reviews |
+| **Script** | Test code generated | 🤖 AI writes | ✍️ Human reviews |
+| **Execute** | Tests run in CI | - | 🔧 Automated |
+| **Defects** | Failures tracked | - | ✍️ Human triages |
+| **Automation** | CI pipeline maintained | - | 🔧 GitOps |
