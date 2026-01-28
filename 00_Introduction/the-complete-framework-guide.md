@@ -2766,6 +2766,23 @@ This is the future of software development: humans and AI working together, each
 
 ---
 
+---
+
+## Appendix A: Master Agent & Prompt Inventory
+
+| Pillar | Agent / Directory | Key Prompts (Slash Commands) | Purpose |
+|:-------|:------------------|:-----------------------------|:--------|
+| **1** | **Orchestrator** (VS Code) | `(User is Orchestrator)` | Home base for invoking all other agents |
+| **2** | **Project Management** | `/prd-guide` <br> `/decompose-epic` <br> `/write-story` | Create PRDs, break down epics, write effective stories |
+| **4** | **Requirements** | `/3-layer-check` | Validate PRD-Epic-Story alignment |
+| **6** | **Governance** | `/gov-check` | Verify compliance with architecture standards |
+| **8** | **AI Planning Intelligence** <br> `08_AI_Planning_Intelligence/` | `/dep-discover` <br> `/dep-health` <br> `/dep-sequence` <br> `/sprint-readiness` | Find dependencies, check sprint health, sequence work |
+| **9** | **Change Management** <br> `09_Planning_Change_Management/` | `/impact-assess` <br> `/scope-change` <br> `/architecture-impact` | "What-If" analysis for requirement changes |
+
+> ℹ️ **Note:** This table summarizes the primary interaction points. Each agent folder contains detailed READMEs and additional prompt templates.
+
+---
+
 ## Glossary
 
 | Term | Definition |

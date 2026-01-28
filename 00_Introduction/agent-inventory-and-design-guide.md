@@ -37,15 +37,15 @@ This document provides an overview of the specialized agents within the AI-Augme
 
 
 
--   **Purpose:** To serve as the primary interface for the SDLC, guiding users and invoking specialized sub-agents.
+-   **Purpose:** To serve as the primary interface for the SDLC. In the AI-Augmented SDLC, **VS Code is the Home Base**, and the developer + Gemini act as the orchestrator.
 
--   **Workflow:** The Orchestrator manages project artifacts. It identifies the current project context and presents options to the user for invoking relevant sub-agents (e.g., `Agent: Write-Architecture` for architecture tasks).
+-   **Workflow:** The user stays in VS Code and invokes specialized sub-agents using slash commands or natural language. The "Orchestrator" is effectively the user's session in the IDE.
 
 -   **Inputs:** Project documentation artifacts ("Digital Twin"), user commands.
 
 -   **Outputs:** User guidance, sub-agent triggers.
 
--   **Limitations:** The Orchestrator delegates all specialized tasks to sub-agents and does not perform them directly.
+-   **Limitations:** The Orchestrator delegates specialized tasks to sub-agents.
 
 
 
@@ -210,3 +210,42 @@ This document provides an overview of the specialized agents within the AI-Augme
 -   **Limitations:** The agent can only enforce policies that are explicitly defined in the Architecture Hub and DevOps guide. It cannot detect unforeseen architectural issues, and it may not be able to understand the intent behind all code changes. Human oversight is still required.
 
 
+
+---
+
+### Agent: AI-Planning-Intelligence (Pillar 8)
+
+-   **Purpose:** To continuously monitor and manage dependencies across the Jira backlog (Jira-centric).
+
+-   **Workflow:** This agent can be run on-demand in VS Code or triggered by scheduled jobs. It analyzes story content to discover hidden dependencies, checks sprint readiness, and recommends optimal build sequences.
+
+-   **Inputs:** Jira backlog/sprint data, story content.
+
+-   **Outputs:** Dependency graphs, Health Check Reports (Sprint Readiness, Backlog Health), sequenced build plans.
+
+-   **Prompts:**
+    -   `/dep-discover`: Find hidden dependencies
+    -   `/dep-health`: Assess sprint/backlog health
+    -   `/dep-sequence`: Optimal build order
+    -   `/sprint-readiness`: Go/No-Go assessment
+
+-   **Limitations:** It suggests links and sequences but requires human approval to update Jira. It does not replace the Product Owner's prioritization but optimizes execution order.
+
+---
+
+### Agent: Planning-Change-Management (Pillar 9)
+
+-   **Purpose:** To perform "What-If" Impact Assessment for requirement changes before they are implemented.
+
+-   **Workflow:** Triggered when a requirement addition, modification, or removal is proposed. The agent analyzes the "blast radius" across PRDs, Epics, Stories, Architecture, and Timelines.
+
+-   **Inputs:** Proposed change description, current artifacts (PRD, Epics, Architecture docs).
+
+-   **Outputs:** Impact Assessment Report with severity ratings (Low/Mod/High) and recommendations.
+
+-   **Prompts:**
+    -   `/impact-assess`: Full cascade analysis
+    -   `/scope-change`: Scope reduction analysis
+    -   `/architecture-impact`: Technical impact only
+
+-   **Limitations:** Assessment only. The agent does not execute the changes; it informs the human decision-maker of the consequences.
