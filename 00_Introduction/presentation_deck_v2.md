@@ -471,6 +471,36 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 | Integration testing | Mar 5 | ⏳ Pending |
 ```
 
+---
+
+### Work Delegation in Jira (When They Must Build Something)
+
+> **Slide 11 (Interfaces)** = Connect to what **already exists** (no work for them)  
+> **This section** = Your requirements make **them build something new** (work for them)
+
+**Two Types of Dependencies:**
+
+| Type | Work for Them | Jira Approach |
+|:-----|:--------------|:--------------|
+| **Consume Only** | None | "uses" link to existing API |
+| **Work Delegation** | Yes, they build | External Dependency Epic |
+
+**External Dependency Epic Pattern:**
+
+1. **Create Epic in YOUR project:** `[EXT-DEP] Policy API from Core Platform`
+2. **They create Epic in THEIR project:** `Policy API for Portfolio Integration`
+3. **Link with:** `Is blocked by` / `Depends on`
+
+**Jira Link Types:**
+
+| Link | Meaning |
+|:-----|:--------|
+| **Is blocked by** | Can't finish until they deliver |
+| **Depends on** | Planned sequence |
+| **Relates to** | General relationship |
+
+**Track with Custom Fields:** Requested From Team, Needed By Date, External Status
+
 ## Slide 12: IMPLEMENTATION (The Context-Driven Developer)
 
 ### 1. The Framework: AI-Paired Workflow

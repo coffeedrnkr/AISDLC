@@ -1732,6 +1732,143 @@ For each significant dependency, document the relationship:
 
 ---
 
+### Work Delegation in Jira
+
+> ⚠️ **Important Distinction:**
+> 
+> **Chapter 11 (Interfaces)** covers **connecting to existing systems** — APIs and services that already exist. No work is required from the other team; you simply consume what they have.
+> 
+> **This section (Work Delegation)** covers a different scenario: **your requirements create work for another team**. They must **build something new** — a new API, a new event, a schema change, or significant modifications to their system. This is passing requirements (essentially Epics) to them.
+
+When your feature requires another team to build something, this is **work delegation** — not just consuming their API. You're passing requirements to them.
+
+**Two Types of Dependencies:**
+
+| Type | What It Is | Work for Them | Jira Approach |
+|:-----|:-----------|:--------------|:--------------|
+| **Consume Only** | Use their existing API | None | Link type: "uses" |
+| **Work Delegation** | They must build something new | Yes | External Dependency Epic |
+
+---
+
+#### External Dependency Epic Pattern
+
+When delegating work to another team:
+
+**Step 1: Create Epic in YOUR Project**
+
+```
+Project: PORTFOLIO
+Type: Epic
+Summary: [EXT-DEP] Policy API from Core Platform
+Description: 
+  We need the Core Platform team to expose:
+  1. GET /api/policies/{id}
+  2. POST /api/policies/{id}/amend
+  3. POLICY_UPDATED event on Pub/Sub
+  
+  Acceptance Criteria:
+  - [ ] API returns policy in agreed schema
+  - [ ] 99.9% availability SLA
+  - [ ] P95 latency < 200ms
+  
+  Requested By: @dave (Portfolio Team)
+  Requested From: @jane (Core Platform Team)
+  Needed By: March 15, 2026
+```
+
+**Step 2: Create Linked Epic in THEIR Project (or they create it)**
+
+```
+Project: CORE-PLATFORM  
+Type: Epic
+Summary: Policy API for Portfolio Integration
+Labels: external-request
+```
+
+**Step 3: Link the Epics**
+
+| Link Type | From | To | Meaning |
+|:----------|:-----|:---|:--------|
+| **Is blocked by** | Your Epic | Their Epic | Your work can't complete until theirs does |
+| **Is depended on by** | Their Epic | Your Epic | Same relationship, other direction |
+
+---
+
+#### Jira Link Types for Work Delegation
+
+| Link Type | When to Use | Example |
+|:----------|:------------|:--------|
+| **Is blocked by** | You cannot proceed until they deliver | "Portfolio ETF → is blocked by → Core Policy API" |
+| **Depends on** | Planned sequential work | "Story 5 → depends on → Story 3" |
+| **Relates to** | General relationship, no hard block | "Portfolio Epic → relates to → Core roadmap item" |
+
+---
+
+#### Cross-Project Visibility
+
+**For Company-managed Jira Projects:**
+
+1. **Advanced Roadmaps (Jira Plans):**
+   - Add both projects to the same Plan
+   - Dependencies show as lines on timeline
+   - Red lines = risky (blocking issue scheduled after blocked)
+
+2. **JQL Queries:**
+   ```
+   project = PORTFOLIO AND issuelinks = "is blocked by" AND status != Done
+   ```
+
+3. **Cross-Project Epic Board:**
+   - Create a filter for all epics with label `external-dependency`
+   - Shared board shows all cross-team work
+
+---
+
+#### Work Delegation Jira Fields
+
+Add custom fields to track delegated work:
+
+| Field | Type | Purpose |
+|:------|:-----|:--------|
+| **Requested From Team** | Select | Which team owns the dependency |
+| **Requested By** | User picker | Who made the request |
+| **Needed By Date** | Date | When we need their delivery |
+| **External Status** | Select | Pending, Accepted, In Progress, Delivered |
+| **Contract Link** | URL | Link to Team Contract document |
+
+---
+
+#### Workflow for External Dependencies
+
+```mermaid
+stateDiagram-v2
+    [*] --> Identified: Discover dependency
+    Identified --> Requested: Create Epic + Contact team
+    Requested --> Accepted: They commit to deliver
+    Accepted --> InProgress: They start work
+    InProgress --> Delivered: They complete
+    Delivered --> Verified: We test integration
+    Verified --> [*]: Close dependency
+    
+    Requested --> Rejected: They can't deliver
+    Rejected --> Escalated: Raise to leadership
+```
+
+---
+
+#### Best Practices
+
+| Do | Don't |
+|:---|:------|
+| Create Epic in YOUR project first | Copy their stories into your project |
+| Link at Epic level (not Story) | Create sprawling story-to-story links |
+| Set clear acceptance criteria | Assume they understand your needs |
+| Track with "Needed By" date | Rely only on their sprint planning |
+| Review dependencies weekly | Wait until your sprint to check |
+
+---
+
 ### Dimension 3: Interface Contracts
 
 The technical agreement for how systems connect.
