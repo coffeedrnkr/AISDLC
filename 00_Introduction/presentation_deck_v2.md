@@ -841,7 +841,7 @@ For multi-session work (PRDs, Epics spanning days/weeks), the framework includes
 | **4: Test** | **Simulation Agent** | `/simulate-persona` | User behavior simulation |
 | **4: Test** | **Resilience Agent** | `/chaos-test` | Load & failure testing |
 | **4: Release** | **Integration Agent** | `/ci-check` | Release readiness |
-| **8: Planning** | **AI Planning Agent** | `/dep-discover` <br> `/sprint-readiness` | Dependency & Health check |
-| **9: Change** | **Change Mgmt Agent** | `/impact-assess` <br> `/scope-change` | What-If Impact Analysis |
+| **8: Planning** | **AI Planning Agent** | `/dep-discover` <br> `/dep-health` <br> `/dep-sequence` <br> `/sprint-readiness` | Dependency & Health check |
+| **9: Change** | **Change Mgmt Agent** | `/impact-assess` <br> `/scope-change` <br> `/architecture-impact` | What-If Impact Analysis |
 
 > ℹ️ **Note:** All agents are run from VS Code terminal or chat.
