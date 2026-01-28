@@ -1747,11 +1747,39 @@ When your feature requires another team to build something, this is **work deleg
 | Type | What It Is | Work for Them | Jira Approach |
 |:-----|:-----------|:--------------|:--------------|
 | **Consume Only** | Use their existing API | None | Link type: "uses" |
-| **Work Delegation** | They must build something new | Yes | External Dependency Epic |
+| **Work Delegation** | They must build something new | Yes | External Dependency Issue |
 
 ---
 
-#### External Dependency Epic Pattern
+> 💡 **Industry Reference:** SAFe (Scaled Agile Framework) formalizes this as "External Dependencies" managed via PI Planning and Program Boards. The pattern below works with or without SAFe.
+
+---
+
+#### Epic vs Story-Level Delegation
+
+Work delegation can happen at different levels:
+
+| Level | When to Use | Example | Jira Link |
+|:------|:------------|:--------|:----------|
+| **Epic** | Large body of work (multiple stories) | "Build new Policy API with 5 endpoints" | Epic → Epic |
+| **Story** | Small, specific request | "Add `adjuster_name` field to claims export" | Story → Story |
+
+**Choosing the Right Level:**
+
+| Scenario | Delegate As |
+|:---------|:------------|
+| Needs multiple sprints on their side | **Epic** |
+| Single sprint or less | **Story** |
+| Requires their own breakdown into stories | **Epic** |
+| Specific, well-defined change | **Story** |
+| New capability or service | **Epic** |
+| Modification to existing API/schema | **Story** |
+
+**Best Practice:** Link at the same level — Epic→Epic or Story→Story — to keep tracking clean.
+
+---
+
+#### External Dependency Pattern (Epic or Story)
 
 When delegating work to another team:
 
@@ -1866,6 +1894,38 @@ stateDiagram-v2
 | Set clear acceptance criteria | Assume they understand your needs |
 | Track with "Needed By" date | Rely only on their sprint planning |
 | Review dependencies weekly | Wait until your sprint to check |
+
+---
+
+#### AI Assistance for Work Delegation
+
+AI can accelerate several aspects of cross-team coordination:
+
+| Task | AI Action | How |
+|:-----|:----------|:----|
+| **Discover Dependencies** | Scan PRD/Epic for external system references | `/dep-discover` prompt analyzes requirements |
+| **Draft External Dependency Issue** | Generate Jira issue content with acceptance criteria | AI drafts based on your requirements |
+| **Generate Team Contract** | Create filled Team Contract template | AI extracts parties, commitments, dates |
+| **Write Acceptance Criteria** | Define clear, testable AC for their deliverable | AI expands "need API" into specific criteria |
+| **Assess Impact** | Analyze what changes other systems need | AI reviews architecture + requirements |
+| **Draft Communication** | Write request email/Slack to other team | AI summarizes need professionally |
+
+**Example AI Prompt:**
+
+```
+Analyze this Epic and identify any external dependencies:
+- What systems outside our team need to change?
+- What work must other teams do?
+- Draft an External Dependency Issue for each.
+
+Epic: [paste Epic description]
+```
+
+**AI Output:**
+- List of identified dependencies
+- Draft Jira issue content for each
+- Suggested acceptance criteria
+- Recommended "Needed By" dates based on our timeline
 
 ---
 

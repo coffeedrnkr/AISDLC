@@ -483,9 +483,18 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 | Type | Work for Them | Jira Approach |
 |:-----|:--------------|:--------------|
 | **Consume Only** | None | "uses" link to existing API |
-| **Work Delegation** | Yes, they build | External Dependency Epic |
+| **Work Delegation** | Yes, they build | External Dependency (Epic or Story) |
 
-**External Dependency Epic Pattern:**
+> 💡 SAFe calls this "External Dependencies" — this pattern works with or without SAFe.
+
+**Epic vs Story-Level:**
+
+| Delegate As | When |
+|:------------|:-----|
+| **Epic** | Multiple sprints, new capability |
+| **Story** | Single sprint, specific change |
+
+**External Dependency Pattern:**
 
 1. **Create Epic in YOUR project:** `[EXT-DEP] Policy API from Core Platform`
 2. **They create Epic in THEIR project:** `Policy API for Portfolio Integration`
@@ -500,6 +509,8 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 | **Relates to** | General relationship |
 
 **Track with Custom Fields:** Requested From Team, Needed By Date, External Status
+
+**AI Assistance:** AI can discover dependencies from PRD/Epic, draft External Dependency Issues with acceptance criteria, generate Team Contracts, and write communication to other teams.
 
 ## Slide 12: IMPLEMENTATION (The Context-Driven Developer)
 
