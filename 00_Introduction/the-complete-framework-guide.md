@@ -2768,7 +2768,7 @@ This is the future of software development: humans and AI working together, each
 
 ---
 
-## Appendix A: Master Agent & Prompt Inventory
+## Appendix A: Agent Registry
 
 | Pillar | Agent / Directory | Key Prompts (Slash Commands) | Purpose |
 |:-------|:------------------|:-----------------------------|:--------|
