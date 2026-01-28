@@ -518,15 +518,6 @@ When a story moves to "Ready for Development":
 
 ---
 
-### Base Classes (2)
-
-| Script | Location | Purpose |
-|:-------|:---------|:--------|
-| `genai_agent_base.py` | `00_Introduction/standards/` | Base class for all agents (Gemini API) |
-| `vertex_agent_base.py` | `00_Introduction/standards/` | Base class for Vertex AI agents |
-
----
-
 ## Appendix B: Prompt Registry
 
 ### Requirements Prompts (2)
