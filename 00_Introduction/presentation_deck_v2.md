@@ -820,3 +820,20 @@ For multi-session work (PRDs, Epics spanning days/weeks), the framework includes
 
 **Implementation:** `standards/session_state_manager.py`
 **Design Details:** `ai-agent-recommendation-and-workflow.md` Section 8
+
+---
+
+## Appendix: Agent Registry
+
+**Master inventory of specialized AI agents:**
+
+| Pillar | Agent | Key Slash Commands | Purpose |
+|:-------|:------|:-------------------|:--------|
+| **1** | **Orchestrator** | `(User is Orchestrator)` | Home base for invoking all other agents |
+| **2** | **Project Mgmt** | `/prd-guide` <br> `/decompose-epic` <br> `/write-story` | Create PRDs, break down epics, write stories |
+| **4** | **Requirements** | `/3-layer-check` | Validate PRD-Epic-Story alignment |
+| **6** | **Governance** | `/gov-check` | Verify compliance with standards |
+| **8** | **AI Planning** | `/dep-discover` <br> `/dep-health` <br> `/sprint-readiness` | Find dependencies, check sprint health |
+| **9** | **Change Mgmt** | `/impact-assess` <br> `/scope-change` <br> `/architecture-impact` | "What-If" analysis for changes |
+
+> ℹ️ **Note:** All agents are run from VS Code terminal or chat.
