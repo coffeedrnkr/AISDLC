@@ -415,7 +415,7 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 ---
 
-## Slide 11: CROSS-SYSTEM COORDINATION (Working Across Teams)
+## Slide 12: CROSS-SYSTEM COORDINATION (Working Across Teams)
 
 ### The Reality: Most Work Involves Other Systems
 
@@ -550,7 +550,7 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 **AI Assistance:** AI can discover dependencies from PRD/Epic, draft External Dependency Issues with acceptance criteria, generate Team Contracts, and write communication to other teams.
 
-## Slide 12: IMPLEMENTATION (The Context-Driven Developer)
+## Slide 13: IMPLEMENTATION (The Context-Driven Developer)
 
 ### 1. The Framework: AI-Paired Workflow
 **Philosophy:** Context-Driven Development (The "Prompt Package" Approach)
@@ -585,7 +585,7 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 ---
 
-## Slide 13: TESTING (The 5 Dimensions of Quality)
+## Slide 14: TESTING (The 5 Dimensions of Quality)
 
 ### AI Generates, Tools Execute
 
