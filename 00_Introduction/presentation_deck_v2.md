@@ -493,3 +493,109 @@ When a story moves to "Ready for Development":
 | **Usability Studies** | Real users on new features | Per feature |
 
 > Philosophy: Automate the repetitive, humanize the creative.
+
+---
+
+## Appendix A: Agent Registry
+
+### AI Agents (13 Total)
+
+| Phase | Agent | Python Script | Slash Command | Purpose |
+|:------|:------|:--------------|:--------------|:--------|
+| **Requirements** | PRD Agent | `01_Requirements/prd_agent/prd_agent.py` | `/prd-discover` | Interactive PRD discovery from stakeholder input |
+| **Elaboration** | Epic Decomposition | `02_Elaboration/epic_decomposition_agent/epic_decomposition_agent.py` | `/epic-split` | Split PRD into Epics using SPIDR |
+| **Elaboration** | Epic Elaboration | `02_Elaboration/epic_elaboration_agent/epic_elaboration_agent.py` | `/epic-elaborate` | Interactive: CRUD, State, Edge cases |
+| **Elaboration** | Story Agent | `02_Elaboration/story_agent/story_agent.py` | `/story-gen` | Generate User Stories with Gherkin ACs |
+| **UX Design** | UX Agent | `03_UX_Design/ux_agent/ux_agent.py` | `/ux-personas` | Personas, journeys, wireframes |
+| **Architecture** | Architecture Agent | `04_Architecture/architecture_agent/architecture_agent.py` | `/arch-design` | C4, DBML, OpenAPI, sequence diagrams |
+| **Architecture** | Interface Agent | `04_Architecture/interface_agent/interface_agent.py` | `/interface-discover` | Discover and doc all integrations |
+| **Implementation** | Code Governance | `05_Implementation/code_governance_agent/code_governance_agent.py` | `/code-review` | Static analysis + AI review |
+| **Implementation** | Integration Agent | `05_Implementation/integration_agent/integration_agent.py` | `/ci-check` | Release readiness validation |
+| **Testing** | Test Plan Agent | `06_Testing/test_plan_agent/test_plan_agent.py` | `/test-plan` | Test strategy and test cases |
+| **Testing** | Simulation Agent | `06_Testing/simulation_agent/simulation_agent.py` | `/simulate-persona` | Persona edge cases, stress tests |
+| **Testing** | Resilience Agent | `06_Testing/resilience_agent/resilience_agent.py` | `/load-test` | Load testing (k6/Locust) |
+| **Governance** | Governance Agent | `08_Governance/governance_agent/governance_agent.py` | - | Policy enforcement |
+
+---
+
+### Base Classes (2)
+
+| Script | Location | Purpose |
+|:-------|:---------|:--------|
+| `genai_agent_base.py` | `00_Introduction/standards/` | Base class for all agents (Gemini API) |
+| `vertex_agent_base.py` | `00_Introduction/standards/` | Base class for Vertex AI agents |
+
+---
+
+## Appendix B: Prompt Registry
+
+### Requirements Prompts (2)
+
+| Prompt ID | File | Purpose |
+|:----------|:-----|:--------|
+| `PRD_GEN` | `PRD_GEN-synthesize-prd.md` | Synthesize PRD from stakeholder input |
+| `PRD_GAP` | `PRD_GAP-identify-gaps.md` | Identify requirements gaps |
+
+### Elaboration Prompts (2)
+
+| Prompt ID | File | Purpose |
+|:----------|:-----|:--------|
+| `EPIC_GEN` | `EPIC_GEN-decompose-epics.md` | Decompose PRD into Epics (SPIDR) |
+| `STORY_GEN` | `STORY_GEN-generate-stories.md` | Generate User Stories from Epics |
+
+### UX Design Prompts (3)
+
+| Prompt ID | File | Purpose |
+|:----------|:-----|:--------|
+| `UX_001` | `UX_001-flow-mapping.md` | Map user flows and journeys |
+| `UX_002` | `UX_002-heuristic-review.md` | Heuristic usability review |
+| `UX_003` | `UX_003-generate-wireframe.md` | Generate wireframe descriptions |
+
+### Architecture Prompts (7)
+
+| Prompt ID | File | Purpose |
+|:----------|:-----|:--------|
+| `ARCH_001` | `ARCH_001-generate-c4.md` | Generate C4 diagrams (Mermaid) |
+| `ARCH_002` | `ARCH_002-generate-dbml.md` | Generate DBML data models |
+| `ARCH_003` | `ARCH_003-generate-openapi.md` | Generate OpenAPI specs |
+| `ARCH_004` | `ARCH_004-generate-python-diagrams.md` | Generate Python infrastructure diagrams |
+| `INT_DISCOVER` | `INT_DISCOVER-interface-discovery.md` | Discover all system interfaces |
+| `INT_SPEC` | `INT_SPEC-interface-specification.md` | Generate interface specifications |
+| `INT_TEST` | `INT_TEST-interface-tests.md` | Generate interface contract tests |
+
+### Testing Prompts (4)
+
+| Prompt ID | File | Purpose |
+|:----------|:-----|:--------|
+| `TEST_GEN` | `TEST_GEN-generate-test-plan.md` | Generate test plans from stories |
+| `SIM_001` | `SIM_001-persona-simulation.md` | Persona-based simulation testing |
+| `LOAD_001` | `LOAD_001-generate-load-tests.md` | Generate k6/Locust load tests |
+| `CHAOS_001` | `CHAOS_001-chaos-scenarios.md` | Generate chaos engineering scenarios |
+
+---
+
+## Appendix C: Quick Reference
+
+### Slash Commands by Workflow
+
+```
+/prd-discover → /epic-split → /epic-elaborate → /story-gen
+                                    ↓
+                              /ux-personas
+                                    ↓
+         /interface-discover → /arch-design → /interface-spec
+                                    ↓
+                    /test-plan → /simulate-persona → /load-test
+                                    ↓
+                         /code-review → /ci-check
+```
+
+### Totals
+
+| Category | Count |
+|:---------|:------|
+| **Agents** | 13 |
+| **Slash Commands** | 18 |
+| **Prompts** | 18 |
+| **Base Classes** | 2 |
+
