@@ -563,30 +563,3 @@ When a story moves to "Ready for Development":
 | `LOAD_001` | `LOAD_001-generate-load-tests.md` | Generate k6/Locust load tests |
 | `CHAOS_001` | `CHAOS_001-chaos-scenarios.md` | Generate chaos engineering scenarios |
 
----
-
-## Appendix C: Quick Reference
-
-### Slash Commands by Workflow
-
-```
-/prd-discover → /epic-split → /epic-elaborate → /story-gen
-                                    ↓
-                              /ux-personas
-                                    ↓
-         /interface-discover → /arch-design → /interface-spec
-                                    ↓
-                    /test-plan → /simulate-persona → /load-test
-                                    ↓
-                         /code-review → /ci-check
-```
-
-### Totals
-
-| Category | Count |
-|:---------|:------|
-| **Agents** | 13 |
-| **Slash Commands** | 18 |
-| **Prompts** | 18 |
-| **Base Classes** | 2 |
-
