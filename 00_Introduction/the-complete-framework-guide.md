@@ -11,7 +11,7 @@ Every concept is explained from first principles, with real-world examples and p
 ## Table of Contents
 
 1. [Introduction: What is the AI-Augmented SDLC?](#1-introduction-what-is-the-ai-augmented-sdlc)
-2. [The Seven Pillars](#2-the-seven-pillars)
+2. [The Eight Pillars](#2-the-eight-pillars)
 3. [Jira Integration](#3-jira-integration)
 4. [Requirements: The Three-Layer Framework](#4-requirements-the-three-layer-framework)
 5. [Requirements: The States of Information](#5-requirements-the-states-of-information)
@@ -25,6 +25,7 @@ Every concept is explained from first principles, with real-world examples and p
 13. [Testing: The Five Dimensions of Quality](#13-testing-the-five-dimensions-of-quality)
 14. [Context Window Management: Getting the Best from AI](#14-context-window-management-getting-the-best-from-ai)
 15. [Cross-System Coordination: Working Across Teams and Systems](#15-cross-system-coordination-working-across-teams-and-systems)
+16. [AI Planning Intelligence: Continuous Dependency Management](#16-ai-planning-intelligence-continuous-dependency-management)
 
 ---
 
@@ -69,9 +70,9 @@ AI assistance can dramatically reduce this time, allowing teams to:
 
 ---
 
-## 2. The Seven Pillars
+## 2. The Eight Pillars
 
-The AI-Augmented SDLC is built on seven foundational principles that govern how work is organized, tracked, and executed.
+The AI-Augmented SDLC is built on eight foundational principles that govern how work is organized, tracked, and executed.
 
 ### Pillar 1: VS Code as Home Base
 
@@ -263,6 +264,33 @@ Even the largest AI models (2 million tokens) can't fit an entire codebase. With
 - **Session persistence:** Track entities, open questions, next steps
 
 > 📖 **Full Details:** See Chapter 14 for complete context management strategies.
+
+### Pillar 8: AI Planning Intelligence
+
+**The Problem:**
+
+Jira backlogs are often incomplete:
+- Stories created without dependency links
+- Blockers discovered mid-sprint
+- Cross-team dependencies hidden until too late
+- Optimal build order is guesswork
+
+**The Solution: Continuous AI Monitoring**
+
+An always-on AI layer that watches, discovers, suggests, and manages dependencies across Jira:
+
+| Capability | What It Does |
+|:-----------|:-------------|
+| **Watches** | Monitors backlog as items are created/edited |
+| **Discovers** | Infers dependencies from story content (NLP) |
+| **Suggests** | Proposes missing links for human approval |
+| **Sequences** | Recommends optimal build order |
+| **Alerts** | Notifies when dependency health changes |
+| **Predicts** | Forecasts blockers before they occur |
+
+**Key Principle:** This is Jira-centric — users plan backlogs and sprints in Jira, not VS Code.
+
+> 📖 **Full Details:** See Chapter 16 for the complete AI Planning Intelligence framework.
 
 ---
 
@@ -2025,6 +2053,313 @@ For each Epic, assess cross-system impact:
 | **Use consumer contracts** | Let consumers define what they need |
 | **Protect your domain** | Anti-Corruption Layer between you and others |
 | **Assess impact per Epic** | Cross-system changes need special planning |
+
+---
+
+## 16. AI Planning Intelligence: Continuous Dependency Management
+
+### The Problem: Invisible Dependencies
+
+In most organizations:
+
+| Issue | Impact |
+|:------|:-------|
+| Stories created without predecessor/successor links | Work blocked unexpectedly mid-sprint |
+| Dependencies discovered too late | Rework, delays, cross-team friction |
+| Manual dependency tracking | Labor-intensive, error-prone, incomplete |
+| No visibility into optimal build order | Suboptimal sprint sequencing |
+| Cross-team dependencies hidden | Integration failures, missed deadlines |
+
+### The Solution: AI-Powered Continuous Monitoring
+
+AI Planning Intelligence is an **always-on layer** that watches the Jira backlog and:
+
+| Capability | What It Does |
+|:-----------|:-------------|
+| **Watches** | Monitors backlog as items are created/edited |
+| **Discovers** | Infers dependencies from story/epic content |
+| **Suggests** | Proposes missing links for human approval |
+| **Sequences** | Recommends optimal build order |
+| **Alerts** | Notifies when dependency health changes |
+| **Predicts** | Forecasts blockers before they occur |
+
+> ⚠️ **Key Principle:** This is Jira-centric. Users do sprint planning, backlog grooming, and dependency management in **Jira**, not VS Code.
+
+---
+
+### The 4 Dimensions of AI Planning Intelligence
+
+| Dimension | Question | AI Capability |
+|:----------|:---------|:--------------|
+| **1. Discovery** | What dependencies exist? | NLP analysis of story content |
+| **2. Monitoring** | What's the health right now? | Real-time status tracking |
+| **3. Sequencing** | What order should we build? | Topological sort, critical path |
+| **4. Prediction** | What will block us? | Forecasting from patterns |
+
+---
+
+### Dimension 1: Dependency Discovery
+
+AI analyzes story/epic content to infer dependencies that humans haven't specified.
+
+| Input | AI Analysis | Output |
+|:------|:------------|:-------|
+| Story text | NLP scans for references to other features, APIs, systems | Suggested "Depends on" links |
+| Epic breakdown | Looks for logical sequence (can't do X before Y) | Suggested predecessor/successor |
+| Architecture docs | Cross-references with interfaces, components | Technical dependency warnings |
+| Historical data | Patterns from past sprints (these types always depend) | Learned dependency rules |
+
+**Example:**
+```
+Story: "Update dashboard to show new policy status"
+
+AI detects: References "policy status" 
+AI scans: Jira backlog
+AI finds: CORE-456 "API: Add status field to policy endpoint"
+AI suggests: "This story depends on CORE-456"
+```
+
+---
+
+### Dimension 2: Continuous Monitoring
+
+Always-on surveillance of dependency health in Jira.
+
+| Monitor | What It Watches | Alert Type |
+|:--------|:----------------|:-----------|
+| **New Item Monitor** | Every new story/epic created | "Potential dependencies detected" |
+| **Edit Monitor** | Changes to existing items | "Dependency implications changed" |
+| **Status Monitor** | Blocked items, stale dependencies | "Blocker risk: DEP-123 not started" |
+| **Cross-Team Monitor** | External dependencies progress | "External dep at risk: no movement" |
+| **Sprint Health** | Dependencies within sprint boundary | "Sprint dependency conflict detected" |
+
+**Dependency Health Status:**
+
+| Status | Meaning | Visual |
+|:-------|:--------|:-------|
+| 🟢 **Healthy** | Dependency completes before dependent work starts | Safe |
+| 🟡 **Risk** | Dependency scheduled in same sprint (tight timing) | Watch |
+| 🔴 **Conflict** | Dependent story scheduled before its dependency | Fix now |
+
+---
+
+### Dimension 3: Optimal Sequencing
+
+AI recommends the best order to build stories based on dependency graph.
+
+| Capability | How It Works |
+|:-----------|:-------------|
+| **Topological Sort** | Orders work so dependencies complete first |
+| **Critical Path** | Identifies longest dependency chain (schedule risk) |
+| **Parallel Opportunities** | Groups work that can be done simultaneously |
+| **Sprint Fit** | Suggests which stories fit cleanly in sprint boundary |
+| **Risk Balancing** | Prioritizes high-risk dependencies early |
+
+**Example Output:**
+```
+Recommended Build Order for Sprint 14:
+
+Phase 1 (Days 1-3) — Foundations (No dependencies):
+  ✓ CORE-456: API: Add status field
+  ✓ CORE-457: Database migration
+
+Phase 2 (Days 4-7) — Dependent Work:
+  ← PORTAL-123: Dashboard update (depends on CORE-456)
+  ← PORTAL-124: Status filter (depends on CORE-456)
+
+Phase 3 (Days 8-10) — Integration:
+  ← PORTAL-125: E2E tests (depends on all above)
+```
+
+---
+
+### Dimension 4: Predictive Intelligence
+
+AI forecasts problems before they impact delivery.
+
+| Prediction | Data Sources | Lead Time |
+|:-----------|:-------------|:----------|
+| **Blocker Forecast** | Team velocity, story complexity, history | 1-2 sprints ahead |
+| **Capacity Conflict** | Team allocation, concurrent dependencies | PI planning |
+| **Integration Risk** | Multi-team dependencies, external factors | 2-4 weeks |
+| **Scope Creep Alert** | New items added, dependency chain growth | Real-time |
+
+---
+
+### Jira Integration Points
+
+AI Planning Intelligence integrates deeply with Jira:
+
+| Integration | Mechanism | Purpose |
+|:------------|:----------|:--------|
+| **Webhooks** | `issue.created`, `issue.updated` events | Trigger AI analysis on changes |
+| **Jira API** | Read backlog, create suggested links | Access and update Jira data |
+| **Jira Automation** | Trigger notifications, status updates | Automated alerts |
+| **Advanced Roadmaps** | Feed dependency data for visualization | Timeline views |
+| **Slack/Teams** | Send alerts to team channels | Real-time notifications |
+
+---
+
+### Health Check Reports
+
+#### Sprint Readiness Report
+
+Run before sprint planning to assess dependency health:
+
+```
+SPRINT 15 READINESS REPORT
+Generated: 2026-02-01
+
+Stories Planned: 12
+─────────────────────────────────────────
+
+DEPENDENCY HEALTH
+  🟢 Healthy:     8 stories (no blocking issues)
+  🟡 At Risk:     3 stories (tight timing)
+  🔴 Conflict:    1 story (scheduled before blocker)
+
+CONFLICTS (Fix Required):
+  ⚠️ PORTAL-456 "Widget Display" 
+     Blocked by: CORE-789 "Widget API" (not in sprint)
+     Recommendation: Add CORE-789 to Sprint 15 or defer PORTAL-456
+
+RISKS (Monitor):
+  ⚡ PORTAL-123 depends on CORE-456 (same sprint)
+  ⚡ PORTAL-124 depends on CORE-456 (same sprint)
+  ⚡ REPORT-88 has external dependency (Team B)
+
+MISSING DEPENDENCIES (Suggested):
+  📎 PORTAL-125 may depend on CORE-460 (similar patterns in past)
+```
+
+#### Backlog Health Report
+
+Run weekly to assess overall backlog health:
+
+```
+BACKLOG HEALTH REPORT
+Project: PORTFOLIO
+Generated: 2026-02-01
+
+STORIES ANALYZED: 47
+─────────────────────────────────────────
+
+DEPENDENCY COVERAGE
+  Stories with dependencies:     23 (49%)
+  Stories without dependencies:  24 (51%)
+  AI-suggested missing deps:     12
+
+TOP SUGGESTIONS (High Confidence):
+  1. PORTAL-234 → likely depends on → API-112
+  2. PORTAL-567 → likely depends on → DB-045
+  3. REPORT-123 → likely depends on → ETL-789
+
+CROSS-TEAM DEPENDENCIES
+  Team B:  4 dependencies (2 at risk)
+  Team C:  2 dependencies (healthy)
+  External: 1 dependency (vendor)
+
+CRITICAL PATH
+  Longest chain: 5 stories deep
+  CORE-001 → API-002 → PORTAL-003 → TEST-004 → DEPLOY-005
+```
+
+---
+
+### AI Prompts for Planning Intelligence
+
+#### `/dep-discover` — Discover Dependencies
+
+```
+Analyze this story/epic and identify all potential dependencies:
+
+Story:
+[Paste story title and description]
+
+Backlog Context:
+[Optional: Paste related stories or provide Jira project key]
+
+Output:
+1. Suggested predecessors (what must complete before this)
+2. Suggested successors (what this unblocks)
+3. External dependencies (other teams)
+4. Confidence level for each suggestion
+```
+
+#### `/dep-health` — Sprint/Backlog Health Check
+
+```
+Analyze these stories for dependency health:
+
+Stories:
+[Paste list of stories or sprint contents]
+
+Output:
+1. Dependency conflicts (fix required)
+2. At-risk dependencies (tight timing)
+3. Missing dependency suggestions
+4. Recommended sequencing
+```
+
+#### `/dep-sequence` — Optimal Build Order
+
+```
+Given these stories, recommend optimal build sequence:
+
+Stories:
+[Paste stories with known dependencies]
+
+Output:
+1. Recommended phases/order with rationale
+2. Critical path identification
+3. Parallel work opportunities
+4. Risk flags
+```
+
+#### `/sprint-readiness` — Sprint Readiness Check
+
+```
+Assess this sprint's readiness:
+
+Sprint Stories:
+[Paste sprint contents]
+
+Backlog:
+[Paste or reference backlog for dependency context]
+
+Output:
+1. Dependency health summary (🟢/🟡/🔴)
+2. Conflicts requiring resolution
+3. Risks to monitor
+4. External dependency status
+5. Go/No-Go recommendation
+```
+
+---
+
+### Human-in-the-Loop (HITL)
+
+AI suggests, humans approve. This is NOT autonomous linking.
+
+| AI Action | Human Action |
+|:----------|:-------------|
+| "Detected potential dependency" | Accept / Reject / Modify |
+| "Recommended build order" | Adopt / Adjust |
+| "Alert: Blocker risk" | Acknowledge / Dismiss |
+| "Sprint not ready" | Remediate / Override |
+
+---
+
+### Key Takeaways
+
+| Principle | Description |
+|:----------|:------------|
+| **Always-On** | Not point-in-time; continuous monitoring of Jira |
+| **Jira-Centric** | Planning happens in Jira, not VS Code |
+| **Suggestive, Not Autonomous** | AI proposes, humans approve |
+| **Graph-Based** | Dependency graph as core data structure |
+| **Predictive** | Forecasts problems before they occur |
+| **Actionable** | Reports include specific recommendations |
 
 ---
 

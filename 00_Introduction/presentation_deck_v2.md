@@ -1,6 +1,6 @@
 # User Slide Content V2 (Framework-Consistent Edition)
 
-## Slide 1: THE SEVEN PILLARS OF AI-AUGMENTED SDLC
+## Slide 1: THE EIGHT PILLARS OF AI-AUGMENTED SDLC
 
 ### Pillar 1: VS Code as Home Base
 **One environment for everything:**
@@ -73,6 +73,20 @@ Outputs are **created by AI Agents**, not written from scratch:
 | **Context Drawer** | Explicitly include/exclude files for AI (Code Assist) |
 | **Session State** | `session_log.md`, `entities.md` persist across sessions |
 | **Caching** | Reuse common context (STYLEGUIDE, glossary) |
+
+### Pillar 8: AI Planning Intelligence
+**Continuous AI monitoring of Jira backlog:**
+
+| Capability | What It Does |
+|:-----------|:-------------|
+| **Watches** | Monitors Jira as items are created/edited |
+| **Discovers** | Infers dependencies from story content |
+| **Suggests** | Proposes missing links for human approval |
+| **Sequences** | Recommends optimal build order |
+| **Alerts** | Notifies when dependency health changes (🔴/🟡/🟢) |
+| **Predicts** | Forecasts blockers 1-2 sprints ahead |
+
+**Key Insight:** This is Jira-centric — planning happens in Jira, not VS Code.
 
 ```mermaid
 flowchart LR
