@@ -11,7 +11,7 @@ Every concept is explained from first principles, with real-world examples and p
 ## Table of Contents
 
 1. [Introduction: What is the AI-Augmented SDLC?](#1-introduction-what-is-the-ai-augmented-sdlc)
-2. [The Six Pillars](#2-the-six-pillars)
+2. [The Seven Pillars](#2-the-seven-pillars)
 3. [Jira Integration](#3-jira-integration)
 4. [Requirements: The Three-Layer Framework](#4-requirements-the-three-layer-framework)
 5. [Requirements: The States of Information](#5-requirements-the-states-of-information)
@@ -68,9 +68,9 @@ AI assistance can dramatically reduce this time, allowing teams to:
 
 ---
 
-## 2. The Six Pillars
+## 2. The Seven Pillars
 
-The AI-Augmented SDLC is built on six foundational principles that govern how work is organized, tracked, and executed.
+The AI-Augmented SDLC is built on seven foundational principles that govern how work is organized, tracked, and executed.
 
 ### Pillar 1: VS Code as Home Base
 
@@ -237,9 +237,31 @@ AI is powerful but imperfect. Without guardrails:
 | **Guardrails** | Automatic | Detects PII (personal data), prevents hallucination, limits output size |
 | **Human-in-the-Loop** | Always On | Every AI-generated change must be reviewed before it's saved |
 | **Prompt Ops** | Automatic | Prompts are versioned and tested like code |
-| **Context Management** | Automatic | AI tracks what it knows, summarizes long conversations |
-
 **The Key Principle:** AI never makes changes directly. It always proposes changes that a human must accept.
+
+### Pillar 7: Context Management
+
+**The Challenge:**
+
+Even the largest AI models (2 million tokens) can't fit an entire codebase. Without strategy, AI lacks the context to give good answers.
+
+**The Solution: Multi-Layer Context Strategy**
+
+| Layer | Strategy | What It Does |
+|:------|:---------|:-------------|
+| **1. Pre-Processing** | NotebookLM | Summarizes bulk documents before development |
+| **2. Hierarchical Chunking** | Index → Summary → Detail | Creates navigable document structures |
+| **3. Context Drawer** | Code Assist UI | Explicitly include/exclude files for AI |
+| **4. Caching** | Vertex AI API | Reuses common context (STYLEGUIDE, glossary) |
+| **5. Session State** | SessionStateManager | Persists context across multi-day work |
+
+**Key Principles:**
+- **Pre-summarize:** Use NotebookLM for bulk documents
+- **Reference, don't embed:** Link to documents instead of copying content
+- **Progressive disclosure:** Summary always, details on-demand
+- **Session persistence:** Track entities, open questions, next steps
+
+> 📖 **Full Details:** See Chapter 14 for complete context management strategies.
 
 ---
 

@@ -1,6 +1,6 @@
 # User Slide Content V2 (Framework-Consistent Edition)
 
-## Slide 1: THE SIX PILLARS OF AI-AUGMENTED SDLC
+## Slide 1: THE SEVEN PILLARS OF AI-AUGMENTED SDLC
 
 ### Pillar 1: VS Code as Home Base
 **One environment for everything:**
@@ -62,7 +62,17 @@ Outputs are **created by AI Agents**, not written from scratch:
 | **Guardrails** | Automatic | PII detection, hallucination prevention, output limits |
 | **Human-in-the-Loop** | Always | **VS Code**: Accept/Reject diffs before file changes apply. **Agents**: Preview before saves. |
 | **Prompt-Ops** | Automatic | Versioned prompts, testing, A/B comparison |
-| **Context Management** | Automatic | Smart chunking, token tracking, summarization |
+
+### Pillar 7: Context Management
+**Optimize AI effectiveness with strategic context:**
+
+| Strategy | What It Does |
+|:---------|:-------------|
+| **Pre-Processing** | NotebookLM summarizes bulk docs before development |
+| **Hierarchical Chunking** | Index → Summary → Detail for large documents |
+| **Context Drawer** | Explicitly include/exclude files for AI (Code Assist) |
+| **Session State** | `session_log.md`, `entities.md` persist across sessions |
+| **Caching** | Reuse common context (STYLEGUIDE, glossary) |
 
 ```mermaid
 flowchart LR
