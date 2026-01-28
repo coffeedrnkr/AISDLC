@@ -148,7 +148,31 @@ flowchart LR
 - CI: GitHub Actions with Jira Issue to Markdown Action
 
 
-## Slide 3: REQUIREMENTS (The 3-Layer Framework)
+## Slide 3: CROSS-SYSTEM COORDINATION (Working Across Teams)
+
+**The Problem:** Teams blocked by "works on my machine" or sudden API changes.
+
+### 1. The Solution: Contracts & Patterns
+
+| Strategy | What It Does |
+|:---|:---|
+| **Consumer-Driven Contracts** | Consumers define tests that Providers must pass (e.g., Pact) |
+| **Anti-Corruption Layer (ACL)** | Adapters translate external data models to your domain |
+| **Strangler Fig** | Safely replace legacy systems feature-by-feature |
+
+### 2. Dependency Impact Assessment
+
+Before starting an Epic, map external risks:
+
+| Dependency | Impact | Mitigation |
+|:---|:---|:---|
+| **Payment API** | HIGH (Blocking) | Mock service early |
+| **Legacy DB** | MEDIUM (Schema) | Create ACL adapter |
+
+> **Key Insight:** Don't just integrate code — integrate *teams* with clear contracts.
+
+
+## Slide 4: REQUIREMENTS (The 3-Layer Framework)
 
 ### 1. The Framework
 Requirements are organized into 3 interlocking layers:
@@ -169,7 +193,7 @@ Requirements are organized into 3 interlocking layers:
 **AI Actions:** NotebookLM synthesizes → AI extracts epics → AI generates Gherkin → AI creates wireframes  
 **Outputs:** Structured PRD, Epic docs with acceptance criteria, UX flows
 
-## Slide 4: REQUIREMENTS (The States of Information)
+## Slide 5: REQUIREMENTS (The States of Information)
 **How AI processes information in 3 states:**
 
 *   **(Solid) Documentation – NotebookLM:**
@@ -183,7 +207,7 @@ Requirements are organized into 3 interlocking layers:
     *   Mind mapping, form-filling, BDD/Gherkin translation
     *   Requirements traceability automation
 
-## Slide 5: EPIC DECOMPOSITION (Vertical Value Streams)
+## Slide 6: EPIC DECOMPOSITION (Vertical Value Streams)
 
 ### 1. The Framework: Vertical Slicing + SPIDR
 **Two types of epics:**
@@ -227,7 +251,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 
 **Live Jira Sync:** Epic docs (markdown) ↔ Jira epics (bi-directional, auto-creates traceability links)
 
-## Slide 6: USER STORY ELABORATION (The AI-Ready Prompt Package)
+## Slide 7: USER STORY ELABORATION (The AI-Ready Prompt Package)
 
 ### 1. The Framework: Epic to Stories
 **Story Decomposition:**
@@ -287,7 +311,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 
 **Live Jira Sync:** Story docs ↔ Jira tickets (bi-directional, all context links auto-populated)
 
-## Slide 7: UX DESIGN (The UX Architect Framework)
+## Slide 8: UX DESIGN (The UX Architect Framework)
 
 ### 1. The Framework: 4-Step Workflow
 
@@ -310,7 +334,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 **AI Actions:** Maps flows → Generates wireframes → Evaluates heuristics → Tests with personas  
 **Outputs:** User Journeys, Flow Diagrams, Wireframes, State Diagrams
 
-## Slide 8: SYSTEM-WIDE UX (The Holistic Advantage)
+## Slide 9: SYSTEM-WIDE UX (The Holistic Advantage)
 
 **The AI Capability:**
 *   **Information Architecture:** Consistent navigation across all features
@@ -320,7 +344,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 **The Result:** Cohesive, conflict-free UX in one shot.
 
 
-## Slide 9: ARCHITECTURE (The Architecture Hub)
+## Slide 10: ARCHITECTURE (The Architecture Hub)
 
 ### 1. The Framework
 The Architecture Hub is a centralized, version-controlled repository of technical contracts covering:
