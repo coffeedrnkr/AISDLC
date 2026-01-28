@@ -11,8 +11,8 @@ Every concept is explained from first principles, with real-world examples and p
 ## Table of Contents
 
 1. [Introduction: What is the AI-Augmented SDLC?](#1-introduction-what-is-the-ai-augmented-sdlc)
-2. [The Nine Pillars](#2-the-nine-pillars)
-3. [Jira Integration](#3-jira-integration)
+2. [The Ten Pillars](#2-the-ten-pillars)
+
 4. [Requirements: The Three-Layer Framework](#4-requirements-the-three-layer-framework)
 5. [Requirements: The States of Information](#5-requirements-the-states-of-information)
 6. [Epic Decomposition: Breaking Down Large Features](#6-epic-decomposition-breaking-down-large-features)
@@ -293,7 +293,7 @@ An always-on AI layer that watches, discovers, suggests, and manages dependencie
 
 > 📖 **Full Details:** See Chapter 16 for the complete AI Planning Intelligence framework.
 
-### Pillar 9: Planning & Change Management
+### Pillar 9: Change Management
 
 **The Problem:**
 
@@ -321,7 +321,7 @@ Before any change is made, AI assesses the full blast radius:
 
 ---
 
-## 3. Jira Integration
+### Pillar 10: Jira Integration
 
 ### What is Jira?
 
@@ -365,7 +365,7 @@ This means:
 
 ---
 
-## 4. Requirements: The Three-Layer Framework
+## 3. Requirements: The Three-Layer Framework
 
 ### What Are Requirements?
 
@@ -424,7 +424,7 @@ This layer describes the technical constraints and architecture:
 
 ---
 
-## 5. Requirements: The States of Information
+## 4. Requirements: The States of Information
 
 ### The Challenge of Gathering Requirements
 
@@ -487,7 +487,7 @@ This framework uses a physics analogy to categorize information sources:
 
 ---
 
-## 6. Epic Decomposition: Breaking Down Large Features
+## 5. Epic Decomposition: Breaking Down Large Features
 
 ### What is an Epic?
 
@@ -624,7 +624,7 @@ Each Epic (and Story) should pass the INVEST test:
 
 ---
 
-## 7. User Story Elaboration: Creating Work Packages
+## 6. User Story Elaboration: Creating Work Packages
 
 ### What is a User Story?
 
@@ -721,7 +721,7 @@ Things that must be checked by a human:
 
 ---
 
-## 8. UX Design: The UX Architect Framework
+## 7. UX Design: The UX Architect Framework
 
 ### What is UX Design?
 
@@ -814,7 +814,7 @@ AI can simulate these personas, asking questions like:
 
 ---
 
-## 9. System-Wide UX: The Holistic Advantage
+## 8. System-Wide UX: The Holistic Advantage
 
 ### The Problem with Feature-by-Feature UX
 
@@ -839,7 +839,7 @@ Instead of designing UX one feature at a time, the AI considers the entire produ
 
 ---
 
-## 10. Architecture: The Architecture Hub
+## 9. Architecture: The Architecture Hub
 
 ### What is Software Architecture?
 
@@ -956,7 +956,7 @@ Use PostgreSQL
 
 ---
 
-## 11. Interfaces: The Four Layers of Integration
+## 10. Interfaces: The Four Layers of Integration
 
 ### What is an Interface?
 
@@ -1046,7 +1046,7 @@ Most software bugs occur at system boundaries. If interfaces aren't well-documen
 
 ---
 
-## 12. Implementation: Context-Driven Development
+## 11. Implementation: Context-Driven Development
 
 ### The Shift in Developer Role
 
@@ -1101,7 +1101,7 @@ This is a proven methodology for writing high-quality code:
 
 ---
 
-## 13. Testing: The Five Dimensions of Quality
+## 12. Testing: The Five Dimensions of Quality
 
 ### The Testing Pyramid
 
@@ -1288,7 +1288,7 @@ This is the future of software development: humans and AI working together, each
 
 ---
 
-## 14. Context Window Management: Getting the Best from AI
+## 13. Context Window Management: Getting the Best from AI
 
 ### What is a Context Window?
 
@@ -1656,7 +1656,7 @@ Entities discovered during requirements are tracked and can be injected into fut
 
 ---
 
-## 15. Cross-System Coordination: Working Across Teams and Systems
+## 14. Cross-System Coordination: Working Across Teams and Systems
 
 ### The Reality of Modern Development
 
@@ -2083,7 +2083,7 @@ For each Epic, assess cross-system impact:
 
 ---
 
-## 16. AI Planning Intelligence: Continuous Dependency Management
+## 15. AI Planning Intelligence: Continuous Dependency Management
 
 ### The Problem: Invisible Dependencies
 
@@ -2429,7 +2429,7 @@ AI suggests, humans approve. This is NOT autonomous linking.
 
 ---
 
-## 17. Change Management: What-If Impact Assessment
+## 16. Change Management: What-If Impact Assessment
 
 ### The Problem: Uncontrolled Change
 

@@ -750,7 +750,7 @@ When a story moves to "Ready for Development":
 
 ---
 
-## Appendix C: Context Window Management
+## Slide 15: CONTEXT WINDOW MANAGEMENT (Getting the Best from AI)
 
 ### The Challenge
 
@@ -831,6 +831,43 @@ For multi-session work (PRDs, Epics spanning days/weeks), the framework includes
 
 **Implementation:** `standards/session_state_manager.py`
 **Design Details:** `ai-agent-recommendation-and-workflow.md` Section 8
+
+---
+
+## Slide 16: AI PLANNING INTELLIGENCE (Continuous Dependency Management)
+
+### The Problem: Incomplete Backlogs
+*   Requirements exist, but dependencies are hidden
+*   Blockers discovered mid-sprint
+*   Build order is often sub-optimal
+
+### The Solution: Continuous AI Monitoring
+| Capability | Value |
+|:---|:---|
+| **Discovers** | AI infers dependencies from story content |
+| **Sequences** | AI recommends optimal build order |
+| **Alerts** | AI notifies when dependency health changes |
+
+> **Key Insight:** This is Jira-centric. AI watches Jira and alerts you.
+
+---
+
+## Slide 17: CHANGE MANAGEMENT (What-If Impact Assessment)
+
+### The Problem: Uncontrolled Change
+Requirements change constantly (Scope cuts, new features, tech pivots).
+
+### The Solution: What-If Assessment
+Before executing changes, AI runs a **Blast Radius** check:
+
+| Asesses Impact On | Questions Answered |
+|:---|:---|
+| **PRD** | Does this conflict with goals? |
+| **Epics/Stories** | What needs to be added vs. reworked? |
+| **Architecture** | Do we need new components? |
+| **Timeline** | Does this fit in the sprint? |
+
+**Slash Command:** `/impact-assess` calculates the cost of change before you commit.
 
 ---
 
