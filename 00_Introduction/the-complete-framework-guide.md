@@ -2787,7 +2787,7 @@ This is the future of software development: humans and AI working together, each
 | **4: Test** | **Resilience Agent** | `/chaos-test` | Load & failure testing |
 | **4: Release** | **Integration Agent** | `/ci-check` | Release readiness |
 | **8: Planning** | **AI Planning Agent** | `/dep-discover` <br> `/dep-health` <br> `/dep-sequence` <br> `/sprint-readiness` | Dependency & Health check |
-| **9: Change** | **Change Mgmt Agent** | `/impact-assess` <br> `/scope-change` <br> `/architecture-impact` | "What-If" analysis for changes |
+| **9: Change** | **Change Mgmt Agent** <br> `09_Change_Management/` | `/impact-assess` <br> `/scope-change` <br> `/architecture-impact` | "What-If" analysis for changes |
 
 > ℹ️ **Note:** This table summarizes the primary interaction points. Each agent folder contains detailed READMEs and additional prompt templates.
 

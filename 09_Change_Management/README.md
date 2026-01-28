@@ -1,4 +1,4 @@
-# Planning & Change Management Agent
+# Change Management Agent (Pillar 9)
 
 ## Overview
 
