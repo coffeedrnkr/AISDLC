@@ -1,6 +1,6 @@
 # User Slide Content V2 (Framework-Consistent Edition)
 
-## Slide 1: THE NINE PILLARS OF AI-AUGMENTED SDLC
+## Slide 1: THE TEN PILLARS OF AI-AUGMENTED SDLC
 
 ### Pillar 1: VS Code as Home Base
 **One environment for everything:**
@@ -99,6 +99,14 @@ Outputs are **created by AI Agents**, not written from scratch:
 | **Modify** | Which artifacts need updates? How much rework? |
 | **Remove** | What becomes orphaned? What's affected downstream? |
 
+### Pillar 10: Jira Integration
+**Bi-directional sync:** VS Code ↔ Jira.
+
+| Operation | Traceability |
+|:---|:---|
+| **Sync** | Markdown docs auto-create Jira tickets |
+| **Link** | PRD -> Epic -> Story -> Test links maintained automatically |
+
 **Key Insight:** Assessment only — AI shows blast radius, humans decide.
 
 ```mermaid
@@ -114,7 +122,7 @@ flowchart LR
 ```
 
 
-## Slide 2: JIRA INTEGRATION (Required API Calls)
+## Slide 2: PILLAR 10 DETAIL - JIRA INTEGRATION (Required API Calls)
 
 **Bi-directional sync between Markdown artifacts and Jira tickets:**
 
