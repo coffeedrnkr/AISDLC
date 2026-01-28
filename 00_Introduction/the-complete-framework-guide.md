@@ -24,6 +24,7 @@ Every concept is explained from first principles, with real-world examples and p
 12. [Implementation: Context-Driven Development](#12-implementation-context-driven-development)
 13. [Testing: The Five Dimensions of Quality](#13-testing-the-five-dimensions-of-quality)
 14. [Context Window Management: Getting the Best from AI](#14-context-window-management-getting-the-best-from-ai)
+15. [Cross-System Coordination: Working Across Teams and Systems](#15-cross-system-coordination-working-across-teams-and-systems)
 
 ---
 
@@ -1597,6 +1598,236 @@ Entities discovered during requirements are tracked and can be injected into fut
 | **Response time** | Fast first-token time | Long delays before AI starts responding |
 | **Token usage** | Consistent, predictable | Varies wildly between similar tasks |
 | **Relevance** | AI uses provided context | AI hallucinates or asks for information you provided |
+
+---
+
+## 15. Cross-System Coordination: Working Across Teams and Systems
+
+### The Reality of Modern Development
+
+Most real-world requirements don't involve building isolated new systems. They involve:
+
+| Scenario | What It Means |
+|:---------|:--------------|
+| **Extending legacy systems** | Adding features to existing, often older, systems |
+| **Consuming other teams' APIs** | Your feature depends on another team's service |
+| **Providing APIs to others** | Other teams or apps depend on your system |
+| **Integrating with vendors** | Connecting to external services (payment, identity, etc.) |
+| **Sharing data upstream/downstream** | Receiving data from or sending data to other systems |
+
+This chapter provides a framework for handling these cross-system dependencies.
+
+### The 4 Dimensions of External Dependencies
+
+| Dimension | Question | Output |
+|:----------|:---------|:-------|
+| **1. Discovery** | What systems are we connected to? | Dependency Map |
+| **2. Relationship** | How do we work with that team? | Team Contract |
+| **3. Integration** | How do we technically connect? | Interface Contract |
+| **4. Protection** | How do we isolate changes? | Anti-Corruption Layer |
+
+---
+
+### Dimension 1: Dependency Discovery
+
+**Why it matters:** You can't coordinate what you don't know exists.
+
+**The Dependency Map:**
+
+Every project should create a visual map of all connected systems:
+
+```mermaid
+C4Context
+    System(us, "Our System", "What we're building")
+    
+    System_Ext(upstream1, "CRM System", "Customer data source")
+    System_Ext(upstream2, "Legacy Admin", "Existing data")
+    
+    System_Ext(peer1, "Payment Gateway", "External vendor")
+    System_Ext(peer2, "Rating Engine", "Sister team")
+    
+    System_Ext(downstream1, "Reports", "Consumes our data")
+    
+    Rel(upstream1, us, "Provides data")
+    Rel(upstream2, us, "Provides data")
+    BiRel(us, peer1, "Payments")
+    BiRel(us, peer2, "Quotes")
+    Rel(us, downstream1, "Exports events")
+```
+
+**Dependency Catalog:**
+
+| ID | System | Direction | Team | What We Need |
+|:---|:-------|:----------|:-----|:-------------|
+| DEP-001 | CRM | Upstream | CRM Team | Customer data |
+| DEP-002 | Legacy Admin | Upstream | Core Team | Policy data |
+| DEP-003 | Payment Gateway | Peer | External | Payment processing |
+| DEP-004 | Reports | Downstream | BI Team | We send them events |
+
+---
+
+### Dimension 2: Team Relationships (Team Topologies)
+
+Different dependencies require different collaboration styles.
+
+**The Three Interaction Modes:**
+
+| Mode | Description | When to Use |
+|:-----|:------------|:------------|
+| **Collaboration** | Close partnership, frequent communication | New integration, exploring unknowns |
+| **X-as-a-Service** | Provider/Consumer relationship | Stable service with clear API |
+| **Facilitating** | One team helps another | Adopting platform, learning new tools |
+
+**Choosing the Right Mode:**
+
+| Scenario | Mode | Why |
+|:---------|:-----|:----|
+| Building new API with another team | Collaboration | Need joint design decisions |
+| Consuming an existing, documented API | X-as-a-Service | Just follow the contract |
+| Adopting a new internal platform | Facilitating | Need guidance to use it right |
+| Integrating with external vendor | X-as-a-Service | Can't change their system |
+
+---
+
+### The Team Contract
+
+For each significant dependency, document the relationship:
+
+```markdown
+# Team Contract: DEP-002 Legacy Admin System
+
+## Parties
+| Role | Team | Contact |
+|:-----|:-----|:--------|
+| We Are | Portfolio Team | @dave |
+| They Are | Core Platform Team | @jane |
+
+## Relationship Type
+- [x] Collaboration — Working closely together
+- [ ] X-as-a-Service — Using their stable service
+- [ ] Facilitating — They're helping us learn
+
+## What We Need
+1. New API endpoint: GET /api/policies/{id}
+2. Event: POLICY_UPDATED emitted on changes
+3. API: POST /api/policies/{id}/amend
+
+## Their Commitments
+| Commitment | Due Date | Status |
+|:-----------|:---------|:-------|
+| API design review | Feb 15 | ✅ Done |
+| Staging ready | Mar 1 | 🔄 In Progress |
+| Production | Mar 15 | ⏳ Pending |
+
+## Our Commitments
+| Commitment | Due Date | Status |
+|:-----------|:---------|:-------|
+| Share requirements | Feb 10 | ✅ Done |
+| Integration testing | Mar 5 | ⏳ Pending |
+
+## Communication
+- Weekly sync: Thursdays 2pm
+- Slack: #portfolio-core-integration
+```
+
+---
+
+### Dimension 3: Interface Contracts
+
+The technical agreement for how systems connect.
+
+**Consumer-Driven Contracts:**
+
+When you provide an API that others consume, use Consumer-Driven Contract Testing (Pact):
+
+| Step | Who | What |
+|:-----|:----|:-----|
+| 1 | Consumer team | Writes tests defining what they need |
+| 2 | Consumer team | Publishes contract to Pact Broker |
+| 3 | Provider team (you) | CI fetches consumer contracts |
+| 4 | Provider team (you) | CI verifies you meet all contracts |
+| 5 | Both | Breaking change? CI fails before deploy |
+
+**Why this matters:**
+
+- Consumer defines what they actually need (not what you think they need)
+- Breaking changes are caught automatically
+- No more "works on my machine" integration failures
+
+---
+
+### Dimension 4: Protection Patterns
+
+How to isolate your system from external changes.
+
+**Anti-Corruption Layer (ACL):**
+
+External systems often have different data models, naming conventions, or design philosophies. An ACL translates between their world and yours.
+
+```
+External System:              Your System:
+{                             {
+  "cust_no": "12345",    →      "customerId": "12345",
+  "pol_eff_dt": "2025-01",      "effectiveDate": "2025-01",
+  "prem_amt": 150000            "premium": { "amount": 1500.00,
+}                                            "currency": "USD" }
+                              }
+```
+
+**Implementation:**
+
+```
+adapters/
+├── crm_adapter.py              # Translates CRM data
+├── legacy_adapter.py           # Translates legacy data
+└── payment_adapter.py          # Translates payment data
+```
+
+**Strangler Fig Pattern:**
+
+For extending legacy systems without rewriting them:
+
+```
+1. Put routing layer (API Gateway) in front of legacy
+2. Build new features as new service, not inside legacy
+3. Route new feature traffic to new service
+4. Gradually migrate old features one by one
+5. Eventually decommission legacy
+```
+
+**Key Benefit:** Legacy stays running while you incrementally replace it.
+
+---
+
+### Dependency Impact Assessment
+
+For each Epic, assess cross-system impact:
+
+| Dependency | Impact | Their Effort | Risk | Mitigation |
+|:-----------|:-------|:-------------|:-----|:-----------|
+| DEP-002 Legacy Admin | HIGH | ~2 sprints | Their backlog is full | Escalate to leadership |
+| DEP-003 Payment Gateway | LOW | None | Existing API works | None needed |
+| DEP-004 Reports | MEDIUM | ~3 days | Schema compatibility | Share schema early |
+
+**Questions to Answer:**
+
+- What do we need from them?
+- What effort does it require on their side?
+- What's the risk they can't deliver?
+- How do we mitigate that risk?
+
+---
+
+### Key Takeaways
+
+| Principle | What It Means |
+|:----------|:--------------|
+| **Map all dependencies** | Know every system you connect to |
+| **Choose interaction mode** | Collaboration vs X-as-a-Service vs Facilitating |
+| **Document team contracts** | Explicit commitments with dates |
+| **Use consumer contracts** | Let consumers define what they need |
+| **Protect your domain** | Anti-Corruption Layer between you and others |
+| **Assess impact per Epic** | Cross-system changes need special planning |
 
 ---
 

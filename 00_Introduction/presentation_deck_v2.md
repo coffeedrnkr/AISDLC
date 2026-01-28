@@ -375,6 +375,102 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 **HITL:** Interface specs reviewed before implementation
 
+---
+
+## Slide 11.5: CROSS-SYSTEM COORDINATION (Working Across Teams)
+
+### The Reality: Most Work Involves Other Systems
+
+| Scenario | % of Real Projects |
+|:---------|:------------------|
+| Extend existing legacy system | 60% |
+| Consume other team's API | 80% |
+| Provide API for downstream consumers | 50% |
+| Integrate with external vendors | 70% |
+
+---
+
+### The Framework: 4 Dimensions
+
+| Dimension | Question | Artifact |
+|:----------|:---------|:---------|
+| **1. Discovery** | What systems are we connected to? | Dependency Map |
+| **2. Relationship** | How do we work with that team? | Team Contract |
+| **3. Integration** | How do we technically connect? | Interface Contract |
+| **4. Protection** | How do we isolate changes? | ACL / Strangler |
+
+---
+
+### Team Interaction Modes (Team Topologies)
+
+| Mode | When to Use | Contract Style |
+|:-----|:------------|:---------------|
+| **Collaboration** | New integration, unknowns | Close partnership, frequent sync |
+| **X-as-a-Service** | Stable service, clear API | Formal API contract |
+| **Facilitating** | Adopting platform, enablement | Templates + guidance |
+
+---
+
+### Consumer-Driven Contracts (Pact)
+
+**Problem:** How do I know my API change won't break consumers?
+
+**Solution:** Consumers define contracts → Provider CI verifies
+
+| Step | Who | What |
+|:-----|:----|:-----|
+| 1 | Consumer | Writes tests defining what they need |
+| 2 | Consumer | Publishes contract to Pact Broker |
+| 3 | Provider | CI fetches consumer contracts |
+| 4 | Provider | CI verifies all contracts met |
+| 5 | Both | Breaking change? CI fails before deploy |
+
+---
+
+### Protection Patterns
+
+| Pattern | When to Use | What It Does |
+|:--------|:------------|:-------------|
+| **Anti-Corruption Layer** | External system has different model | Translates between their world and yours |
+| **Strangler Fig** | Incrementally replacing legacy | Route traffic gradually to new service |
+| **Adapter** | Converting formats | Wraps external API in your interface |
+
+---
+
+### Dependency Impact Assessment (Per Epic)
+
+| Dependency | Impact | Their Effort | Risk | Mitigation |
+|:-----------|:-------|:-------------|:-----|:-----------|
+| Legacy Admin | HIGH | ~2 sprints | Backlog full | Escalate to leadership |
+| Payment Gateway | LOW | None | Existing API | None needed |
+| Reports | MEDIUM | ~3 days | Schema change | Share schema early |
+
+---
+
+### Team Contract (New Artifact)
+
+```markdown
+# Team Contract: DEP-002 Legacy Admin
+
+## Parties
+| Role | Team | Contact |
+|:-----|:-----|:--------|
+| We Are | Portfolio Team | @dave |
+| They Are | Core Platform | @jane |
+
+## Their Commitments
+| Commitment | Due Date | Status |
+|:-----------|:---------|:-------|
+| API design review | Feb 15 | ✅ Done |
+| Staging ready | Mar 1 | 🔄 In Progress |
+
+## Our Commitments
+| Commitment | Due Date | Status |
+|:-----------|:---------|:-------|
+| Share requirements | Feb 10 | ✅ Done |
+| Integration testing | Mar 5 | ⏳ Pending |
+```
+
 ## Slide 12: IMPLEMENTATION (The Context-Driven Developer)
 
 ### 1. The Framework: AI-Paired Workflow
