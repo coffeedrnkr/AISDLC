@@ -500,21 +500,21 @@ When a story moves to "Ready for Development":
 
 ### AI Agents (13 Total)
 
-| Phase | Agent | Python Script | Slash Command | Purpose |
-|:------|:------|:--------------|:--------------|:--------|
-| **Requirements** | PRD Agent | `01_Requirements/prd_agent/prd_agent.py` | `/prd-discover` | Interactive PRD discovery from stakeholder input |
-| **Elaboration** | Epic Decomposition | `02_Elaboration/epic_decomposition_agent/epic_decomposition_agent.py` | `/epic-split` | Split PRD into Epics using SPIDR |
-| **Elaboration** | Epic Elaboration | `02_Elaboration/epic_elaboration_agent/epic_elaboration_agent.py` | `/epic-elaborate` | Interactive: CRUD, State, Edge cases |
-| **Elaboration** | Story Agent | `02_Elaboration/story_agent/story_agent.py` | `/story-gen` | Generate User Stories with Gherkin ACs |
-| **UX Design** | UX Agent | `03_UX_Design/ux_agent/ux_agent.py` | `/ux-personas` | Personas, journeys, wireframes |
-| **Architecture** | Architecture Agent | `04_Architecture/architecture_agent/architecture_agent.py` | `/arch-design` | C4, DBML, OpenAPI, sequence diagrams |
-| **Architecture** | Interface Agent | `04_Architecture/interface_agent/interface_agent.py` | `/interface-discover` | Discover and doc all integrations |
-| **Implementation** | Code Governance | `05_Implementation/code_governance_agent/code_governance_agent.py` | `/code-review` | Static analysis + AI review |
-| **Implementation** | Integration Agent | `05_Implementation/integration_agent/integration_agent.py` | `/ci-check` | Release readiness validation |
-| **Testing** | Test Plan Agent | `06_Testing/test_plan_agent/test_plan_agent.py` | `/test-plan` | Test strategy and test cases |
-| **Testing** | Simulation Agent | `06_Testing/simulation_agent/simulation_agent.py` | `/simulate-persona` | Persona edge cases, stress tests |
-| **Testing** | Resilience Agent | `06_Testing/resilience_agent/resilience_agent.py` | `/load-test` | Load testing (k6/Locust) |
-| **Governance** | Governance Agent | `08_Governance/governance_agent/governance_agent.py` | - | Policy enforcement |
+| Phase | Agent | Description | Slash Command |
+|:------|:------|:------------|:--------------|
+| **Requirements** | PRD Agent | Coaches through 9 discovery tools (mind mapping, roleplay, JTBD) to build comprehensive PRD from stakeholder input. | `/prd-discover` |
+| **Elaboration** | Epic Decomposition | Splits PRD into Epics using SPIDR methodology (Spike, Path, Interface, Data, Rules). | `/epic-split` |
+| **Elaboration** | Epic Elaboration | Interactive session to flesh out Epics with CRUD matrices, state diagrams, and edge cases. | `/epic-elaborate` |
+| **Elaboration** | Story Agent | Generates BDD-style User Stories with Gherkin acceptance criteria from elaborated Epics. | `/story-gen` |
+| **UX Design** | UX Agent | Creates user personas, journey maps, and text-based wireframe descriptions. | `/ux-personas` |
+| **Architecture** | Architecture Agent | Generates C4 diagrams (Mermaid), DBML data models, OpenAPI specs, and sequence diagrams. | `/arch-design` |
+| **Architecture** | Interface Agent | Discovers all system interfaces (APIs, files, events) and generates specs and contract tests. | `/interface-discover` |
+| **Implementation** | Code Governance | Runs static analysis (Ruff/Bandit) + AI governance review against coding standards. | `/code-review` |
+| **Implementation** | Integration Agent | Validates release readiness: checks artifacts, runs tests, verifies CI pipeline status. | `/ci-check` |
+| **Testing** | Test Plan Agent | Generates test strategy, coverage matrix, and test cases from user stories. | `/test-plan` |
+| **Testing** | Simulation Agent | Simulates user personas to find edge cases, accessibility issues, and stress-test logic. | `/simulate-persona` |
+| **Testing** | Resilience Agent | Generates k6/Locust load test scripts and Chaos Mesh configs for resilience testing. | `/load-test` |
+| **Governance** | Governance Agent | Enforces organizational policies, compliance checks, and audit logging. | - |
 
 ---
 
