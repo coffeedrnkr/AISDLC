@@ -90,7 +90,7 @@ Outputs are **created by AI Agents**, not written from scratch:
 
 **Key Insight:** This is Jira-centric — planning happens in Jira, not VS Code.
 
-### Pillar 9: Planning & Change Management
+### Pillar 9: Change Management
 **What-If Impact Assessment before any change:**
 
 | Change Type | AI Assesses Impact On |

@@ -233,7 +233,7 @@ This document provides an overview of the specialized agents within the AI-Augme
 
 ---
 
-### Agent: Planning-Change-Management (Pillar 9)
+### Agent: Change Management (Pillar 9)
 
 -   **Purpose:** To perform "What-If" Impact Assessment for requirement changes before they are implemented.
 
