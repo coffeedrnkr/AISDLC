@@ -1,6 +1,6 @@
 # User Slide Content V2 (Framework-Consistent Edition)
 
-## Slide 1: THE EIGHT PILLARS OF AI-AUGMENTED SDLC
+## Slide 1: THE NINE PILLARS OF AI-AUGMENTED SDLC
 
 ### Pillar 1: VS Code as Home Base
 **One environment for everything:**
@@ -87,6 +87,17 @@ Outputs are **created by AI Agents**, not written from scratch:
 | **Predicts** | Forecasts blockers 1-2 sprints ahead |
 
 **Key Insight:** This is Jira-centric — planning happens in Jira, not VS Code.
+
+### Pillar 9: Planning & Change Management
+**What-If Impact Assessment before any change:**
+
+| Change Type | AI Assesses Impact On |
+|:------------|:---------------------|
+| **Add** | PRD, Epics, Stories, Architecture, Timeline |
+| **Modify** | Which artifacts need updates? How much rework? |
+| **Remove** | What becomes orphaned? What's affected downstream? |
+
+**Key Insight:** Assessment only — AI shows blast radius, humans decide.
 
 ```mermaid
 flowchart LR

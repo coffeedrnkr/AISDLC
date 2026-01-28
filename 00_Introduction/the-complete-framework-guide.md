@@ -11,7 +11,7 @@ Every concept is explained from first principles, with real-world examples and p
 ## Table of Contents
 
 1. [Introduction: What is the AI-Augmented SDLC?](#1-introduction-what-is-the-ai-augmented-sdlc)
-2. [The Eight Pillars](#2-the-eight-pillars)
+2. [The Nine Pillars](#2-the-nine-pillars)
 3. [Jira Integration](#3-jira-integration)
 4. [Requirements: The Three-Layer Framework](#4-requirements-the-three-layer-framework)
 5. [Requirements: The States of Information](#5-requirements-the-states-of-information)
@@ -26,6 +26,7 @@ Every concept is explained from first principles, with real-world examples and p
 14. [Context Window Management: Getting the Best from AI](#14-context-window-management-getting-the-best-from-ai)
 15. [Cross-System Coordination: Working Across Teams and Systems](#15-cross-system-coordination-working-across-teams-and-systems)
 16. [AI Planning Intelligence: Continuous Dependency Management](#16-ai-planning-intelligence-continuous-dependency-management)
+17. [Change Management: What-If Impact Assessment](#17-change-management-what-if-impact-assessment)
 
 ---
 
@@ -70,9 +71,9 @@ AI assistance can dramatically reduce this time, allowing teams to:
 
 ---
 
-## 2. The Eight Pillars
+## 2. The Nine Pillars
 
-The AI-Augmented SDLC is built on eight foundational principles that govern how work is organized, tracked, and executed.
+The AI-Augmented SDLC is built on nine foundational principles that govern how work is organized, tracked, and executed.
 
 ### Pillar 1: VS Code as Home Base
 
@@ -291,6 +292,32 @@ An always-on AI layer that watches, discovers, suggests, and manages dependencie
 **Key Principle:** This is Jira-centric — users plan backlogs and sprints in Jira, not VS Code.
 
 > 📖 **Full Details:** See Chapter 16 for the complete AI Planning Intelligence framework.
+
+### Pillar 9: Planning & Change Management
+
+**The Problem:**
+
+Requirements change constantly:
+- New features requested mid-sprint
+- Scope reduced due to budget/time
+- Regulatory changes force modifications
+- Stakeholder priorities shift
+
+Without impact analysis, changes cause cascading problems.
+
+**The Solution: What-If Impact Assessment**
+
+Before any change is made, AI assesses the full blast radius:
+
+| Change Type | AI Assesses Impact On |
+|:------------|:----------------------|
+| **Add Requirement** | PRD, Epics, Stories, Architecture, Timeline |
+| **Modify Requirement** | Which artifacts need updates? How much rework? |
+| **Remove Requirement** | What becomes orphaned? What's affected downstream? |
+
+**Key Principle:** Assessment only — AI shows you the impact before you decide to proceed.
+
+> 📖 **Full Details:** See Chapter 17 for the complete Change Management framework.
 
 ---
 
@@ -2399,6 +2426,323 @@ AI suggests, humans approve. This is NOT autonomous linking.
 | **Graph-Based** | Dependency graph as core data structure |
 | **Predictive** | Forecasts problems before they occur |
 | **Actionable** | Reports include specific recommendations |
+
+---
+
+## 17. Change Management: What-If Impact Assessment
+
+### The Problem: Uncontrolled Change
+
+Requirements change constantly in real projects:
+
+| Change Source | Example |
+|:--------------|:--------|
+| **Stakeholder Request** | "Can we also add export to PDF?" |
+| **Market Response** | Competitor launched feature, we need it too |
+| **Regulatory** | New compliance requirement added |
+| **Budget/Time** | "We need to cut scope by 30%" |
+| **Technical Discovery** | "This approach won't work, we need to pivot" |
+
+**Without impact analysis:**
+- Changes cascade unpredictably
+- Effort estimates are wrong
+- Downstream artifacts become outdated
+- Architecture decisions get invalidated
+- Sprint plans fall apart
+
+### The Solution: What-If Impact Assessment
+
+Before any change is made, AI assesses the **full blast radius** across all artifacts.
+
+**Key Principle:** Assessment only — this is a "What-If" analysis, not automatic changes.
+
+---
+
+### The Impact Cascade
+
+Changes flow through the artifact hierarchy:
+
+```
+Requirement Change
+       ↓
+   ┌───────────────────────────────────────────┐
+   │ PRD Impact                                │
+   │ - Goals affected?                         │
+   │ - Success metrics changed?                │
+   │ - Stakeholder priorities shifted?         │
+   └───────────────────────────────────────────┘
+       ↓
+   ┌───────────────────────────────────────────┐
+   │ Epic Impact                               │
+   │ - New Epics needed?                       │
+   │ - Existing Epics modified?                │
+   │ - Epics removed/orphaned?                 │
+   └───────────────────────────────────────────┘
+       ↓
+   ┌───────────────────────────────────────────┐
+   │ Story Impact                              │
+   │ - Stories added/modified/removed?         │
+   │ - Acceptance criteria changed?            │
+   │ - Story points affected?                  │
+   └───────────────────────────────────────────┘
+       ↓
+   ┌───────────────────────────────────────────┐
+   │ Architecture Impact                       │
+   │ - New components needed?                  │
+   │ - Interfaces changed?                     │
+   │ - Data model affected?                    │
+   │ - Non-functional requirements changed?    │
+   └───────────────────────────────────────────┘
+       ↓
+   ┌───────────────────────────────────────────┐
+   │ Timeline Impact                           │
+   │ - Sprint plans affected?                  │
+   │ - Dependencies changed?                   │
+   │ - Delivery date at risk?                  │
+   └───────────────────────────────────────────┘
+```
+
+---
+
+### Change Type Analysis
+
+| Change Type | What AI Assesses |
+|:------------|:-----------------|
+| **Add** | What new artifacts are needed? What existing work is affected? |
+| **Modify** | Which artifacts need updates? How much rework? |
+| **Remove** | What becomes orphaned? What's unblocked? What's now missing? |
+
+---
+
+### Impact Assessment Report
+
+When you run `/impact-assess`, AI generates a comprehensive report:
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║               WHAT-IF IMPACT ASSESSMENT                       ║
+║           "Add PDF Export to Claims Report"                   ║
+╚══════════════════════════════════════════════════════════════╝
+
+CHANGE SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Type: ADD REQUIREMENT
+Description: Users should be able to export claims reports to PDF format
+Requestor: Product Owner
+Priority: Medium
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PRD IMPACT: 🟡 MODERATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+| Section | Impact |
+|:--------|:-------|
+| Goals | No change - aligns with existing "reporting flexibility" goal |
+| Features | ADD: "PDF Export for Reports" feature bullet |
+| Success Metrics | ADD: "% of users using PDF export" |
+| Scope | UPDATE: Include PDF generation capability |
+
+ARTIFACTS TO UPDATE:
+  📝 PRD.md - Add feature to scope section
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EPIC IMPACT: 🟢 LOW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+| Epic | Impact |
+|:-----|:-------|
+| EPIC-001: Claims Reporting | ADD stories for PDF export |
+| EPIC-002: User Dashboard | No impact |
+| EPIC-003: Admin Portal | No impact |
+
+NEW EPIC NEEDED: No (fits in existing Epic)
+
+ARTIFACTS TO UPDATE:
+  📝 EPIC-001.md - Add PDF export stories
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STORY IMPACT: 🟡 MODERATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+NEW STORIES NEEDED:
+  1. [NEW] "As a user, I can export any report to PDF format"
+     Estimate: 5 points
+  2. [NEW] "As a user, I can customize PDF layout options"
+     Estimate: 3 points
+  3. [NEW] "As a user, I receive PDF via email for large reports"
+     Estimate: 5 points
+
+TOTAL NEW EFFORT: 13 story points (~1.5 sprints)
+
+EXISTING STORIES AFFECTED:
+  • STORY-045: Add "Export" button (already in Sprint 12)
+    → UPDATE: Extend to include PDF option
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARCHITECTURE IMPACT: 🟡 MODERATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COMPONENTS AFFECTED:
+  📦 ReportService (MODIFY)
+     - Add PDF generation method
+     - Integrate with PDF library
+  
+  📦 ReportController (MODIFY)
+     - Add /export/pdf endpoint
+
+NEW COMPONENTS:
+  📦 PdfGenerator (NEW)
+     - Wrapper for PDF library
+     - Template management
+
+INTERFACES:
+  🔗 ReportAPI - Add PDF endpoint
+  🔗 No external interface changes
+
+DATA MODEL:
+  💾 No schema changes required
+
+NON-FUNCTIONAL:
+  ⚡ Performance: Large reports may need async processing
+  📦 Dependencies: Add PDF library (e.g., wkhtmltopdf, Puppeteer)
+
+ARTIFACTS TO UPDATE:
+  📝 C4-components.md - Add PdfGenerator
+  📝 openapi.yaml - Add /export/pdf endpoint
+  📝 ADR-xxx.md - Decision on PDF library choice
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TIMELINE IMPACT: 🟡 MODERATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EFFORT ESTIMATE:
+  Stories: 13 points
+  Architecture: 5 points (new component + ADR)
+  Testing: 5 points
+  TOTAL: ~23 points (2-3 sprints)
+
+DEPENDENCIES:
+  ⚠️ Must complete after STORY-045 (Export button)
+  ⚠️ PDF library selection is blocking
+
+SPRINT IMPACT:
+  • Can fit in Sprint 13-14 if prioritized
+  • Would displace ~23 points of planned work
+
+RELEASE DATE IMPACT:
+  ⚠️ If on critical path: +2-3 weeks
+  ✓ If parallel: No impact on release
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+RECOMMENDATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROCEED? CONDITIONAL YES
+
+CONDITIONS:
+1. Accept 2-3 sprint delay OR reduce other scope
+2. Make ADR decision on PDF library first
+3. Update EPIC-001 with new stories before sprint planning
+
+ALTERNATIVES CONSIDERED:
+• Client-side PDF (reduced effort, but quality issues)
+• Defer to post-MVP (no current impact, future capability)
+```
+
+---
+
+### AI Prompts for Change Management
+
+#### `/impact-assess` — Full Impact Assessment
+
+```
+Assess the full impact of this proposed change:
+
+## Change Description
+[Describe the requirement change, addition, or removal]
+
+## Context
+[Provide relevant artifacts: PRD, Epics, Architecture docs]
+
+## Output Required
+1. PRD Impact (sections affected)
+2. Epic Impact (new, modified, removed)
+3. Story Impact (effort estimate)
+4. Architecture Impact (components, interfaces, data)
+5. Timeline Impact (sprints, dependencies, release date)
+6. Recommendation (proceed, defer, alternatives)
+```
+
+#### `/scope-change` — Scope Reduction Analysis
+
+```
+Analyze the impact of reducing scope:
+
+## Scope Reduction
+[What features/requirements are being cut?]
+
+## Current State
+[PRD, Epics, Stories in progress]
+
+## Output Required
+1. What stories can be removed?
+2. What work becomes orphaned?
+3. What dependencies are affected?
+4. What's the effort savings?
+5. What risks are introduced by cutting?
+```
+
+#### `/architecture-impact` — Architecture-Focused Assessment
+
+```
+Assess the architecture impact of this change:
+
+## Change
+[Describe the requirement change]
+
+## Current Architecture
+[Provide C4 diagrams, component docs, data model]
+
+## Output Required
+1. Components affected
+2. New components needed
+3. Interface changes
+4. Data model changes
+5. Non-functional implications
+6. ADRs needed
+```
+
+---
+
+### Human-in-the-Loop
+
+AI assesses, humans decide:
+
+| AI Action | Human Action |
+|:----------|:-------------|
+| "Impact assessment complete" | Review findings |
+| "Recommend proceed with conditions" | Accept / Reject / Modify scope |
+| "Timeline at risk" | Decide on trade-offs |
+| "Architecture changes needed" | Approve before proceeding |
+
+---
+
+### Key Takeaways
+
+| Principle | Description |
+|:----------|:------------|
+| **Assess Before Acting** | Never make changes without understanding blast radius |
+| **Full Cascade** | Changes flow through PRD → Epic → Story → Architecture → Timeline |
+| **What-If Only** | This is impact assessment, not automatic implementation |
+| **Human Decision** | AI recommends, humans decide on trade-offs |
+| **Three Change Types** | Add, Modify, Remove each have different impacts |
 
 ---
 
