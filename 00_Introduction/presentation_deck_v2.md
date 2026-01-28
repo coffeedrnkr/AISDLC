@@ -563,3 +563,73 @@ When a story moves to "Ready for Development":
 | `LOAD_001` | `LOAD_001-generate-load-tests.md` | Generate k6/Locust load tests |
 | `CHAOS_001` | `CHAOS_001-chaos-scenarios.md` | Generate chaos engineering scenarios |
 
+---
+
+## Appendix C: Context Window Management
+
+### The Challenge
+
+AI models can only process a limited amount of text at once (the "context window"). Even with 1-2 million tokens, you can't fit everything—so strategic context management is essential.
+
+### Current Model Capacities (2025)
+
+| Model | Context Window | Equivalent |
+|:------|:---------------|:-----------|
+| Gemini 2.0 Pro | 2M tokens | ~100K lines of code |
+| Gemini 2.0 Flash | 1M tokens | ~50K lines of code |
+| Code Assist (chat) | 32K tokens | ~1,600 lines |
+| Code Assist (autocomplete) | 8K tokens | ~400 lines |
+
+---
+
+### The 4-Layer Context Strategy
+
+| Layer | What | When | Tool |
+|:------|:-----|:-----|:-----|
+| **1. Pre-Process** | Summarize bulk docs | Before development | NotebookLM |
+| **2. Chunk** | Hierarchical index → summary → detail | During setup | Manual structuring |
+| **3. Context Drawer** | Explicitly include/exclude files | During coding | Code Assist UI |
+| **4. Caching** | Reuse common context | Across sessions | Vertex AI API |
+
+---
+
+### Key Strategies
+
+| Strategy | Description |
+|:---------|:------------|
+| **Progressive Disclosure** | Start with summaries, load details on demand |
+| **Reference Linking** | Link to docs instead of embedding full content |
+| **Semantic Chunking** | Add metadata (ID, summary, keywords) to chunks |
+| **Task-Specific Assembly** | Match context to the type of work |
+
+---
+
+### Document Structure for Context Optimization
+
+```
+docs/
+├── context/                  # Pre-computed summaries
+│   ├── architecture-summary.md
+│   ├── api-index.md
+│   └── glossary.md
+├── architecture/
+│   ├── index.md              # Links to all sections
+│   ├── summaries/            # Quick reference
+│   └── details/              # Full specs
+└── .gemini/
+    └── context-profiles/     # Work-type profiles
+```
+
+---
+
+### Best Practices
+
+| Do | Don't |
+|:---|:------|
+| ✅ Pre-summarize large docs | ❌ Load entire codebase every time |
+| ✅ Create index files | ❌ Embed full specs in stories |
+| ✅ Use Context Drawer to exclude irrelevant paths | ❌ Include node_modules, dist, etc. |
+| ✅ Cache STYLEGUIDE.md and glossary | ❌ Re-send common context every request |
+| ✅ Chunk by meaning (semantic) | ❌ Chunk by arbitrary size |
+
+

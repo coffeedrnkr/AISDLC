@@ -23,6 +23,7 @@ Every concept is explained from first principles, with real-world examples and p
 11. [Interfaces: The Four Layers of Integration](#11-interfaces-the-four-layers-of-integration)
 12. [Implementation: Context-Driven Development](#12-implementation-context-driven-development)
 13. [Testing: The Five Dimensions of Quality](#13-testing-the-five-dimensions-of-quality)
+14. [Context Window Management: Getting the Best from AI](#14-context-window-management-getting-the-best-from-ai)
 
 ---
 
@@ -1201,5 +1202,356 @@ This is the future of software development: humans and AI working together, each
 | **SPIDR** | Epic splitting framework (Spike, Path, Interface, Data, Rules) |
 | **SDLC** | Software Development Lifecycle |
 | **Story** | Small unit of work delivering user value |
+| **UX** | User Experience — The overall experience of using a product |
+| **Wireframe** | Low-fidelity visual representation of a screen layout |
+| **Context Window** | The maximum amount of text an AI model can process at once |
+| **RAG** | Retrieval Augmented Generation — Fetching relevant information before AI generation |
+| **Token** | The basic unit of text that AI models process (roughly 4 characters) |
+
+---
+
+## 14. Context Window Management: Getting the Best from AI
+
+### What is a Context Window?
+
+When you communicate with an AI assistant like Gemini, the AI can only "see" a limited amount of text at once. This limit is called the **context window**.
+
+**Analogy:** Think of it like the AI's short-term memory. Just like you can only keep so many things in mind at once, an AI can only consider so much text in a single interaction.
+
+### Current Context Window Sizes (2025)
+
+| Model | Context Window | Equivalent |
+|:------|:---------------|:-----------|
+| **Gemini 2.0 Pro** | 2 million tokens | ~100,000 lines of code |
+| **Gemini 2.0 Flash** | 1 million tokens | ~50,000 lines of code |
+| **Gemini Flash (Code Assist chat)** | 32,000 tokens | ~1,600 lines of code |
+| **Gemini Flash (auto-complete)** | 8,000 tokens | ~400 lines of code |
+
+**What is a Token?**
+
+A token is approximately 4 characters of English text. The word "context" is 2 tokens. A typical line of code is 15-20 tokens.
+
+### Why Context Management Matters
+
+**The Problem:**
+
+Even with 1 million tokens, you can't fit everything into a single prompt:
+- A medium-sized codebase: 500,000+ tokens
+- All documentation: 100,000+ tokens
+- Full architecture specs: 50,000+ tokens
+
+**The Larger the Context:**
+- ✅ More accurate AI responses (more information available)
+- ❌ Slower responses (more text to process)
+- ❌ Higher costs (charged per token)
+- ❌ Risk of "lost in the middle" (AI may miss information in the middle of long contexts)
+
+### The Multi-Layer Context Strategy
+
+This framework uses a four-layer approach to manage context effectively:
+
+#### Layer 1: Pre-Processing (NotebookLM)
+
+**What it does:** Converts large documents into digestible summaries before they enter the development workflow.
+
+**Best for:**
+- Regulatory documents
+- Existing system documentation
+- Meeting transcripts
+- Legacy code analysis
+
+**Process:**
+```
+Large Document (10,000+ tokens)
+        ↓
+    NotebookLM
+        ↓
+Summary Document (500-1,000 tokens)
+        ↓
+Saved to docs/context/
+```
+
+**Example:**
+- Input: 50-page regulatory compliance document
+- Output: 2-page summary with key requirements, stored as `docs/context/compliance-summary.md`
+
+#### Layer 2: Hierarchical Chunking
+
+**What it does:** Breaks large documents into a hierarchy of summaries and details.
+
+**The Structure:**
+
+| Level | Size | Purpose | Example |
+|:------|:-----|:--------|:--------|
+| **Index** | 200-500 tokens | Navigation and overview | Table of contents with 1-line summaries |
+| **Summary** | 500-2,000 tokens | Quick reference | Key points from a section |
+| **Detail** | 2,000-10,000 tokens | Deep dive | Full section content |
+
+**Example for Architecture Documentation:**
+
+```
+docs/architecture/
+├── index.md              # 300 tokens: "Auth is in auth-flow.md, Data model in data-model.md..."
+├── summaries/
+│   ├── auth-summary.md   # 1,000 tokens: Key auth concepts
+│   └── data-summary.md   # 800 tokens: Key data concepts
+└── details/
+    ├── auth-flow.md      # 5,000 tokens: Complete auth specification
+    └── data-model.md     # 8,000 tokens: Full DBML schema
+```
+
+**How it's used:**
+1. AI always receives the **index** (small)
+2. AI receives **summaries** for relevant sections
+3. AI fetches **details** only when needed for specific tasks
+
+#### Layer 3: Context Drawer (Code Assist Feature)
+
+**What it is:** A feature in Gemini Code Assist that lets you explicitly control which files the AI can see.
+
+**Available since:** April 2025
+
+**How to use it:**
+
+| Action | Result |
+|:-------|:-------|
+| **Add files** | Drag specific files into the context drawer |
+| **Add folders** | Include entire directories (e.g., `docs/api/`) |
+| **Exclude paths** | Remove irrelevant directories (e.g., `node_modules/`, `dist/`) |
+| **View context** | See exactly what information the AI has access to |
+
+**Best Practice:** Create context profiles for different types of work:
+
+```
+.gemini/context-profiles/
+├── architecture-work.txt    # Files needed for architecture tasks
+├── frontend-work.txt        # Files for UI development
+├── api-work.txt             # Files for API development
+└── testing-work.txt         # Files for test writing
+```
+
+#### Layer 4: Context Caching
+
+**What it is:** A way to reuse common context across multiple AI requests without resending it each time.
+
+**Types of Caching:**
+
+| Type | How It Works | Best For |
+|:-----|:-------------|:---------|
+| **Implicit** | Automatic, no action needed | Repeated queries in same session |
+| **Explicit** | You declare what to cache | Large system instructions, standard docs |
+
+**Benefits:**
+- Faster responses (cached content doesn't need reprocessing)
+- Lower costs (cached tokens are cheaper)
+- Consistent context across many queries
+
+**What to Cache:**
+
+| Document Type | Why Cache It |
+|:--------------|:-------------|
+| **STYLEGUIDE.md** | Referenced in every AI interaction |
+| **Architecture Summary** | Provides critical context for all code |
+| **Glossary** | Ensures consistent terminology |
+| **API Index** | Needed for most implementation work |
+
+### Practical Strategies
+
+#### Strategy 1: Progressive Disclosure
+
+**Principle:** Start with summaries, provide details only when needed.
+
+**Example Workflow:**
+
+```
+Step 1: AI receives architecture-summary.md (500 tokens)
+Step 2: User asks about authentication
+Step 3: AI receives auth-flow.md (5,000 tokens) — on demand
+Step 4: AI generates authentication code with full context
+```
+
+**Why it works:**
+- Most queries don't need full context
+- Details are loaded only when relevant
+- Reduces cost and latency
+
+#### Strategy 2: Reference Linking
+
+**Instead of embedding full content:**
+
+```markdown
+# Story: User Login
+<full OpenAPI spec - 2,000 tokens>
+<full data model - 1,500 tokens>
+<full wireframe description - 800 tokens>
+```
+
+**Use references:**
+
+```markdown
+# Story: User Login
+- API Contract: [auth-api.yaml](file://docs/api/auth-api.yaml) — see POST /api/auth/login (lines 45-78)
+- Data Model: [users.dbml](file://docs/data/users.dbml) — see User table
+- Wireframe: [login-screen.md](file://docs/ux/wireframes/login-screen.md)
+```
+
+**Why it works:**
+- Story stays small (200 tokens instead of 4,300)
+- AI can fetch details when needed
+- Documents stay up-to-date (no copy/paste drift)
+
+#### Strategy 3: Semantic Chunking with Metadata
+
+**Add metadata to each chunk for better retrieval:**
+
+```markdown
+---
+id: ARCH-001-auth
+title: Authentication Flow
+summary: OAuth2 with Keycloak integration, JWT tokens, refresh handling
+keywords: [auth, oauth, keycloak, jwt, token, login, logout]
+parent: architecture-summary.md
+related: [user-data-model.md, api-auth-endpoints.md]
+tokens: ~5000
+---
+
+# Authentication Flow
+[Full content here]
+```
+
+**Why it works:**
+- AI can find relevant chunks by keywords
+- Parent/related links enable navigation
+- Token count helps with budget planning
+
+#### Strategy 4: Task-Specific Context Assembly
+
+**Match context to the task:**
+
+| Task Type | Context Included |
+|:----------|:-----------------|
+| **Story Implementation** | Story doc, relevant API endpoints, relevant UI components, test patterns |
+| **Architecture Review** | Architecture summary, relevant C4 diagrams, ADRs |
+| **Bug Investigation** | Error logs, related code files, test results |
+| **Test Writing** | Story Gherkin, API specs, existing test patterns |
+
+**Example Context Assembly:**
+
+```
+Task: Implement "Add to Cart" story
+
+Context Package:
+├── STYLEGUIDE.md           (always included)
+├── glossary.md             (always included)
+├── stories/add-to-cart.md  (the task)
+├── api/cart-endpoints.yaml (relevant API)
+├── components/CartItem.tsx (relevant component)
+└── tests/cart.spec.ts      (existing test patterns)
+
+Total: ~8,000 tokens (fits in auto-complete context)
+```
+
+### Recommended Document Structure
+
+Organize your documentation to support efficient context management:
+
+```
+docs/
+├── context/                          # Pre-computed summaries (Layer 1)
+│   ├── architecture-summary.md       # 500-1,000 tokens
+│   ├── api-index.md                  # Links + 1-line descriptions
+│   ├── data-model-summary.md         # Key entities, relationships
+│   └── glossary.md                   # Domain terms
+│
+├── architecture/                     # Hierarchical chunks (Layer 2)
+│   ├── index.md                      # Table of contents
+│   ├── summaries/                    # Section summaries
+│   │   ├── auth-summary.md
+│   │   └── data-summary.md
+│   └── details/                      # Full specifications
+│       ├── auth-flow.md
+│       └── data-model.md
+│
+├── api/                              # Chunked by resource
+│   ├── index.md                      # All endpoints listed
+│   └── endpoints/
+│       ├── auth.yaml
+│       ├── cart.yaml
+│       └── orders.yaml
+│
+└── .gemini/
+    └── context-profiles/             # Context Drawer profiles (Layer 3)
+        ├── frontend-work.txt
+        └── api-work.txt
+```
+
+### Key Principles
+
+| Principle | What It Means |
+|:----------|:--------------|
+| **Pre-summarize** | Use NotebookLM to condense bulk documents |
+| **Index everything** | Create index files that link to details |
+| **Chunk semantically** | Break by meaning, not arbitrary size |
+| **Add metadata** | Include summaries, keywords, relationships |
+| **Use the Context Drawer** | Explicitly control what AI sees |
+| **Cache common context** | Reduce latency and cost for frequent docs |
+| **Progressive disclosure** | Load details only when needed |
+| **Reference, don't embed** | Link to documents instead of copying content |
+
+### Measuring Context Effectiveness
+
+**Signs your context strategy is working:**
+
+| Indicator | Good | Needs Improvement |
+|:----------|:-----|:------------------|
+| **AI accuracy** | Responses align with your architecture | AI suggests patterns that don't match your system |
+| **Response time** | Fast first-token time | Long delays before AI starts responding |
+| **Token usage** | Consistent, predictable | Varies wildly between similar tasks |
+| **Relevance** | AI uses provided context | AI hallucinates or asks for information you provided |
+
+---
+
+## Conclusion
+
+The AI-Augmented SDLC is not about replacing developers with AI. It's about:
+
+1. **Eliminating repetitive work** — AI handles boilerplate, documentation
+2. **Improving consistency** — Same patterns, same templates everywhere
+3. **Accelerating feedback** — Errors caught earlier, delivered faster
+4. **Enhancing quality** — More testing, better documentation
+5. **Preserving human judgment** — Every AI output is reviewed
+
+The framework works because it combines:
+- **Structure** (clear phases, defined outputs)
+- **Automation** (AI agents for repetitive tasks)
+- **Governance** (human review, version control)
+- **Integration** (everything connected: docs, code, tests, tickets)
+
+This is the future of software development: humans and AI working together, each doing what they do best.
+
+---
+
+## Glossary
+
+| Term | Definition |
+|:-----|:-----------|
+| **ADR** | Architecture Decision Record — Documented architectural decision |
+| **BDD** | Behavior-Driven Development — Writing tests as specifications |
+| **C4 Model** | Four-level architecture visualization (Context, Container, Component, Code) |
+| **Context Window** | The maximum amount of text an AI model can process at once |
+| **DBML** | Database Markup Language — Text format for database schemas |
+| **Epic** | Large body of work that can be broken into smaller stories |
+| **Gherkin** | Structured language for acceptance criteria (Given/When/Then) |
+| **Git** | Version control system for tracking file changes |
+| **HITL** | Human-in-the-Loop — Requiring human approval for AI actions |
+| **INVEST** | Criteria for good stories (Independent, Negotiable, Valuable, Estimable, Small, Testable) |
+| **Mermaid** | Text-to-diagram tool |
+| **OpenAPI** | Standard format for API documentation |
+| **PRD** | Program Requirements Document |
+| **RAG** | Retrieval Augmented Generation — Fetching relevant information before AI generation |
+| **SPIDR** | Epic splitting framework (Spike, Path, Interface, Data, Rules) |
+| **SDLC** | Software Development Lifecycle |
+| **Story** | Small unit of work delivering user value |
+| **Token** | The basic unit of text that AI models process (roughly 4 characters) |
 | **UX** | User Experience — The overall experience of using a product |
 | **Wireframe** | Low-fidelity visual representation of a screen layout |
