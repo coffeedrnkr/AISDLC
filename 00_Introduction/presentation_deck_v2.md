@@ -632,4 +632,17 @@ docs/
 | ✅ Cache STYLEGUIDE.md and glossary | ❌ Re-send common context every request |
 | ✅ Chunk by meaning (semantic) | ❌ Chunk by arbitrary size |
 
+---
 
+### Session State Management
+
+For multi-session work (PRDs, Epics spanning days/weeks), the framework includes `SessionStateManager`:
+
+| Capability | What It Tracks |
+|:-----------|:---------------|
+| **Session Log** | Agent used, tools run, outcomes, open questions |
+| **Entity Registry** | Domain entities discovered (CRUD, states) |
+| **Resumption** | Where user left off, next steps |
+
+**Implementation:** `standards/session_state_manager.py`
+**Design Details:** `ai-agent-recommendation-and-workflow.md` Section 8

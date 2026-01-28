@@ -1498,6 +1498,73 @@ docs/
 | **Progressive disclosure** | Load details only when needed |
 | **Reference, don't embed** | Link to documents instead of copying content |
 
+### Session State Management
+
+Beyond managing what goes into a single AI prompt, this framework also addresses **multi-session context**—remembering what happened across multiple conversations over days or weeks.
+
+**The Challenge:**
+
+Real SDLC work spans multiple sessions:
+- A PRD might be written over 3-4 sessions across 2 weeks
+- An epic decomposition might involve multiple discussions
+- Story refinement happens iteratively
+
+Without session management, each AI conversation starts fresh with no memory of previous work.
+
+**The Solution: Persistent Memory Per Artifact**
+
+This framework includes a `SessionStateManager` (see `standards/session_state_manager.py`) that tracks:
+
+| What's Tracked | Example |
+|:---------------|:--------|
+| **Session Log** | "Nov 3: Completed Scope Boundaries section with PRD Agent" |
+| **Entity Registry** | Domain entities discovered (Users, Orders, Products) |
+| **Document Versions** | Git commits for each artifact revision |
+| **Next Steps** | "Continue with System Impact section" |
+| **Pending Reviews** | "Awaiting stakeholder approval on Business Intent" |
+
+**How It Works:**
+
+```
+Session 1 (Day 1):
+  - User works on PRD sections 1-3
+  - Agent logs: sections completed, entities found, open questions
+  - Saved to session_log.md
+
+Session 2 (Day 3):
+  - User returns: "Let's continue the PRD"
+  - Agent reads session_log.md
+  - Agent: "Welcome back! Last time you completed sections 1-3.
+           You were starting section 4. Ready to continue?"
+```
+
+**Session Log Structure:**
+
+```markdown
+## Session 2024-11-03 14:30
+**Agent:** PRD Collaborator
+**Tools Run:** Business Intent Analysis, Scope Boundaries
+**Key Outcomes:**
+- Completed section 3 (Scope Boundaries)
+- Identified 3 new entities: User, Portfolio, ETF
+- Open question: Integration with market data provider
+**Open Questions Added:** 1
+
+---
+```
+
+**Entity Registry:**
+
+Entities discovered during requirements are tracked and can be injected into future prompts:
+
+| Entity | Discovered In | CRUD | States | Notes |
+|:-------|:--------------|:-----|:-------|:------|
+| User | PRD Section 1 | CRUD | Active, Suspended | Core entity |
+| Portfolio | PRD Section 2 | CRU | Draft, Published | Links to User |
+| ETF | Epic EPA-001 | R | N/A | External data source |
+
+> 📖 **Further Reading:** See `ai-agent-recommendation-and-workflow.md` Section 8 for detailed design of agent memory and context management.
+
 ### Measuring Context Effectiveness
 
 **Signs your context strategy is working:**
