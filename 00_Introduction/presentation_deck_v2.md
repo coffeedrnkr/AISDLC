@@ -823,7 +823,7 @@ For multi-session work (PRDs, Epics spanning days/weeks), the framework includes
 
 ---
 
-## Appendix: Agent Registry
+## Appendix A: Agent Registry
 
 **Master inventory of specialized AI agents:**
 
