@@ -500,21 +500,21 @@ When a story moves to "Ready for Development":
 
 ### AI Agents (13 Total)
 
-| Phase | Agent | Description | Slash Command |
-|:------|:------|:------------|:--------------|
-| **Requirements** | PRD Agent | Coaches through 9 discovery tools (mind mapping, roleplay, JTBD) to build comprehensive PRD from stakeholder input. | `/prd-discover` |
-| **Elaboration** | Epic Decomposition | Splits PRD into Epics using SPIDR methodology (Spike, Path, Interface, Data, Rules). | `/epic-split` |
-| **Elaboration** | Epic Elaboration | Interactive session to flesh out Epics with CRUD matrices, state diagrams, and edge cases. | `/epic-elaborate` |
-| **Elaboration** | Story Agent | Generates BDD-style User Stories with Gherkin acceptance criteria from elaborated Epics. | `/story-gen` |
-| **UX Design** | UX Agent | Creates user personas, journey maps, and text-based wireframe descriptions. | `/ux-personas` |
-| **Architecture** | Architecture Agent | Generates C4 diagrams (Mermaid), DBML data models, OpenAPI specs, and sequence diagrams. | `/arch-design` |
-| **Architecture** | Interface Agent | Discovers all system interfaces (APIs, files, events) and generates specs and contract tests. | `/interface-discover` |
-| **Implementation** | Code Governance | Runs static analysis (Ruff/Bandit) + AI governance review against coding standards. | `/code-review` |
-| **Implementation** | Integration Agent | Validates release readiness: checks artifacts, runs tests, verifies CI pipeline status. | `/ci-check` |
-| **Testing** | Test Plan Agent | Generates test strategy, coverage matrix, and test cases from user stories. | `/test-plan` |
-| **Testing** | Simulation Agent | Simulates user personas to find edge cases, accessibility issues, and stress-test logic. | `/simulate-persona` |
-| **Testing** | Resilience Agent | Generates k6/Locust load test scripts and Chaos Mesh configs for resilience testing. | `/load-test` |
-| **Governance** | Governance Agent | Enforces organizational policies, compliance checks, and audit logging. | - |
+| Phase | Agent | Description |
+|:------|:------|:------------|
+| **Requirements** | PRD Agent | Coaches through 9 discovery tools (mind mapping, roleplay, JTBD) to build comprehensive PRD from stakeholder input. Interactive mode guides users through requirements mining. |
+| **Elaboration** | Epic Decomposition | Splits PRD into Epics using SPIDR methodology (Spike, Path, Interface, Data, Rules). Distinguishes Business Epics from Enabler Epics. |
+| **Elaboration** | Epic Elaboration | Interactive session to flesh out Epics with CRUD matrices, state diagrams, edge case discovery, and error scenario mapping. |
+| **Elaboration** | Story Agent | Generates BDD-style User Stories with Gherkin acceptance criteria. Creates "prompt packages" ready for AI-assisted coding. |
+| **UX Design** | UX Agent | Creates user personas, empathy maps, journey flows, and text-based wireframe descriptions. Ensures holistic system-wide UX. |
+| **Architecture** | Architecture Agent | Generates C4 diagrams (Mermaid), DBML data models, OpenAPI specs, Python infrastructure diagrams, and sequence diagrams. |
+| **Architecture** | Interface Agent | Discovers all system interfaces (APIs, files, events), catalogs them, generates detailed specs, and creates contract tests. |
+| **Implementation** | Code Governance | Runs static analysis (Ruff/Bandit) + AI governance review. Checks code against Architecture Hub standards and patterns. |
+| **Implementation** | Integration Agent | Validates release readiness: checks for missing artifacts, runs test suites, verifies CI pipeline status, and gates deployments. |
+| **Testing** | Test Plan Agent | Generates test strategy documents, coverage matrices, test case templates, and links tests to requirements for traceability. |
+| **Testing** | Simulation Agent | Simulates user personas to find edge cases, accessibility issues, and stress-tests logic paths before implementation. |
+| **Testing** | Resilience Agent | Generates k6/Locust load test scripts from OpenAPI specs. Creates Chaos Mesh configs for resilience testing (HITL for chaos). |
+| **Governance** | Governance Agent | Enforces organizational policies, compliance checks, audit logging, and ensures adherence to ADRs and standards. |
 
 ---
 
