@@ -2772,12 +2772,22 @@ This is the future of software development: humans and AI working together, each
 
 | Pillar | Agent / Directory | Key Prompts (Slash Commands) | Purpose |
 |:-------|:------------------|:-----------------------------|:--------|
-| **1** | **Orchestrator** (VS Code) | `(User is Orchestrator)` | Home base for invoking all other agents |
-| **2** | **Project Management** | `/prd-guide` <br> `/decompose-epic` <br> `/write-story` | Create PRDs, break down epics, write effective stories |
-| **4** | **Requirements** | `/3-layer-check` | Validate PRD-Epic-Story alignment |
-| **6** | **Governance** | `/gov-check` | Verify compliance with architecture standards |
-| **8** | **AI Planning Intelligence** <br> `08_AI_Planning_Intelligence/` | `/dep-discover` <br> `/dep-health` <br> `/dep-sequence` <br> `/sprint-readiness` | Find dependencies, check sprint health, sequence work |
-| **9** | **Change Management** <br> `09_Planning_Change_Management/` | `/impact-assess` <br> `/scope-change` <br> `/architecture-impact` | "What-If" analysis for requirement changes |
+| Pillar | Agent | Key Slash Commands | Purpose |
+|:-------|:------|:-------------------|:--------|
+| **1: Home Base** | **Orchestrator** | `(User is Orchestrator)` | Invokes all other agents |
+| **4: Requirements** | **PRD Agent** | `/prd-discover` | PRD from stakeholder input |
+| **4: Elaboration** | **Epic Decomposition** | `/epic-split` | Break PRD into Epics |
+| **4: Elaboration** | **Story Agent** | `/story-gen` | Break Epic into Stories |
+| **4: Design** | **UX Agent** | `/ux-personas` | Personas & Wireframes |
+| **4: Design** | **Interface Agent** | `/interface-spec` | API/Interface contracts |
+| **4: Design** | **Architecture Agent** | `/arch-design` | C4 Diagrams, ADRs |
+| **4: Build** | **Code Governance** | `/code-review` | Compliance check |
+| **4: Test** | **Test Plan Agent** | `/test-plan` | E2E/Unit test plans |
+| **4: Test** | **Simulation Agent** | `/simulate-persona` | User behavior simulation |
+| **4: Test** | **Resilience Agent** | `/chaos-test` | Load & failure testing |
+| **4: Release** | **Integration Agent** | `/ci-check` | Release readiness |
+| **8: Planning** | **AI Planning Agent** | `/dep-discover` <br> `/dep-health` <br> `/dep-sequence` <br> `/sprint-readiness` | Dependency & Health check |
+| **9: Change** | **Change Mgmt Agent** | `/impact-assess` <br> `/scope-change` <br> `/architecture-impact` | "What-If" analysis for changes |
 
 > ℹ️ **Note:** This table summarizes the primary interaction points. Each agent folder contains detailed READMEs and additional prompt templates.
 
