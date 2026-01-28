@@ -2188,15 +2188,54 @@ AI forecasts problems before they impact delivery.
 
 ### Jira Integration Points
 
-AI Planning Intelligence integrates deeply with Jira:
+AI Planning Intelligence integrates with Jira through several patterns:
 
 | Integration | Mechanism | Purpose |
 |:------------|:----------|:--------|
-| **Webhooks** | `issue.created`, `issue.updated` events | Trigger AI analysis on changes |
 | **Jira API** | Read backlog, create suggested links | Access and update Jira data |
 | **Jira Automation** | Trigger notifications, status updates | Automated alerts |
 | **Advanced Roadmaps** | Feed dependency data for visualization | Timeline views |
-| **Slack/Teams** | Send alerts to team channels | Real-time notifications |
+| **Slack/Teams** | Send alerts to team channels | Notifications |
+
+---
+
+### Implementation Patterns
+
+**Agents still run in VS Code** — that's where you execute prompts. "Continuous monitoring" means **scheduled or event-driven**, not constant polling.
+
+| Pattern | How It Works | Overhead | Best For |
+|:--------|:-------------|:---------|:---------|
+| **On-Demand** | User runs `/dep-health` manually | Low | Getting started |
+| **Scheduled** | Cron/Cloud Scheduler runs nightly/weekly | Low | Regular health reports |
+| **CI/CD Hook** | Analyze on PRs that touch epics/stories | Medium | Integrated workflow |
+| **Webhook** | Jira pushes events to Cloud Function | Medium | Real-time (advanced) |
+
+**Recommended Approach:**
+
+```
+Phase 1: On-Demand (VS Code)
+├── User runs /dep-discover, /dep-health, /sprint-readiness
+├── Agent calls Jira API → pulls sprint/backlog once
+├── Analyzes locally → outputs report
+└── No ongoing overhead
+
+Phase 2: Scheduled Reports
+├── Weekly cron job runs /dep-health for all sprints
+├── Posts summary to Slack or email
+└── Low overhead, high value
+
+Phase 3: Event-Driven (Optional)
+├── Jira Webhook → Cloud Function
+├── On issue.created → suggest dependencies
+└── Higher complexity, real-time value
+```
+
+**Caching Strategy:**
+
+To reduce API overhead:
+- Pull sprint/backlog **once per session**
+- Cache locally for analysis
+- Refresh only when user requests
 
 ---
 
