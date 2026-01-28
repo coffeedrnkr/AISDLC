@@ -45,6 +45,8 @@ Outputs are **created by AI Agents**, not written from scratch:
 | **Testing** | Resilience Agent | `/load-test`, `/chaos-test` | Load scripts, chaos scenarios |
 | **Testing** | Interface Agent | `/interface-test` | Contract tests from specs |
 | **Integration** | Integration Agent | `/ci-check` | Release readiness check |
+| **Planning** | AI Planning Agent | `/dep-discover` | Dependency map, health report |
+| **Planning** | Change Mgmt Agent | `/impact-assess` | Impact assessment report |
 
 **Session State:** Agents persist context across sessions (`open_questions.md`, `session_log.md`, `entities.md`).
 
