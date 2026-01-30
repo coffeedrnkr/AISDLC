@@ -312,11 +312,79 @@ class PlanningAgent:
         print("Calculating Velocity vs Load...\n")
         print(f"{self.colors['GREEN']}STATUS: GO{self.colors['RESET']}")
 
+# Import Jira Client
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../scripts')))
+try:
+    from jira_client import JiraClient
+except ImportError:
+    JiraClient = None
+
+# ... other code ...
+
     def verify_contract(self):
         """Displays the Definition of Done contract."""
         dod = load_dod("PLANNING")
         print(dod)
         print(f"{self.colors['YELLOW']}Please verify the output above against this contract.{self.colors['RESET']}")
+
+    def sync(self, file_path):
+        self._print_header("Jira Cloud Synchronization")
+        
+        # Initialize Client
+        jira = JiraClient()
+        if not jira.enabled:
+            print(f"{self.colors['RED']}Jira Client disabled (Missing Env Vars).{self.colors['RESET']}")
+            return
+
+        print(f"Syncing artifacts from: {file_path} to Project: {os.getenv('JIRA_PROJECT_KEY', 'UNKNOWN')}\n")
+        
+        try:
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+                items = data.get('stories', []) + data.get('epics', [])
+        except (FileNotFoundError, json.JSONDecodeError):
+            print("Error: Invalid JSON input file (Must contain 'stories' or 'epics' list).")
+            return
+
+        # TRACKING
+        created_count = 0
+        skipped_count = 0
+        
+        for item in items:
+            # 1. Check if already synced
+            if item.get('jira_id'):
+                print(f"Skipping {item['id']} (Already synced: {item['jira_id']})")
+                skipped_count += 1
+                continue
+                
+            # 2. Prepare Payload
+            summary = item.get('summary') or item.get('title') or "Untitled"
+            desc = item.get('description', '')
+            issue_type = item.get('type', 'Story') # Default to Story
+            
+            # 3. Create Issue
+            print(f"Creating {issue_type}: {summary}...")
+            key = jira.create_issue(
+                project_key=os.getenv('JIRA_PROJECT_KEY', 'PROJ'),
+                summary=summary,
+                description=desc,
+                issue_type=issue_type
+            )
+            
+            if key:
+                item['jira_id'] = key # Update local object (InMemory)
+                created_count += 1
+            else:
+                print(f"{self.colors['RED']}Failed to create {summary}{self.colors['RESET']}")
+
+        print(f"\n{self.colors['GREEN']}Sync Complete.{self.colors['RESET']}")
+        print(f"Created: {created_count}")
+        print(f"Skipped: {skipped_count}")
+        
+        # In a real agent, we would write the 'jira_id' back to the JSON file here.
+        # with open(file_path, 'w') as f:
+        #    json.dump(data, f, indent=2)
+        print(f"{self.colors['YELLOW']}Note: Local file was not updated with IDs in this demo.{self.colors['RESET']}")
 
 # --- CLI ENTRY POINT ---
 
@@ -340,6 +408,10 @@ def main():
     rp = subparsers.add_parser("readiness", help="Go/No-Go Check")
     rp.add_argument("file", help="Path to metrics JSON")
 
+    # Sync (Jira)
+    sp = subparsers.add_parser("sync", help="Push artifacts to Jira Cloud")
+    sp.add_argument("file", help="Path to artifact JSON (Stories/Epics)")
+
     args = parser.parse_args()
     agent = PlanningAgent()
 
@@ -351,6 +423,8 @@ def main():
         agent.health(args.file)
     elif args.command == "readiness":
         agent.readiness(args.file)
+    elif args.command == "sync":
+        agent.sync(args.file)
     else:
         parser.print_help()
 

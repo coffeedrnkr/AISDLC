@@ -92,7 +92,7 @@ We didn't just ask AI to "write code." We researched the most proven methodologi
 *   **Result:** Developers focus on logic and quality, not boilerplate.
 
 ## Slide 9: Continuous Quality
-**Testing is no longer a "Phase"**
+**Extends the Concept that Testing is no longer a "Phase"**
 
 *   **The Matrix:** Testing happens at every step, powered by agents.
     *   **Reqs Phase:** *Simulation Agent* roleplays user personas to find gaps.
@@ -124,18 +124,20 @@ We don't just "chat" with AI. We engineer **Structured Prompts** using advanced 
 *   **Standards Injection:** Every prompt automatically injects the project's `STYLEGUIDE.md`, ensuring consistent naming and patterns.
 *   **Traceability Labels:** Agents must tag every requirement with its source (e.g., `[SOURCE: meeting_notes.txt]`), eliminating hallucinations.
 
-## Slide 13: Audit & Governance (Pillar 12)
-**Trust, but Verify.**
+## Slide 12: Audit & Governance (Pillars 12 & 13)
+**The "Definition of Done" & "Human Firewall"**
 
-*   **The Problem:** Agents are fast, but can they be trusted?
-*   **The Solution:** A rigid "Contract System" that verifies every output.
-*   **The Mechanism:**
-    *   **The Registry (DoD):** 12 strict "Definition of Done" contracts (e.g., "Architecture must include C4").
-    *   **The Syringe:** A loader script (`contracts_loader.py`) that strictly injects these contracts into every Agent.
-    *   **The Dashboard:** An independent "Auditor Agent" that scans the repo 24/7.
-*   **Result:** A `PROJECT_DASHBOARD.md` that shows exactly which requirements are missing code, and which code is missing requirements.
+We verified that "trusting" the AI is insufficient. We built a rigorous **Governance Layer** (Automated & Human).
 
-## Slide 14: The Vision Realized
+*   **1. The Contract Registry:** 12 **Immutable** "Definitions of Done" (DoDs) that define success before a single line of code is written.
+*   **2. Runtime Policy Enforcement:** A runtime loader (`contracts_loader.py`) that **mandatorily loads** these contracts into every agent's context window.
+*   **3. Traceability Enforcement:** Code is rejected unless it contains specific tags (e.g., `@implements STORY-123`) linking it strictly back to the requirements.
+*   **4. Decision Provenance:** Every architectural trade-off is logged in `decision_log.json`.
+*   **5. Mandatory Sign-off (HITL):** The system explicitly **PAUSES** between phases; no agent proceeds without human approval.
+    *   *Trade-off:* We trade "Autonomous Speed" for **"Verified Direction."**
+    *   *Result:* The AI moves fast, but never moves *forward* without permission.
+
+## Slide 13: The Vision Realized
 **The Closed Loop**
 
 *   we have successfully evolved from **2025's Pilots** to **2026's Platform**.
@@ -147,7 +149,7 @@ We don't just "chat" with AI. We engineer **Structured Prompts** using advanced 
 
 **The AI-Augmented SDLC is open for business.**
 
-## Slide 13: Appendix - The 2025 Baseline
+## Slide 14: Appendix - The 2025 Baseline
 **Where We Started: Prompts & Suggestions (No Agents)**
 
 A transparent look at the specific capabilities delivered in the 2025 pilot phase.

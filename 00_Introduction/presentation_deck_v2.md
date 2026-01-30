@@ -578,9 +578,9 @@ We have formalized the criteria for success into **12 Immutable Contracts** stor
 *   **DEV_DoD.md:** Must include `@implements` tags linking back to Stories.
 *   **INT_DoD.md:** Must include "Contract Tests" for every API.
 
-### 2. The Injection Mechanism (The "Syringe")
-We don't rely on the AI remembering to check the contract.
-*   **`scripts/contracts_loader.py`**: A dedicated utility that physically reads the correct DoD and injects it into the Agent's system prompt at runtime.
+### 2. Runtime Policy Enforcement
+We don't rely on the Agent remembering to check the contract.
+*   **`scripts/contracts_loader.py`**: A dedicated utility that **physically loads** the correct DoD into the Agent's system prompt at runtime.
 *   *Result:* The Agent cannot physically answer without seeing the rules.
 
 ### 3. The Project Dashboard (The "Truth")
@@ -590,6 +590,12 @@ An autonomous agents (`project_dashboard_agent.py`) scans the entire codebase to
 *   **Guideline Audit:** Ensures every pillar has a `guidelines/` folder.
 
 > **Status:** 🔴 Red (Missing) / 🟢 Green (Complete). No nuance.
+
+### 4. The Sign-off Protocol (Stop-and-Wait)
+We debunked the myth of "Autonomous Execution." Our system is designed to **PAUSE**.
+*   **The Workflow:** AI Generates -> System Stops -> Human Reviews -> AI Resumes.
+*   **The Reason:** A small error in Requirements becomes a catastrophic error in Code. We catch it at the source.
+*   **The Rule:** No agent can wake up the next agent without a human "GO" signal (Artifact Approval).
 
 ---
 

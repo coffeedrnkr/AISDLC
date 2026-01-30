@@ -30,6 +30,7 @@ Every concept is explained from first principles, with real-world examples and p
 18. [Context Management: Getting the Best from AI](#18-context-management-getting-the-best-from-ai)
 19. [Prompt Engineering: Smart Prompts and Methodologies](#19-prompt-engineering-smart-prompts-and-methodologies)
 20. [Audit & Governance: The Definition of Done Engine](#20-audit--governance-the-definition-of-done-engine)
+21. [The Human-in-the-Loop Protocol (Pillar 13)](#21-the-human-in-the-loop-protocol-pillar-13)
 
 ---
 
@@ -2886,8 +2887,8 @@ We defined **12 Immutable Contracts** (Definitions of Done) that cover every asp
 | `DEV_DoD.md` | Code | Must include `@implements` traceability tags |
 | `INT_DoD.md` | Interfaces | Must include Contract Tests (Pact) |
 
-#### 2. The Injection Mechanism (The "Syringe")
-We don't rely on the Agent "remembering" to check the contract. We built a utility (`scripts/contracts_loader.py`) that **physically injects** the contract into the AI's context window at runtime.
+#### 2. Runtime Policy Enforcement
+We don't rely on the Agent "remembering" to check the contract. We built a utility (`scripts/contracts_loader.py`) that **physically loads** the contract into the AI's context window at runtime.
 
 *   **Workflow:**
     1.  User runs `/arch-design`.
@@ -2941,3 +2942,27 @@ We realized we were losing the "Why" behind decisions. We implemented a **Decisi
 
 ### Summary
 This system moves us from **"AI-Generated"** to **"AI-Verified."** We don't just hope the code is good; we scientifically prove it matches the requirements.
+
+## 21. The Human-in-the-Loop Protocol (Pillar 13)
+
+### The Myth of Autonomy
+The biggest lie in GenAI is "Autonomous Agents." The idea that you can give an AI a vague goal and come back in a week to a finished app is dangerous. It leads to **Error Cascades**.
+
+### Our Reality: The "Stop-and-Wait" Architecture
+We designed the AISDLC as a series of **Discrete Atomic Steps**, not a continuous flow.
+
+#### 1. Mandatory Sign-off
+Between every major phase, there is a hard firewall.
+*   **Input:** User Request.
+*   **Agent 1 (PRD):** Generates .
+*   **SYSTEM HALT.**
+*   **Human Action:** Reviews PRD. Edits constraints. Approves .
+*   **Agent 2 (Architecture):** Wakes up ONLY when  is approved.
+
+#### 2. Why We Do This
+*   **Context Control:** If the PRD is 10% wrong, the Architecture will be 30% wrong, and the Code will be 80% wrong.
+*   **Cost Control:** Running a coding agent on bad requirements burns tokens for nothing.
+*   **Trust:** The human builds trust by verifying the *direction* before the AI speeds up.
+
+### Summary
+The AI is the engine. The Human is the steering wheel. We never let the engine run without a hand on the wheel.

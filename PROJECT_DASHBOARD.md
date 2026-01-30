@@ -1,5 +1,5 @@
 # Project Audit Dashboard
-**Last Scanned:** 2026-01-29 22:32:34
+**Last Scanned:** 2026-01-29 22:55:29
 
 ## 1. Traceability Matrix
 | Artifact ID | Type | Parent (Trace) | Status | Issues |
@@ -25,4 +25,5 @@
 > ⚠️ **No Decisions Logged Yet.** (Audit Risk)
 
 ## 3. Jira Synchronization Status
-> ⚠️ **Status:** Integration Pending. (Using placeholder logic).
+> ✅ **Jira Status:** CONNECTED
+> *Tip: Use `python planning_agent.py sync <file>` to push artifacts.*

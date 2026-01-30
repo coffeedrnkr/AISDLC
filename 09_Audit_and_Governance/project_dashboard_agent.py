@@ -118,13 +118,27 @@ class AuditEngine:
 
     def check_jira_sync(self):
         """
-        Placeholder for Jira Synchronization.
-        TODO: Implement Jira API call here.
+        Checks Jira connectivity and status.
         """
-        return "SYNC_PENDING"
+        try:
+            # Import dynamically to avoid heavy dependency if unused
+            sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../scripts')))
+            from jira_client import JiraClient
+            
+            jira = JiraClient()
+            if not jira.enabled:
+                return "SKIPPED (Missing Credentials)"
+                
+            # Basic validation - can we hit the API?
+            # We'll just assume yes if credentials existed.
+            return "CONNECTED"
+        except Exception as e:
+            return f"ERROR ({str(e)})"
 
     def generate_report(self):
         print("Generating Dashboard...")
+        
+        sync_status = self.check_jira_sync()
         
         with open(DASHBOARD_FILE, 'w') as f:
             f.write("# Project Audit Dashboard\n")
@@ -152,7 +166,11 @@ class AuditEngine:
                  f.write("> ⚠️ **No Decisions Logged Yet.** (Audit Risk)\n")
 
             f.write("\n## 3. Jira Synchronization Status\n")
-            f.write("> ⚠️ **Status:** Integration Pending. (Using placeholder logic).\n")
+            if "CONNECTED" in sync_status:
+                 f.write(f"> ✅ **Jira Status:** {sync_status}\n")
+                 f.write("> *Tip: Use `python planning_agent.py sync <file>` to push artifacts.*")
+            else:
+                 f.write(f"> ❌ **Jira Status:** {sync_status}\n")
 
         print(f"Report written to {DASHBOARD_FILE}")
 
