@@ -124,7 +124,7 @@ We don't just "chat" with AI. We engineer **Structured Prompts** using advanced 
 *   **Standards Injection:** Every prompt automatically injects the project's `STYLEGUIDE.md`, ensuring consistent naming and patterns.
 *   **Traceability Labels:** Agents must tag every requirement with its source (e.g., `[SOURCE: meeting_notes.txt]`), eliminating hallucinations.
 
-## Slide 12: Audit & Governance (Pillars 12 & 13)
+## Slide 12: Audit & Governance
 **The "Definition of Done" & "Human Firewall"**
 
 We verified that "trusting" the AI is insufficient. We built a rigorous **Governance Layer** (Automated & Human).
