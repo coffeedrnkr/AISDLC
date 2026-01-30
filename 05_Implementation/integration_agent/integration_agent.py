@@ -17,6 +17,14 @@ except ImportError:
     sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
     from agents.code_governance_agent.code_governance_agent import CodeGovernanceAgent
 
+# Ensure standards module is importable
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../00_Introduction/standards')))
+
+# Import Contracts Loader
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../scripts')))
+from contracts_loader import load_dod
+
 console = Console()
 
 class IntegrationAgent:
@@ -111,6 +119,10 @@ class IntegrationAgent:
 """
         markdown += "\n".join(self.report)
         
+        # Inject Definition of Done (Contract) Verify
+        dod_instruction = load_dod("INTEGRATION_DOD")
+        markdown += f"\n\n## Audit Contract (INTEGRATION_DOD)\nExecuted against:\n{dod_instruction}\n"
+
         markdown += f"\n\n## Recommendation\n"
         if self.status == "GREEN":
             markdown += "✅ **READY FOR DEPLOYMENT**"

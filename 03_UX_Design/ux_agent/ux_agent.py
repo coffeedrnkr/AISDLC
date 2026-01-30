@@ -12,6 +12,10 @@ from rich.console import Console
 
 console = Console()
 
+# Import Contracts Loader
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../scripts')))
+from contracts_loader import load_dod
+
 class UXAgent(GenAIBaseAgent):
     """
     Enterprise UX Agent (Google Gen AI SDK Compatible).
@@ -48,6 +52,10 @@ class UXAgent(GenAIBaseAgent):
         prompt = template
         for key, value in inputs.items():
             prompt = prompt.replace(f"{{{{{key}}}}}", value)
+
+        # Inject Definition of Done (Contract)
+        dod_instruction = load_dod("UX")
+        prompt += dod_instruction
 
         console.print(f"[bold blue]GenAI SDK: Generating UX Artifact via {prompt_file}...[/bold blue]")
         response_text = self.generate(prompt, temperature=0.4) # Slightly creative

@@ -10,8 +10,14 @@ from rich.panel import Panel
 from dotenv import load_dotenv
 
 # Ensure standards module is importable
+# Ensure standards module is importable
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../00_Introduction/standards')))
+
+# Import Contracts Loader
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../scripts')))
+from contracts_loader import load_dod
+
 from genai_agent_base import GenAIBaseAgent
 
 # Handle import for confluence_utils - may not be available in all environments
@@ -112,6 +118,10 @@ class CodeGovernanceAgent(GenAIBaseAgent):
             prompt = prompt.replace("{{STATIC_ANALYSIS_RUFF}}", static_analysis['ruff'])
             prompt = prompt.replace("{{STATIC_ANALYSIS_BANDIT}}", static_analysis['bandit'])
             prompt = prompt.replace("{{CODE_CONTENT}}", code_content[:20000])  # Context limit safety
+
+            # Inject Definition of Done (Contract)
+            dod_instruction = load_dod("DEV")
+            prompt += dod_instruction
         else:
             # Fallback to embedded prompt if external file not found
             prompt = f"""

@@ -12,6 +12,10 @@ from rich.console import Console
 
 console = Console()
 
+# Import Contracts Loader
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../scripts')))
+from contracts_loader import load_dod
+
 class ArchitectureAgent(GenAIBaseAgent):
     """
     Enterprise Architecture Agent (Google Gen AI SDK Compatible).
@@ -32,11 +36,55 @@ class ArchitectureAgent(GenAIBaseAgent):
             console.print(f"[yellow]Warning: Prompt file not found at {prompt_path}.[/yellow]")
             return None
 
+    def _load_template(self, template_path: str) -> str:
+        """Loads a template file relative to the agent."""
+        path = os.path.join(os.path.dirname(__file__), template_path)
+        try:
+            with open(path, 'r', encoding='utf-8') as f:
+                return f.read()
+        except Exception:
+            return ""
+
     def _extract_output(self, response_text: str) -> str:
         match = re.search(r'<output>(.*?)</output>', response_text, re.DOTALL)
         if match:
             return match.group(1).strip()
         return response_text.strip()
+
+    def _load_standards(self) -> str:
+        """Loads project standards and local guidelines."""
+        standards_content = []
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # 1. Project Global Styleguide (.gemini/STYLEGUIDE.md)
+        # Path relative to here: ../../.gemini/STYLEGUIDE.md
+        project_root = os.path.abspath(os.path.join(base_dir, "../../"))
+        styleguide_path = os.path.join(project_root, ".gemini", "STYLEGUIDE.md")
+        
+        if os.path.exists(styleguide_path):
+            try:
+                with open(styleguide_path, "r", encoding="utf-8") as f:
+                    standards_content.append(f"--- PROJECT STYLEGUIDE ---\n{f.read()}")
+                console.print(f"[green]Loaded Styleguide: .gemini/STYLEGUIDE.md[/green]")
+            except Exception as e:
+                console.print(f"[yellow]Warning: Could not read STYLEGUIDE.md: {e}[/yellow]")
+        else:
+             console.print(f"[dim]Styleguide not found at {styleguide_path}[/dim]")
+
+        # 2. Local Guidelines (guidelines/*.md)
+        guidelines_dir = os.path.join(base_dir, "guidelines")
+        if os.path.exists(guidelines_dir):
+            for filename in os.listdir(guidelines_dir):
+                if filename.endswith(".md"):
+                    path = os.path.join(guidelines_dir, filename)
+                    try:
+                        with open(path, "r", encoding="utf-8") as f:
+                            standards_content.append(f"--- GUIDELINE: {filename} ---\n{f.read()}")
+                        console.print(f"[green]Loaded Guideline: {filename}[/green]")
+                    except Exception as e:
+                        console.print(f"[yellow]Warning: Could not read guideline {filename}: {e}[/yellow]")
+        
+        return "\n\n".join(standards_content)
 
     def generate_artifact(self, task_name: str, prompt_file: str, inputs: dict, output_path: str):
         """Generic method to run an architecture task."""
@@ -49,6 +97,20 @@ class ArchitectureAgent(GenAIBaseAgent):
         prompt = template
         for key, value in inputs.items():
             prompt = prompt.replace(f"{{{{{key}}}}}", value)
+
+        # Inject Standards
+        standards = self._load_standards()
+        if standards:
+            prompt += "\n\n# STANDARDS, GUIDELINES AND PATTERNS\nThe following standards must be followed when generating this artifact:\n" + standards
+
+        # Inject Definition of Done (Contract)
+        dod_role = "ARCH"
+        if "openapi" in task_name.lower():
+            dod_role = "INTERFACE"
+        
+        dod_instruction = load_dod(dod_role)
+        prompt += dod_instruction
+
 
         console.print(f"[bold blue]GenAI SDK: Generating {task_name}...[/bold blue]")
         
@@ -93,7 +155,11 @@ def main():
         agent.generate_artifact(
             "System Design", 
             "ARCH_001.md", # Need to confirm exact filename if it exists, or ARCH_GEN
-            {"PRD_CONTENT": input_content}, 
+            "ARCH_001.md",
+            {
+                "PRD_CONTENT": input_content,
+                "TEMPLATE_CONTENT": self._load_template("templates/system_design_template.md")
+            }, 
             args.output
         )
     elif args.task == 'dbml':

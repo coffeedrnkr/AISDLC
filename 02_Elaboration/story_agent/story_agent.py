@@ -7,6 +7,10 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../00_Introduction/standards')))
 from genai_agent_base import GenAIBaseAgent
 
+# Import Contracts Loader
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../scripts')))
+from contracts_loader import load_dod
+
 from rich.console import Console
 
 console = Console()
@@ -45,6 +49,10 @@ class StoryAgent(GenAIBaseAgent):
             prompt = prompt.replace("{{TEMPLATE_CONTENT}}", template_content)
         else:
             raise FileNotFoundError("Critical Error: STORY_GEN prompt file is missing.")
+
+        # Inject Definition of Done (Contract)
+        dod_instruction = load_dod("STORY")
+        prompt += dod_instruction
 
         console.print("[bold blue]GenAI SDK: Generating User Stories...[/bold blue]")
         

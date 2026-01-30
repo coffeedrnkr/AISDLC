@@ -5,7 +5,11 @@ import re
 import sys
 
 # Ensure standards module is importable
+# Ensure standards module is importable
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../00_Introduction/standards')))
+# Import Contracts Loader
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../scripts')))
+from contracts_loader import load_dod
 from genai_agent_base import GenAIBaseAgent
 from follow_up_manager import FollowUpManager
 from session_state_manager import SessionStateManager
@@ -89,6 +93,10 @@ class PRDAgent(GenAIBaseAgent):
             prompt = prompt.replace("{{TEMPLATE_CONTENT}}", template_content)
         else:
             raise FileNotFoundError("Critical Error: PRD_GEN prompt file is missing.")
+
+        # Inject Definition of Done (Contract)
+        dod_instruction = load_dod("PRD")
+        prompt += dod_instruction
 
         console.print("[bold blue]GenAI SDK: Generating PRD...[/bold blue]")
         

@@ -104,6 +104,7 @@ When decomposing each Epic, actively challenge:
 *   `{{ARCHITECTURE_CONTENT}}`: Technical constraints and system architecture.
 *   `{{DETAILED_SPECS}}`: Business rules and validation logic.
 *   `{{TEMPLATE_CONTENT}}`: The Epic template structure to follow.
+*   `{{STANDARDS_AND_GUIDELINES}}`: Project standards to enforce.
 
 ---
 

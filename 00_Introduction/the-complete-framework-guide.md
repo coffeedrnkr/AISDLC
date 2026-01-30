@@ -27,6 +27,9 @@ Every concept is explained from first principles, with real-world examples and p
 15. [Cross-System Coordination: Working Across Teams and Systems](#15-cross-system-coordination-working-across-teams-and-systems)
 16. [AI Planning Intelligence: Continuous Dependency Management](#16-ai-planning-intelligence-continuous-dependency-management)
 17. [Change Management: What-If Impact Assessment](#17-change-management-what-if-impact-assessment)
+18. [Context Management: Getting the Best from AI](#18-context-management-getting-the-best-from-ai)
+19. [Prompt Engineering: Smart Prompts and Methodologies](#19-prompt-engineering-smart-prompts-and-methodologies)
+20. [Audit & Governance: The Definition of Done Engine](#20-audit--governance-the-definition-of-done-engine)
 
 ---
 
@@ -71,9 +74,9 @@ AI assistance can dramatically reduce this time, allowing teams to:
 
 ---
 
-## 2. The Nine Pillars
+## 2. The Ten Pillars
 
-The AI-Augmented SDLC is built on nine foundational principles that govern how work is organized, tracked, and executed.
+The AI-Augmented SDLC is built on ten foundational pillars that govern how work is organized, tracked, and executed.
 
 ### Pillar 1: VS Code as Home Base
 
@@ -200,6 +203,15 @@ An AI Agent is a specialized AI program designed to perform a specific task. Unl
 
 Every agent output is reviewed by a human before it becomes final. The AI drafts, the human approves (or edits and approves).
 
+### Key Prompt Engineering Techniques
+
+To ensure high-quality, safe, and standards-compliant output, the framework uses advanced prompt engineering techniques:
+
+*   **The "Critical Friend" Persona**: Agents are instructed not just to obey but to acting as a "Critical Friend"—challenging assumptions, pointing out risks, and highlighting missing requirements (e.g., "This design lacks error handling").
+*   **Chain-of-Thought (CoT)**: Prompts force the AI to "think step-by-step" before generating code. This reduces hallucinations by forcing the model to plan its logic first.
+*   **Standards Injection**: Every prompt automatically receives the active `{{STANDARDS_AND_GUIDELINES}}` (the `STYLEGUIDE.md`), ensuring that all output strictly adheres to project coding conventions.
+*   **Context-Aware Output**: Agents are designed to generate specific "Next-Step" formats (e.g., Mermaid diagrams, Gherkin scenarios, JSON schemas) that are ready for immediate use in the pipeline.
+
 ### Pillar 5: Git Version Control
 
 **What is Git?**
@@ -242,7 +254,58 @@ AI is powerful but imperfect. Without guardrails:
 | **Prompt Ops** | Automatic | Prompts are versioned and tested like code |
 **The Key Principle:** AI never makes changes directly. It always proposes changes that a human must accept.
 
-### Pillar 7: Context Management
+### Pillar 7: AI Planning Intelligence
+
+**The Problem:**
+
+Jira backlogs are often incomplete:
+- Stories created without dependency links
+- Blockers discovered mid-sprint
+- Cross-team dependencies hidden until too late
+- Optimal build order is guesswork
+
+**The Solution: Continuous AI Monitoring**
+
+An always-on AI layer that watches, discovers, suggests, and manages dependencies across Jira:
+
+| Capability | What It Does |
+|:-----------|:-------------|
+| **Analyzes** | Parses backlog exports (JSON/Text) |
+| **Discovers** | Infers dependencies via NLP (Regex/Keywords) |
+| **Suggests** | Proposes dependency links for human review |
+| **Sequences** | Recommends optimal build order (Topological Sort) |
+| **Alerts** | Highlights blocked items in Console (🔴/🟡/🟢) |
+| **Predicts** | Identifies Critical Path & Circular Dependencies |
+
+**Key Principle:** This agent identifies the "invisible connections" and logic gaps between tickets.
+
+> 📖 **Full Details:** See Chapter 16 for the complete AI Planning Intelligence framework.
+
+### Pillar 8: Change Management
+
+**The Problem:**
+
+Requirements change constantly:
+- New features requested mid-sprint
+- Scope reduced due to budget/time
+- Regulatory changes force modifications
+- Stakeholder priorities shift
+
+**The Solution: What-If Impact Assessment**
+
+Before any change is made, AI assesses the full blast radius:
+
+| Change Type | AI Assesses Impact On |
+|:------------|:----------------------|
+| **Add Requirement** | PRD, Epics, Stories, Architecture, Timeline |
+| **Modify Requirement** | Which artifacts need updates? How much rework? |
+| **Remove Requirement** | What becomes orphaned? What's affected downstream? |
+
+**Slash Command:** `/impact-assess` calculates the cost of change before you commit.
+
+> 📖 **Full Details:** See Chapter 17 for the complete Change Management framework.
+
+### Pillar 9: Context Management
 
 **The Challenge:**
 
@@ -264,60 +327,7 @@ Even the largest AI models (2 million tokens) can't fit an entire codebase. With
 - **Progressive disclosure:** Summary always, details on-demand
 - **Session persistence:** Track entities, open questions, next steps
 
-> 📖 **Full Details:** See Chapter 14 for complete context management strategies.
-
-### Pillar 8: AI Planning Intelligence
-
-**The Problem:**
-
-Jira backlogs are often incomplete:
-- Stories created without dependency links
-- Blockers discovered mid-sprint
-- Cross-team dependencies hidden until too late
-- Optimal build order is guesswork
-
-**The Solution: Continuous AI Monitoring**
-
-An always-on AI layer that watches, discovers, suggests, and manages dependencies across Jira:
-
-| Capability | What It Does |
-|:-----------|:-------------|
-| **Watches** | Monitors backlog as items are created/edited |
-| **Discovers** | Infers dependencies from story content (NLP) |
-| **Suggests** | Proposes missing links for human approval |
-| **Sequences** | Recommends optimal build order |
-| **Alerts** | Notifies when dependency health changes |
-| **Predicts** | Forecasts blockers before they occur |
-
-**Key Principle:** This is Jira-centric — users plan backlogs and sprints in Jira, not VS Code.
-
-> 📖 **Full Details:** See Chapter 16 for the complete AI Planning Intelligence framework.
-
-### Pillar 9: Change Management
-
-**The Problem:**
-
-Requirements change constantly:
-- New features requested mid-sprint
-- Scope reduced due to budget/time
-- Regulatory changes force modifications
-- Stakeholder priorities shift
-
-Without impact analysis, changes cause cascading problems.
-
-**The Solution: What-If Impact Assessment**
-
-Before any change is made, AI assesses the full blast radius:
-
-| Change Type | AI Assesses Impact On |
-|:------------|:----------------------|
-| **Add Requirement** | PRD, Epics, Stories, Architecture, Timeline |
-| **Modify Requirement** | Which artifacts need updates? How much rework? |
-| **Remove Requirement** | What becomes orphaned? What's affected downstream? |
-
-**Key Principle:** Assessment only — AI shows you the impact before you decide to proceed.
-
-> 📖 **Full Details:** See Chapter 17 for the complete Change Management framework.
+> 📖 **Full Details:** See Chapter 18 for complete context management strategies.
 
 ---
 
@@ -954,6 +964,19 @@ Use PostgreSQL
 - Prevents re-debating the same decisions
 - Documents trade-offs explicitly
 
+### Infrastructure as Code (The Where)
+
+Architecture includes the physical infrastructure, defined as code:
+
+| Artifact | Tool | Purpose |
+|:---|:---|:---|
+| **Cloud Resources** | Terraform / Pulumi | Provisioning GCP projects, buckets, SQL instances |
+| **Configuration** | YAML / TFVars | Environment-specific settings (Dev vs Prod) |
+| **Policies** | OPA (Open Policy Agent) | Enforcing architecture rules (e.g. "No public S3 buckets") |
+
+**Key Principle:** The diagram IS the code. The decision IS the record.
+
+
 ---
 
 ## 10. Interfaces: The Four Layers of Integration
@@ -1101,36 +1124,27 @@ This is a proven methodology for writing high-quality code:
 
 ---
 
-## 12. Testing: The Five Dimensions of Quality
+## 12. Continuous Quality: Testing as a Lifestyle
 
-### The Testing Pyramid
+### The "Continuous Quality" Matrix
 
-Traditional testing anti-patterns put most effort into slow, expensive manual testing. The Testing Pyramid inverts this:
+Testing is not a phase at the end. It happens at every single stage of the lifecycle.
 
-```
-        /\
-       /  \
-      / E2E \          ← Few, focused end-to-end tests
-     /--------\
-    /Integration\      ← More integration tests
-   /--------------\
-  /     Unit       \   ← Many fast unit tests
- /------------------\
-```
+| Lifecycle Stage | Testing Type | Input | AI Action | Output |
+|:---|:---|:---|:---|:---|
+| **Requirements** | **Simulation** | Personas | Simulates user edge cases | Persona Reports |
+| **Architecture** | **Contract Tests** | OpenAPI Specs | Generates contract consumers | Pact/Pandera Suites |
+| **Implementation** | **Unit Tests** | Code | Generates isolated logic tests | Pytest/Vitest |
+| **Story** | **Behavior (E2E)** | Gherkin ACs | Generates user flow scripts | Playwright Scripts |
+| **Release** | **Resilience** | System Arch | Generates load & chaos plans | k6 & Chaos Mesh |
 
-**The Principle:** Invest most effort in fast, cheap tests (unit tests). Reserve expensive tests (E2E) for critical paths only.
+### Polyglot Support
+The framework supports the modern stack:
+*   **Frontend**: JavaScript/TypeScript (Jest, Playwright, Vitest)
+*   **Backend**: Python (Pytest, Pandera), Node.js (Jest)
 
-### Testing is Continuous
+### The AI-Generated Test Suite
 
-In the AI-Augmented SDLC, testing happens throughout development, not just at the end:
-
-| When | What Testing Happens |
-|:-----|:---------------------|
-| During Requirements | Persona simulation (edge cases) |
-| During Story Writing | Gherkin ACs (behavior specs) |
-| During Architecture | Contract tests (API specs) |
-| During Implementation | Unit tests (TDD) |
-| Before Release | Load tests, chaos tests |
 
 ### The Five Dimensions of Quality
 
@@ -2817,3 +2831,113 @@ This is the future of software development: humans and AI working together, each
 | **Token** | The basic unit of text that AI models process (roughly 4 characters) |
 | **UX** | User Experience — The overall experience of using a product |
 | **Wireframe** | Low-fidelity visual representation of a screen layout |
+
+---
+
+## 19. Prompt Engineering: Smart Prompts and Methodologies
+
+We didn't just write instructions. We used AI to research the most **proven, widely used, modern techniques** for every stage of the SDLC and baked them into the prompts.
+
+### 1. The "Work" (AI-Selected Methodologies)
+The prompt acts as a *Senior Engineer*, enforcing the best way to do the job:
+
+| Role | Proven Methodology | Why We Selected It |
+|:---|:---|:---|
+| **Requirements** | **SPIDR** (Spike, Path, Interface, Data, Rules) | The industry standard for splitting large Epics without breaking logic. |
+| **User Stories** | **INVEST** (Independent, Negotiable...) | Ensures stories are small and testable by default. |
+| **Architecture** | **C4 Model** (Context, Containers...) | The modern standard for visualizing software architecture hierarchically. |
+| **Testing** | **Gherkin** (Given-When-Then) | The leading format for Behavior Driven Development (BDD). |
+| **UX Design** | **Nielsen's 10 Heuristics** | The gold standard for usability auditing. |
+
+### 2. The "Engineering" (Structure)
+How we ensure the AI follows these methodologies reliably:
+
+*   **Critical Friend Logic:** We explicitly program a "persona" that challenges assumptions ("Are you sure about this?") rather than blindly complying.
+*   **Chain-of-Thought (CoT):** We force the AI to "plan its logic" step-by-step before generating code, reducing logic errors.
+*   **Standards Injection:** Every prompt automatically injects the project's `STYLEGUIDE.md` so code matches the team's style.
+*   **Traceability Regulations:** Agents are forbidden from hallucinating; they must cite sources (e.g., `[SOURCE: meeting.txt]`).
+
+### 3. The "Safety" (Prompt-Ops)
+Prompts are treated as **Code**, not text:
+*   **Golden Datasets:** Every prompt is regression-tested against a "Gold Standard" output to ensure upgrades don't break capabilities.
+*   **Versioning:** Prompts are stored in Git (`prompts/v3/`), strictly versioned, and rolled back if metrics drop.
+
+## 20. Audit & Governance: The Definition of Done Engine
+
+### The Problem: Trusting AI Too Much
+As we empowered 12+ specialized agents to generate Requirements, Architecture, and Code, a new risk emerged: **Drift**.
+*   How do we know the Architecture Agent *really* followed the C4 standard?
+*   How do we know the Developer Agent *really* implemented the Story?
+*   How do we know the Test Agent *really* covered the edge cases?
+
+Trusting the AI to "just do it" is not enough for enterprise software. We needed a mechanism to **verify** it.
+
+### The Solution: The Contract System
+We instituted a rigid governance layer that sits *above* the agents. It is based on the principle of **"In-Process Audit."**
+
+#### 1. The Contract Registry (`contracts/`)
+We defined **12 Immutable Contracts** (Definitions of Done) that cover every aspect of the SDLC. These are not loose guidelines; they are strict checklists.
+
+| Contract | Role | Key Check |
+|:---|:---|:---|
+| `PRD_DoD.md` | Requirements | Must include Success Metrics & User Personas |
+| `ARCH_DoD.md` | Architecture | Must include C4 Diagrams & Decision Records |
+| `UX_DoD.md` | Design | Must include Accessibility Audit (WCAG) |
+| `DEV_DoD.md` | Code | Must include `@implements` traceability tags |
+| `INT_DoD.md` | Interfaces | Must include Contract Tests (Pact) |
+
+#### 2. The Injection Mechanism (The "Syringe")
+We don't rely on the Agent "remembering" to check the contract. We built a utility (`scripts/contracts_loader.py`) that **physically injects** the contract into the AI's context window at runtime.
+
+*   **Workflow:**
+    1.  User runs `/arch-design`.
+    2.  System loads `ArchitectureAgent`.
+    3.  Loader specifically grabs `ARCH_DoD.md`.
+    4.  Loader appends: *"CRITICAL: YOU MUST VERIFY YOUR OUTPUT AGAINST THIS CONTRACT."*
+    5.  Agent generates artifact.
+    6.  (Optional) Post-process check verifies compliance.
+
+#### 3. Traceability Standards
+To ensure the Dashboard (see below) can read the code, we established **Universal Traceability Tags**.
+
+**Python Code:**
+```python
+"""
+@implements STORY-123
+Description: Implements the login logic.
+"""
+def login(): ...
+```
+
+**Markdown (Docs):**
+```markdown
+---
+id: STORY-123
+parent: EPIC-01
+---
+```
+
+**Mermaid (Diagrams):**
+```mermaid
+%% @implements ARCH-001
+graph TD ...
+```
+
+#### 4. The Project Dashboard (The "Truth")
+We built an autonomous agent (`project_dashboard_agent.py`) whose ONLY job is to audit the others. It scans the codebase 24/7 and generates `PROJECT_DASHBOARD.md`.
+
+*   **The Matrix:** It creates a table of every Requirement ID (from PRD/Epic/Story).
+*   **The Audit:** It searches for a matching `@implements` tag in the code.
+*   **The Status:**
+    *   ❌ **MISSING_ID:** Requirement exists, but no code implements it.
+    *   ✅ **COMPLETE:** Requirement exists and code is found.
+    *   ⚠️ **ORPHAN:** Code exists, but no requirement justifies it (Gold Plating).
+
+#### 5. Decision Provenance (`decision_log.json`)
+We realized we were losing the "Why" behind decisions. We implemented a **Decision Registry**.
+*   **Mechanism:** Agents call `log_decision()` when they make a choice (e.g., "Chose Postgres over Mongo").
+*   **Artifact:** A centralized `decision_log.json` file.
+*   **Audit:** The Dashboard reports the number of decisions logged, ensuring we aren't "sleepwalking" through architecture.
+
+### Summary
+This system moves us from **"AI-Generated"** to **"AI-Verified."** We don't just hope the code is good; we scientifically prove it matches the requirements.

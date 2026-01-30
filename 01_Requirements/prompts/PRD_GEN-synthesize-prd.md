@@ -68,6 +68,7 @@ When you see potential issues, phrase as questions:
 
 *   `{{DOCUMENTS_CONTENT}}`: The concatenated text of all source documents.
 *   `{{TEMPLATE_CONTENT}}`: The PRD template structure to follow.
+*   `{{STANDARDS_AND_GUIDELINES}}`: Project standards to enforce.
 
 ---
 

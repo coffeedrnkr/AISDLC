@@ -1,8 +1,20 @@
-# User Slide Content V2 (Framework-Consistent Edition)
+# AI-AUGMENTED SDLC FRAMEWORK
 
-## Slide 1: THE TEN PILLARS OF AI-AUGMENTED SDLC
+## Introduction: The Ten Pillars of AI-Augmented SDLC
+1.  **VS Code as Home Base**
+2.  **Documentation as Code**
+3.  **Diagrams as Code**
+4.  **Agent-Generated Artifacts**
+5.  **Git Version Control**
+6.  **AI Governance**
+7.  **AI Planning Intelligence**
+8.  **Change Management**
+9.  **Context Management**
+10. **Jira Integration**
+11. **Prompt Engineering**
+12. **Audit & Governance**
 
-### Pillar 1: VS Code as Home Base
+## Pillar 1: VS Code as Home Base
 **One environment for everything:**
 *   **Gemini Code Assist** – AI pair programmer in the editor
 *   **Slash Commands** – `/prd-discover`, `/epic-split`, `/arch-design`
@@ -11,13 +23,16 @@
 *   **Jira Integration** – Sync without leaving the IDE
 
 
-### Pillar 2: Documentation as Code
-Everything that describes the system lives **in Git, as text**:
-*   **`.md` files** – Markdown for all documentation (PRD, Epics, Stories, ADRs)
+## Pillar 2: Documentation as Code
+**Everything that describes the system lives in Git, as text**:
+*   **`.md` files** – Markdown for all documentation (PRD, Epics, Stories, ADRs) perfect for AI to read and write
 *   **Version Controlled** – Changes tracked, reviewable in PRs, rollback possible
 *   **`.gemini/STYLEGUIDE.md`** – Teaches AI assistants about project conventions
+*   **Content Generation** – AI generated code usingPython libraries (`python-pptx`, `python-docx`, `WeasyPrint`) automate artifact creation (Slides, Reports, PDFs)
+*   **Live Integration** – Inject real-time data from databases (Jira, SQL) into docs using `Pandas` + `Jinja2` templates
 
-### Pillar 3: Diagrams as Code
+
+## Pillar 3: Diagrams as Code
 Visuals are **generated from text**, not drawn manually:
 | Domain | Tool | Output |
 |:-------|:-----|:-------|
@@ -25,9 +40,25 @@ Visuals are **generated from text**, not drawn manually:
 | **Architecture** | Mermaid (C4), Python Diagrams | System Structure, Infrastructure |
 | **Data** | DBML | Entity-Relationship Diagrams |
 | **APIs** | OpenAPI | Swagger UI, Client SDKs |
+| **Logic** | Mermaid (Sequence) | Component interactions & Protocol flows |
+| **Planning** | Mermaid (Gantt) | Project Timelines & Roadmaps |
+| **Brainstorming** | Mermaid (Mindmap) | Requirements & Topic Visualization |
 
-### Pillar 4: Agent-Generated Artifacts
-Outputs are **created by AI Agents**, not written from scratch:
+## Pillar 4: Agent-Generated Artifacts
+Outputs are **created by AI Agents**, not written from scratch. They are engineered by layering **AI Capabilities** on top of **Modern Engineering Standards**.
+
+### Key Prompt Engineering Techniques:
+*   **The "Critical Friend" Persona**: Agents don't just obey; they challenge assumptions and potential risks (e.g., "This design lacks error handling").
+*   **Chain-of-Thought (CoT)**: Prompts force the AI to "think step-by-step" before generating code, reducing hallucinations.
+*   **Standards Injection**: Every prompt automatically receives `{{STANDARDS_AND_GUIDELINES}}` (the `STYLEGUIDE.md`), ensuring strict adherence to project conventions.
+*   **Context-Aware Output**: Agents generate specific formats (Mermaid, Gherkin, JSON) ready for the next stage of the pipeline.
+
+### Universal Engineering Standards Enforced:
+*   **Planning**: **SPIDR** Decomposition, **Vertical Slicing**, **INVEST** Criteria
+*   **Requirements**: **Gherkin** (Given-When-Then), **Behavior-Driven Development** (BDD)
+*   **Design**: **C4 Model** (Context, Containers, Components), **12-Column Grid**, **Nielsen's Heuristics**
+*   **Quality**: **Chaos Engineering** (Chaos Mesh), **Contract Testing** (Pact), **Blast Radius Analysis**
+*   **Visuals**: **Mermaid.js** (Flowcharts, Sequence, State Diagrams)
 
 | Phase | Agent | Slash Command | Output |
 |:------|:------|:--------------|:-------|
@@ -48,49 +79,38 @@ Outputs are **created by AI Agents**, not written from scratch:
 | **Planning** | AI Planning Agent | `/dep-discover` | Dependency map, health report |
 | **Planning** | Change Mgmt Agent | `/impact-assess` | Impact assessment report |
 
-**Session State:** Agents persist context across sessions (`open_questions.md`, `session_log.md`, `entities.md`).
-
-### Pillar 5: Git Version Control
+## Pillar 5: Git Version Control
 **Git is the single source of truth:**
 *   **All artifacts in one repo** – Docs, diagrams, code, and tests together
 *   **Pull Request workflow** – Every change is reviewed (by humans AND AI)
 *   **Full history** – Roll back any document to any point in time
 
-### Pillar 6: AI Governance
+## Pillar 6: AI Governance
 **Built-in safeguards — no guidelines to memorize:**
 
 | Capability | Type | What It Does |
 |:-----------|:-----|:-------------|
 | **Guardrails** | Automatic | PII detection, hallucination prevention, output limits |
 | **Human-in-the-Loop** | Always | **VS Code**: Accept/Reject diffs before file changes apply. **Agents**: Preview before saves. |
-| **Prompt-Ops** | Automatic | Versioned prompts, testing, A/B comparison |
+| **Human-in-the-Loop** | Always | **VS Code**: Accept/Reject diffs before file changes apply. **Agents**: Preview before saves. |
 
-### Pillar 7: Context Management
-**Optimize AI effectiveness with strategic context:**
+## Pillar 7: AI Planning Intelligence
+**Transforms static Jira backlogs into dynamic, self-organizing delivery plans.** 
 
-| Strategy | What It Does |
-|:---------|:-------------|
-| **Pre-Processing** | NotebookLM summarizes bulk docs before development |
-| **Hierarchical Chunking** | Index → Summary → Detail for large documents |
-| **Context Drawer** | Explicitly include/exclude files for AI (Code Assist) |
-| **Session State** | `session_log.md`, `entities.md` persist across sessions |
-| **Caching** | Reuse common context (STYLEGUIDE, glossary) |
-
-### Pillar 8: AI Planning Intelligence
-**Continuous AI monitoring of Jira backlog:**
+This agent proactively manages the **invisible connections** between tickets—catching missed dependencies, sequence errors, and integration gaps—by continuously analyzing the backlog graph in real-time.
 
 | Capability | What It Does |
 |:-----------|:-------------|
-| **Watches** | Monitors Jira as items are created/edited |
-| **Discovers** | Infers dependencies from story content |
-| **Suggests** | Proposes missing links for human approval |
-| **Sequences** | Recommends optimal build order |
-| **Alerts** | Notifies when dependency health changes (🔴/🟡/🟢) |
-| **Predicts** | Forecasts blockers 1-2 sprints ahead |
+| **Analyzes** | Parses backlog exports (JSON/Text) |
+| **Discovers** | Infers dependencies via NLP (Regex/Keywords) |
+| **Suggests** | Proposes dependency links for human review |
+| **Sequences** | Calculates optimal build phases (Topological Sort) |
+| **Alerts** | Highlights blocked items in Console (🔴/🟡/🟢) |
+| **Predicts** | Identifies Critical Path & Circular Dependencies |
 
 **Key Insight:** This is Jira-centric — planning happens in Jira, not VS Code.
 
-### Pillar 9: Change Management
+## Pillar 8: Change Management
 **What-If Impact Assessment before any change:**
 
 | Change Type | AI Assesses Impact On |
@@ -99,32 +119,53 @@ Outputs are **created by AI Agents**, not written from scratch:
 | **Modify** | Which artifacts need updates? How much rework? |
 | **Remove** | What becomes orphaned? What's affected downstream? |
 
-### Pillar 10: Jira Integration
-**Bi-directional sync:** VS Code ↔ Jira.
+## Pillar 9: Context Management (Getting the Best from AI)
+
+
+AI models can only process a limited amount of text at once (the "context window"). Even with 1-2 million tokens, you can't fit everything—so strategic context management is essential.
+
+
+### The 4-Layer Context Strategy
+
+| Layer | What | When | Tool |
+|:------|:-----|:-----|:-----|
+| **1. Pre-Process** | Summarize bulk docs | Before development | NotebookLM |
+| **2. Chunk** | Hierarchical index → summary → detail | During setup | Manual structuring |
+| **3. Context Drawer** | Explicitly include/exclude files | During coding | Code Assist UI |
+| **4. Caching** | Reuse common context (STYLEGUIDE, glossary) |
+
+
+### Key Strategies
+
+| Strategy | Description |
+|:---------|:------------|
+| **Progressive Disclosure** | Start with summaries, load details on demand |
+| **Reference Linking** | Link to docs instead of embedding full content |
+| **Semantic Chunking** | Add metadata (ID, summary, keywords) to chunks |
+| **Task-Specific Assembly** | Match context to the type of work |
+
+### Session State Management
+
+For multi-session work (PRDs, Epics spanning days/weeks), the framework includes `SessionStateManager`:
+
+| Capability | What It Tracks |
+|:-----------|:---------------|
+| **Session Log** | Agent used, tools run, outcomes, open questions |
+| **Entity Registry** | Domain entities discovered (CRUD, states) |
+| **Resumption** | Where user left off, next steps |
+
+**Implementation:** `standards/session_state_manager.py`
+**Design Details:** `ai-agent-recommendation-and-workflow.md`
+
+## Pillar 10: Jira Integration
+
+**Bi-directional sync between Markdown artifacts and Jira tickets:**
 
 | Operation | Traceability |
 |:---|:---|
 | **Sync** | Markdown docs auto-create Jira tickets |
 | **Link** | PRD -> Epic -> Story -> Test links maintained automatically |
 
-**Key Insight:** Assessment only — AI shows blast radius, humans decide.
-
-```mermaid
-flowchart LR
-    A[Human Input] --> B[VS Code + Gemini]
-    B --> C[AI Agent]
-    C --> D{Guardrails}
-    D --> E[Markdown Artifacts]
-    E --> F[Git Repository]
-    F --> G[CI/CD Pipeline]
-    C --> H[Session State]
-    H --> C
-```
-
-
-## Slide 2: PILLAR 10 DETAIL - JIRA INTEGRATION (Required API Calls)
-
-**Bi-directional sync between Markdown artifacts and Jira tickets:**
 
 | Operation | Jira API Call | When Used |
 |:----------|:--------------|:----------|
@@ -137,29 +178,16 @@ flowchart LR
 | **Read Issue** | `GET /rest/api/3/issue/{id}` | Sync back to local |
 | **Search Issues** | `GET /rest/api/3/search` (JQL) | Find related items |
 
-**Traceability Links:**
-- PRD Section → Epic (via `issueLink` type: "relates to")
-- Epic → Stories (via `issueLink` type: "parent of")
-- Story → Test Cases (via custom link type)
 
-**Existing Tools Used:**
-- VS Code: Atlassian for VS Code extension
-- CLI: `jira-cli` or custom Python wrapper
-- CI: GitHub Actions with Jira Issue to Markdown Action
+## Detailed Workflow: Requirements
 
-
-- CI: GitHub Actions with Jira Issue to Markdown Action
-
-
-## Slide 3: REQUIREMENTS (The 3-Layer Framework)
-
-### 1. The Framework
+### The 3-Layer Framework
 Requirements are organized into 3 interlocking layers:
 *   **Layer 1: Strategic Vision** - Outcomes not features
 *   **Layer 2: Logic & Design** - Functional flows, user experience
 *   **Layer 3: Technical Foundation** - Non-functional requirements, data integrity
 
-### 2. The Outputs
+### The Outputs
 | Layer | Artifact Type | Format |
 | :--- | :--- | :--- |
 | **Layer 1** | Program Requirements Document (PRD) | Markdown |
@@ -167,12 +195,12 @@ Requirements are organized into 3 interlocking layers:
 | **Layer 2** | Wireframes | PNG/Excalidraw |
 | **Layer 3** | Architecture Constraints | ADRs, Diagrams |
 
-### 3. The AI Workflow
+### The AI Workflow
 **Inputs:** Stakeholder docs, Meeting transcripts, Brainstorming sessions  
 **AI Actions:** NotebookLM synthesizes → AI extracts epics → AI generates Gherkin → AI creates wireframes  
 **Outputs:** Structured PRD, Epic docs with acceptance criteria, UX flows
 
-## Slide 4: REQUIREMENTS (The States of Information)
+### The States of Information
 **How AI processes information in 3 states:**
 
 *   **(Solid) Documentation – NotebookLM:**
@@ -186,9 +214,12 @@ Requirements are organized into 3 interlocking layers:
     *   Mind mapping, form-filling, BDD/Gherkin translation
     *   Requirements traceability automation
 
-## Slide 5: EPIC DECOMPOSITION (Vertical Value Streams)
 
-### 1. The Framework: Vertical Slicing + SPIDR
+---
+
+## Detailed Workflow: Epic Decomposition
+
+### The Framework: Vertical Slicing + SPIDR
 **Two types of epics:**
 *   **Business Epics:** User-facing capability that delivers end-to-end value (from PRD functional requirements)
 *   **Enabler Epics:** Infrastructure or services needed to support business epics (from Architecture Hub)
@@ -209,14 +240,14 @@ Requirements are organized into 3 interlocking layers:
 **Quality Gate: INVEST Check**
 Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Testable
 
-### 2. The Outputs
+### The Outputs
 | Artifact | Format | Content | Storage |
 | :--- | :--- | :--- | :--- |
 | **Epic Document** | Markdown | Scope, Success metrics, Dependencies, Story themes | `docs/epics/epic-*.md` |
 | **Epic Acceptance Criteria** | Gherkin | High-level acceptance criteria | Inside epic doc |
 | **Jira Epic** | Jira ticket | Synced from doc | Jira (linked to PRD) |
 
-### 3. The AI Workflow
+### The AI Workflow
 **Inputs:** PRD (functional requirements) + Architecture Hub (technical constraints)
 
 **AI Actions:**
@@ -230,9 +261,9 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 
 **Live Jira Sync:** Epic docs (markdown) ↔ Jira epics (bi-directional, auto-creates traceability links)
 
-## Slide 6: USER STORY ELABORATION (The AI-Ready Prompt Package)
+## Detailed Workflow: User Story Elaboration
 
-### 1. The Framework: Epic to Stories
+### The Framework: Epic to Stories
 **Story Decomposition:**
 *   Break epic into small vertical slices (each = 1-3 days of work)
 *   Each story delivers testable, end-to-end value (UI → API → DB)
@@ -249,7 +280,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 3. Create concrete examples of how it works
 4. Convert examples into Gherkin scenarios
 
-### 2. The Outputs
+### The Outputs
 | Artifact | Format | Purpose | Generated By |
 | :--- | :--- | :--- | :--- |
 | **Story Ticket** | Jira | Complete context for dev + AI | AI scaffolded / Human refined |
@@ -264,7 +295,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 4. **AI Collaboration Plan:** Step-by-step AI generation instructions
 5. **Manual Validation:** UI aesthetics, accessibility checks
 
-### 3. The AI Workflow
+### The AI Workflow
 **Inputs:** 
 - Parent Epic
 - Architecture Hub (API contracts, data models)
@@ -290,9 +321,9 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 
 **Live Jira Sync:** Story docs ↔ Jira tickets (bi-directional, all context links auto-populated)
 
-## Slide 7: UX DESIGN (The UX Architect Framework)
+## Detailed Workflow: UX Design
 
-### 1. The Framework: 4-Step Workflow
+### The Framework: 4-Step Workflow
 
 
 1.  **Flow Mapping:** Complete user journey (Happy Path + 3 Sad Paths)
@@ -300,7 +331,7 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 3.  **Heuristic Evaluation:** Nielsen's 10 principles (rated 1-5)
 4.  **Persona Stress-Test:** Simulate users to find friction points
 
-### 2. The Outputs
+### The Outputs
 | Artifact | Format | Purpose |
 | :--- | :--- | :--- |
 | **User Journey Maps** | Mermaid `journey` | Emotional arc of experience |
@@ -308,12 +339,12 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 | **Wireframes** | PNG/Excalidraw | Visual layout (Mid-Fi) |
 | **State Diagrams** | Mermaid `stateDiagram` | Screen states (Loading, Error, etc.) |
 
-### 3. The AI Workflow
+### The AI Workflow
 **Inputs:** All Epics + PRD + Personas (loaded simultaneously)  
 **AI Actions:** Maps flows → Generates wireframes → Evaluates heuristics → Tests with personas  
 **Outputs:** User Journeys, Flow Diagrams, Wireframes, State Diagrams
 
-## Slide 8: SYSTEM-WIDE UX (The Holistic Advantage)
+### System-Wide UX (The Holistic Advantage)
 
 **The AI Capability:**
 *   **Information Architecture:** Consistent navigation across all features
@@ -323,15 +354,15 @@ Each epic is validated: Independent, Negotiable, Valuable, Estimable, Small, Tes
 **The Result:** Cohesive, conflict-free UX in one shot.
 
 
-## Slide 9: ARCHITECTURE (The Architecture Hub)
+## Detailed Workflow: Architecture
 
-### 1. The Framework
+### The Framework
 The Architecture Hub is a centralized, version-controlled repository of technical contracts covering:
 *   **The WHAT:** Diagrams (visual understanding)
 *   **The HOW:** API Contracts + Data Models (implementation contracts)
 *   **The SAFE/SCALABLE:** IAM, Governance, Resiliency (for later)
 
-### 2. The Outputs - Pillar #1: The 4 Types of Diagrams
+### The Outputs - Pillar #1: The 4 Types of Diagrams
 | Diagram Type | Tool | Purpose |
 | :--- | :--- | :--- |
 | **System Structure** | C4 Model (Mermaid) | High-level logical blocks (App, API, DB) |
@@ -339,38 +370,41 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 | **Data Structure** | DBML | Entity-Relationship Diagrams (tables, relationships) |
 | **Logic Flow** | Sequence Diagrams (Mermaid) | Step-by-step service interactions |
 
-### 3. The AI Workflow
-**Inputs:** PRD + Architecture requirements  
+### The AI Workflow
+**Inputs:** PRD + Architecture requirements + Standards, Guidelines and Patterns 
 **AI Actions:** Reads prompt-hub/ARCH_001-004 → Generates diagrams  
 **Outputs:** Mermaid (C4, Sequence), DBML (ERD), Python code (Infrastructure diagrams)
 
-## Slide 10: ARCHITECTURE (Pillars #2 & #3)
-
-### 2. The Outputs (continued)
-
-**Pillar #2: API Contracts**
+### API Contracts
 *   Machine-readable specifications: OpenAPI (REST), .proto files (gRPC)
 
-**Pillar #3: Data Models & Schemas**
+### Data Models & Schemas
 *   Database schemas (Cloud SQL), Firestore models, JSON schemas (message queues)
 
-### 3. The AI Workflow
+### The AI Workflow
 **Inputs:** PRD + Architecture requirements  
 **AI Actions:** Uses prompt-hub/ARCH_002-003 → Generates contracts  
 **Outputs:** OpenAPI YAML files, DBML schemas, JSON Schema definitions
 
----
+### The SAFE/SCALABLE: Decisions & Infrastructure
+**Architecture is not just diagrams—it's decisions and deployment code.**
+
+| Artifact | Purpose | AI Action | Output |
+| :--- | :--- | :--- | :--- |
+| **ADRs** | Records *why* a decision was made (e.g., "Use Postgres vs. Spanner") | `/arch-decide` | Markdown ADRs (Madr format) |
+| **IaC** | Defines physical infrastructure (Cloud Run, VPCs, IAM) | `/arch-infra` | Terraform / Pulumi / YAML |
 
 **Comprehensive Base:**
 *   The **WHAT** (Diagrams)
 *   The **HOW** (API & Data)
-*   The **SAFE/SCALABLE** (IAM, Governance, Resiliency) - *for later*
+*   The **WHY** (ADRs)
+*   The **WHERE** (IaC)
 
-## Slide 11: INTERFACES (The 4 Layers of Integration)
+## Detailed Workflow: Interfaces
 
 ### AI Discovers, Documents, and Tests Interfaces
 
-> "All system connections must be discovered, documented, tested, and tracked."
+All system connections must be discovered, documented, tested, and tracked.
 
 ### The 4 Layers
 
@@ -380,6 +414,11 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 | **2. Catalog** | Master inventory | Epic Decomposition | `/interface-discover` | Interface Catalog |
 | **3. Specification** | Detailed per-interface | Story/Architecture | `/interface-spec` | INT-*.md specs |
 | **4. Testing** | Contract tests | Testing | `/interface-test` | Pact/pandera tests |
+
+### Protection Patterns (Architecture Defense)
+*   **Anti-Corruption Layer (ACL)**: Isolates your clean domain model from messy external systems using Adapters/Translators.
+*   **Strangler Fig Pattern**: Strategy for migrating legacy systems by gradually replacing functionality with new microservices behind a routing facade.
+*   **Circuit Breaker**: Prevents cascading failures when external dependencies go down.
 
 ---
 
@@ -392,18 +431,6 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 | **File - Outbound** | We send | SFTP push, S3 upload | SFTP, S3, FTP |
 | **Event** | Publish/Subscribe | Pub/Sub, Kafka, webhooks | Various |
 
----
-
-### Interface Catalog Example
-
-| ID | System | Type | Direction | Protocol | Frequency | Owner |
-|:---|:-------|:-----|:----------|:---------|:----------|:------|
-| INT-001 | Payment Gateway | API | Outbound | REST | Real-time | Platform |
-| INT-002 | Claims Feed | File-In | Inbound | SFTP/CSV | Daily 2am | Claims |
-| INT-003 | Accounting Export | File-Out | Outbound | S3/Parquet | Hourly | Finance |
-| INT-004 | Policy Events | Event | Outbound | Pub/Sub | Real-time | Platform |
-
----
 
 ### AI Workflow
 
@@ -413,144 +440,7 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 **HITL:** Interface specs reviewed before implementation
 
----
-
-## Slide 12: CROSS-SYSTEM COORDINATION (Working Across Teams)
-
-### The Reality: Most Work Involves Other Systems
-
-| Scenario | % of Real Projects |
-|:---------|:------------------|
-| Extend existing legacy system | 60% |
-| Consume other team's API | 80% |
-| Provide API for downstream consumers | 50% |
-| Integrate with external vendors | 70% |
-
----
-
-### The Framework: 4 Dimensions
-
-| Dimension | Question | Artifact |
-|:----------|:---------|:---------|
-| **1. Discovery** | What systems are we connected to? | Dependency Map |
-| **2. Relationship** | How do we work with that team? | Team Contract |
-| **3. Integration** | How do we technically connect? | Interface Contract |
-| **4. Protection** | How do we isolate changes? | ACL / Strangler |
-
----
-
-### Team Interaction Modes (Team Topologies)
-
-| Mode | When to Use | Contract Style |
-|:-----|:------------|:---------------|
-| **Collaboration** | New integration, unknowns | Close partnership, frequent sync |
-| **X-as-a-Service** | Stable service, clear API | Formal API contract |
-| **Facilitating** | Adopting platform, enablement | Templates + guidance |
-
----
-
-### Consumer-Driven Contracts (Pact)
-
-**Problem:** How do I know my API change won't break consumers?
-
-**Solution:** Consumers define contracts → Provider CI verifies
-
-| Step | Who | What |
-|:-----|:----|:-----|
-| 1 | Consumer | Writes tests defining what they need |
-| 2 | Consumer | Publishes contract to Pact Broker |
-| 3 | Provider | CI fetches consumer contracts |
-| 4 | Provider | CI verifies all contracts met |
-| 5 | Both | Breaking change? CI fails before deploy |
-
----
-
-### Protection Patterns
-
-| Pattern | When to Use | What It Does |
-|:--------|:------------|:-------------|
-| **Anti-Corruption Layer** | External system has different model | Translates between their world and yours |
-| **Strangler Fig** | Incrementally replacing legacy | Route traffic gradually to new service |
-| **Adapter** | Converting formats | Wraps external API in your interface |
-
----
-
-### Dependency Impact Assessment (Per Epic)
-
-| Dependency | Impact | Their Effort | Risk | Mitigation |
-|:-----------|:-------|:-------------|:-----|:-----------|
-| Legacy Admin | HIGH | ~2 sprints | Backlog full | Escalate to leadership |
-| Payment Gateway | LOW | None | Existing API | None needed |
-| Reports | MEDIUM | ~3 days | Schema change | Share schema early |
-
----
-
-### Team Contract (New Artifact)
-
-```markdown
-# Team Contract: DEP-002 Legacy Admin
-
-## Parties
-| Role | Team | Contact |
-|:-----|:-----|:--------|
-| We Are | Portfolio Team | @dave |
-| They Are | Core Platform | @jane |
-
-## Their Commitments
-| Commitment | Due Date | Status |
-|:-----------|:---------|:-------|
-| API design review | Feb 15 | ✅ Done |
-| Staging ready | Mar 1 | 🔄 In Progress |
-
-## Our Commitments
-| Commitment | Due Date | Status |
-|:-----------|:---------|:-------|
-| Share requirements | Feb 10 | ✅ Done |
-| Integration testing | Mar 5 | ⏳ Pending |
-```
-
----
-
-### Work Delegation in Jira (When They Must Build Something)
-
-> **Slide 11 (Interfaces)** = Connect to what **already exists** (no work for them)  
-> **This section** = Your requirements make **them build something new** (work for them)
-
-**Two Types of Dependencies:**
-
-| Type | Work for Them | Jira Approach |
-|:-----|:--------------|:--------------|
-| **Consume Only** | None | "uses" link to existing API |
-| **Work Delegation** | Yes, they build | External Dependency (Epic or Story) |
-
-> 💡 SAFe calls this "External Dependencies" — this pattern works with or without SAFe.
-
-**Epic vs Story-Level:**
-
-| Delegate As | When |
-|:------------|:-----|
-| **Epic** | Multiple sprints, new capability |
-| **Story** | Single sprint, specific change |
-
-**External Dependency Pattern:**
-
-1. **Create Epic in YOUR project:** `[EXT-DEP] Policy API from Core Platform`
-2. **They create Epic in THEIR project:** `Policy API for Portfolio Integration`
-3. **Link with:** `Is blocked by` / `Depends on`
-
-**Jira Link Types:**
-
-| Link | Meaning |
-|:-----|:--------|
-| **Is blocked by** | Can't finish until they deliver |
-| **Depends on** | Planned sequence |
-| **Relates to** | General relationship |
-
-**Track with Custom Fields:** Requested From Team, Needed By Date, External Status
-
-**AI Assistance:** AI can discover dependencies from PRD/Epic, draft External Dependency Issues with acceptance criteria, generate Team Contracts, and write communication to other teams.
-
-## Slide 13: IMPLEMENTATION (The Context-Driven Developer)
+## Detailed Workflow: Implementation (The Context-Driven Developer)
 
 ### 1. The Framework: AI-Paired Workflow
 **Philosophy:** Context-Driven Development (The "Prompt Package" Approach)
@@ -585,7 +475,7 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 ---
 
-## Slide 14: TESTING (The 5 Dimensions of Quality)
+## Detailed Workflow: Testing
 
 ### AI Generates, Tools Execute
 
@@ -596,13 +486,13 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 
 ### Testing is Continuous — Not a Phase
 
-| When | Dimension | AI Does |
-|:-----|:----------|:--------|
-| **During Requirements** | 1. Simulation | AI simulates personas, finds edge cases |
-| **During Story Writing** | 4. Behavior | AI generates E2E scripts from Gherkin |
-| **During Architecture** | 3. Contracts | AI generates contract tests from OpenAPI |
-| **During Implementation** | 2. Components | AI generates unit tests (TDD support) |
-| **Before Release** | 5. Resilience | AI generates load scripts, chaos experiments |
+| Lifecycle Stage | Testing Type | Input | AI Action | Output |
+|:---|:---|:---|:---|:---|
+| **Requirements** | **Simulation** | Personas | Simulates user edge cases | Persona Reports |
+| **Architecture** | **Contract Tests** | OpenAPI Specs | Generates contract consumers | Pact/Pandera Suites |
+| **Implementation** | **Unit Tests** | Code | Generates isolated logic tests | Pytest/Vitest |
+| **Story** | **Behavior (E2E)** | Gherkin ACs | Generates user flow scripts | Playwright Scripts |
+| **Release** | **Resilience** | System Arch | Generates load & chaos plans | k6 & Chaos Mesh |
 
 ---
 
@@ -617,19 +507,6 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 | **Load Scripts** | Resilience Agent | `/load-test` | k6 / Locust scripts with thresholds |
 | **Chaos YAML** | Resilience Agent | `/chaos-test` | Chaos Mesh configs (requires approval) |
 
----
-
-### The 5 Dimensions
-
-| Dimension | Input | AI Action | Output |
-|:----------|:------|:----------|:-------|
-| **1. Simulation** | Personas | 🤖 AI simulates user behaviors | Persona test reports |
-| **2. Components** | Code | 🤖 AI generates unit tests | pytest / Vitest |
-| **3. Contracts** | OpenAPI specs | 🤖 AI generates contract tests | Contract suites |
-| **4. Behavior** | Gherkin ACs | 🤖 AI generates E2E scripts | Playwright scripts |
-| **5. Resilience** | Architecture | 🤖 AI generates load/chaos tests | k6, Locust, Chaos Mesh |
-
----
 
 ### Test Lifecycle & Tracking
 
@@ -641,20 +518,8 @@ The Architecture Hub is a centralized, version-controlled repository of technica
 | **Defects** | Failures tracked | - | ✅ Human triages |
 | **Automation** | CI pipeline maintained | - | 🔧 GitOps |
 
----
 
-### AI-Driven Test Generation Workflow
 
-When a story moves to "Ready for Development":
-
-1. 🤖 **Parse Gherkin ACs** → Generate test skeletons (Playwright)
-2. 🤖 **Suggest Edge Cases** → AI adds commented-out additional tests
-3. 🤖 **Create PR** → Test file committed, assigned to QA Engineer
-4. ✅ **Human Reviews** → QA implements step definitions, reviews coverage
-
-> Result: By the time a developer starts, the test framework is already in place.
-
----
 
 ### Test Data Management
 
@@ -666,208 +531,65 @@ When a story moves to "Ready for Development":
 
 > Golden Rule: Tests never share mutable state.
 
----
-
-### When to Test Manually (Don't Over-Automate)
-
-| Test Type | Why Manual | Frequency |
-|:----------|:-----------|:----------|
-| **UX Feel** | Animations, responsiveness, "polish" | Every sprint |
-| **Exploratory** | Uncover unexpected edge cases | 2-3 hrs per sprint |
-| **Accessibility** | Screen reader, keyboard nav | Before release |
-| **Usability Studies** | Real users on new features | Per feature |
-
-> Philosophy: Automate the repetitive, humanize the creative.
 
 ---
 
-## Appendix A: Agent Registry
 
-### AI Agents (13 Total)
+## Pillar 11: Prompt Engineering & Intelligent Methodologies
+**Smart Prompts: Encoding Proven, Modern Methodologies**
 
-| Phase | Agent | Description |
-|:------|:------|:------------|
-| **Requirements** | PRD Agent | Coaches through 9 discovery tools (mind mapping, roleplay, JTBD) to build comprehensive PRD from stakeholder input. Interactive mode guides users through requirements mining. |
-| **Elaboration** | Epic Decomposition | Splits PRD into Epics using SPIDR methodology (Spike, Path, Interface, Data, Rules). Distinguishes Business Epics from Enabler Epics. |
-| **Elaboration** | Epic Elaboration | Interactive session to flesh out Epics with CRUD matrices, state diagrams, edge case discovery, and error scenario mapping. |
-| **Elaboration** | Story Agent | Generates BDD-style User Stories with Gherkin acceptance criteria. Creates "prompt packages" ready for AI-assisted coding. |
-| **UX Design** | UX Agent | Creates user personas, empathy maps, journey flows, and text-based wireframe descriptions. Ensures holistic system-wide UX. |
-| **Architecture** | Architecture Agent | Generates C4 diagrams (Mermaid), DBML data models, OpenAPI specs, Python infrastructure diagrams, and sequence diagrams. |
-| **Architecture** | Interface Agent | Discovers all system interfaces (APIs, files, events), catalogs them, generates detailed specs, and creates contract tests. |
-| **Implementation** | Code Governance | Runs static analysis (Ruff/Bandit) + AI governance review. Checks code against Architecture Hub standards and patterns. |
-| **Implementation** | Integration Agent | Validates release readiness: checks for missing artifacts, runs test suites, verifies CI pipeline status, and gates deployments. |
-| **Testing** | Test Plan Agent | Generates test strategy documents, coverage matrices, test case templates, and links tests to requirements for traceability. |
-| **Testing** | Simulation Agent | Simulates user personas to find edge cases, accessibility issues, and stress-tests logic paths before implementation. |
-| **Testing** | Resilience Agent | Generates k6/Locust load test scripts from OpenAPI specs. Creates Chaos Mesh configs for resilience testing (HITL for chaos). |
-| **Governance** | Governance Agent | Enforces organizational policies, compliance checks, audit logging, and ensures adherence to ADRs and standards. |
+We didn't just write instructions. We used AI to research the most **proven, widely used, modern techniques** for every stage of the SDLC and baked them into the prompts.
 
----
+### 1. The "Work" (AI-Selected Methodologies)
+The prompt acts as a *Senior Engineer*, enforcing the best way to do the job:
 
-## Appendix B: Prompt Registry
+| Role | Proven Methodology | Why We Selected It |
+|:---|:---|:---|
+| **Requirements** | **SPIDR** (Spike, Path, Interface, Data, Rules) | The industry standard for splitting large Epics without breaking logic. |
+| **User Stories** | **INVEST** (Independent, Negotiable...) | Ensures stories are small and testable by default. |
+| **Architecture** | **C4 Model** (Context, Containers...) | The modern standard for visualizing software architecture hierarchically. |
+| **Testing** | **Gherkin** (Given-When-Then) | The leading format for Behavior Driven Development (BDD). |
+| **UX Design** | **Nielsen's 10 Heuristics** | The gold standard for usability auditing. |
 
-### Requirements Prompts (2)
+### 2. The "Engineering" (Structure)
+How we ensure the AI follows these methodologies reliably:
 
-| Prompt ID | File | Purpose |
-|:----------|:-----|:--------|
-| `PRD_GEN` | `PRD_GEN-synthesize-prd.md` | Synthesize PRD from stakeholder input |
-| `PRD_GAP` | `PRD_GAP-identify-gaps.md` | Identify requirements gaps |
+*   **Critical Friend Logic:** We explicitly program a "persona" that challenges assumptions ("Are you sure about this?") rather than blindly complying.
+*   **Chain-of-Thought (CoT):** We force the AI to "plan its logic" step-by-step before generating code, reducing logic errors.
+*   **Standards Injection:** Every prompt automatically injects the project's `STYLEGUIDE.md` so code matches the team's style.
+*   **Traceability Regulations:** Agents are forbidden from hallucinating; they must cite sources (e.g., `[SOURCE: meeting.txt]`).
 
-### Elaboration Prompts (2)
-
-| Prompt ID | File | Purpose |
-|:----------|:-----|:--------|
-| `EPIC_GEN` | `EPIC_GEN-decompose-epics.md` | Decompose PRD into Epics (SPIDR) |
-| `STORY_GEN` | `STORY_GEN-generate-stories.md` | Generate User Stories from Epics |
-
-### UX Design Prompts (3)
-
-| Prompt ID | File | Purpose |
-|:----------|:-----|:--------|
-| `UX_001` | `UX_001-flow-mapping.md` | Map user flows and journeys |
-| `UX_002` | `UX_002-heuristic-review.md` | Heuristic usability review |
-| `UX_003` | `UX_003-generate-wireframe.md` | Generate wireframe descriptions |
-
-### Architecture Prompts (7)
-
-| Prompt ID | File | Purpose |
-|:----------|:-----|:--------|
-| `ARCH_001` | `ARCH_001-generate-c4.md` | Generate C4 diagrams (Mermaid) |
-| `ARCH_002` | `ARCH_002-generate-dbml.md` | Generate DBML data models |
-| `ARCH_003` | `ARCH_003-generate-openapi.md` | Generate OpenAPI specs |
-| `ARCH_004` | `ARCH_004-generate-python-diagrams.md` | Generate Python infrastructure diagrams |
-| `INT_DISCOVER` | `INT_DISCOVER-interface-discovery.md` | Discover all system interfaces |
-| `INT_SPEC` | `INT_SPEC-interface-specification.md` | Generate interface specifications |
-| `INT_TEST` | `INT_TEST-interface-tests.md` | Generate interface contract tests |
-
-### Testing Prompts (4)
-
-| Prompt ID | File | Purpose |
-|:----------|:-----|:--------|
-| `TEST_GEN` | `TEST_GEN-generate-test-plan.md` | Generate test plans from stories |
-| `SIM_001` | `SIM_001-persona-simulation.md` | Persona-based simulation testing |
-| `LOAD_001` | `LOAD_001-generate-load-tests.md` | Generate k6/Locust load tests |
-| `CHAOS_001` | `CHAOS_001-chaos-scenarios.md` | Generate chaos engineering scenarios |
+### 3. The "Safety" (Prompt-Ops)
+Prompts are treated as **Code**, not text:
+*   **Golden Datasets:** Every prompt is regression-tested against a "Gold Standard" output to ensure upgrades don't break capabilities.
+*   **Versioning:** Prompts are stored in Git (`prompts/v3/`), strictly versioned, and rolled back if metrics drop.
 
 ---
 
-## Slide 15: CONTEXT WINDOW MANAGEMENT (Getting the Best from AI)
+## Pillar 12: Audit & Governance
+**The "Definition of Done" Engine**
 
-### The Challenge
+We don't trust the AI to "just do it." We enforce a rigorous system of Contracts and Audits.
 
-AI models can only process a limited amount of text at once (the "context window"). Even with 1-2 million tokens, you can't fit everything—so strategic context management is essential.
+### 1. The Contract Registry (Definitions of Done)
+We have formalized the criteria for success into **12 Immutable Contracts** stored in `contracts/`:
+*   **PRD_DoD.md:** Must include "Success Metrics" and "User Personas".
+*   **ARCH_DoD.md:** Must include "C4 Diagrams" and "Decision Records".
+*   **DEV_DoD.md:** Must include `@implements` tags linking back to Stories.
+*   **INT_DoD.md:** Must include "Contract Tests" for every API.
 
-### Current Model Capacities (2025)
+### 2. The Injection Mechanism (The "Syringe")
+We don't rely on the AI remembering to check the contract.
+*   **`scripts/contracts_loader.py`**: A dedicated utility that physically reads the correct DoD and injects it into the Agent's system prompt at runtime.
+*   *Result:* The Agent cannot physically answer without seeing the rules.
 
-| Model | Context Window | Equivalent |
-|:------|:---------------|:-----------|
-| Gemini 2.0 Pro | 2M tokens | ~100K lines of code |
-| Gemini 2.0 Flash | 1M tokens | ~50K lines of code |
-| Code Assist (chat) | 32K tokens | ~1,600 lines |
-| Code Assist (autocomplete) | 8K tokens | ~400 lines |
+### 3. The Project Dashboard (The "Truth")
+An autonomous agents (`project_dashboard_agent.py`) scans the entire codebase to generate `PROJECT_DASHBOARD.md`.
+*   **Traceability Audit:** Finds every Requirement ID and checks if a file implements it.
+*   **Decision Audit:** checks `decision_log.json` for Architectural Decision Records (ADRs).
+*   **Guideline Audit:** Ensures every pillar has a `guidelines/` folder.
 
----
-
-### The 4-Layer Context Strategy
-
-| Layer | What | When | Tool |
-|:------|:-----|:-----|:-----|
-| **1. Pre-Process** | Summarize bulk docs | Before development | NotebookLM |
-| **2. Chunk** | Hierarchical index → summary → detail | During setup | Manual structuring |
-| **3. Context Drawer** | Explicitly include/exclude files | During coding | Code Assist UI |
-| **4. Caching** | Reuse common context | Across sessions | Vertex AI API |
-
----
-
-### Key Strategies
-
-| Strategy | Description |
-|:---------|:------------|
-| **Progressive Disclosure** | Start with summaries, load details on demand |
-| **Reference Linking** | Link to docs instead of embedding full content |
-| **Semantic Chunking** | Add metadata (ID, summary, keywords) to chunks |
-| **Task-Specific Assembly** | Match context to the type of work |
-
----
-
-### Document Structure for Context Optimization
-
-```
-docs/
-├── context/                  # Pre-computed summaries
-│   ├── architecture-summary.md
-│   ├── api-index.md
-│   └── glossary.md
-├── architecture/
-│   ├── index.md              # Links to all sections
-│   ├── summaries/            # Quick reference
-│   └── details/              # Full specs
-└── .gemini/
-    └── context-profiles/     # Work-type profiles
-```
-
----
-
-### Best Practices
-
-| Do | Don't |
-|:---|:------|
-| ✅ Pre-summarize large docs | ❌ Load entire codebase every time |
-| ✅ Create index files | ❌ Embed full specs in stories |
-| ✅ Use Context Drawer to exclude irrelevant paths | ❌ Include node_modules, dist, etc. |
-| ✅ Cache STYLEGUIDE.md and glossary | ❌ Re-send common context every request |
-| ✅ Chunk by meaning (semantic) | ❌ Chunk by arbitrary size |
-
----
-
-### Session State Management
-
-For multi-session work (PRDs, Epics spanning days/weeks), the framework includes `SessionStateManager`:
-
-| Capability | What It Tracks |
-|:-----------|:---------------|
-| **Session Log** | Agent used, tools run, outcomes, open questions |
-| **Entity Registry** | Domain entities discovered (CRUD, states) |
-| **Resumption** | Where user left off, next steps |
-
-**Implementation:** `standards/session_state_manager.py`
-**Design Details:** `ai-agent-recommendation-and-workflow.md` Section 8
-
----
-
-## Slide 16: AI PLANNING INTELLIGENCE (Continuous Dependency Management)
-
-### The Problem: Incomplete Backlogs
-*   Requirements exist, but dependencies are hidden
-*   Blockers discovered mid-sprint
-*   Build order is often sub-optimal
-
-### The Solution: Continuous AI Monitoring
-| Capability | Value |
-|:---|:---|
-| **Discovers** | AI infers dependencies from story content |
-| **Sequences** | AI recommends optimal build order |
-| **Alerts** | AI notifies when dependency health changes |
-
-> **Key Insight:** This is Jira-centric. AI watches Jira and alerts you.
-
----
-
-## Slide 17: CHANGE MANAGEMENT (What-If Impact Assessment)
-
-### The Problem: Uncontrolled Change
-Requirements change constantly (Scope cuts, new features, tech pivots).
-
-### The Solution: What-If Assessment
-Before executing changes, AI runs a **Blast Radius** check:
-
-| Asesses Impact On | Questions Answered |
-|:---|:---|
-| **PRD** | Does this conflict with goals? |
-| **Epics/Stories** | What needs to be added vs. reworked? |
-| **Architecture** | Do we need new components? |
-| **Timeline** | Does this fit in the sprint? |
-
-**Slash Command:** `/impact-assess` calculates the cost of change before you commit.
+> **Status:** 🔴 Red (Missing) / 🟢 Green (Complete). No nuance.
 
 ---
 
@@ -878,18 +600,116 @@ Before executing changes, AI runs a **Blast Radius** check:
 | Pillar | Agent | Key Slash Commands | Output/Purpose |
 |:-------|:------|:-------------------|:---------------|
 | **1: Home Base** | **Orchestrator** | `(User is Orchestrator)` | Invokes all other agents |
-| **4: Requirements** | **PRD Agent** | `/prd-discover` | PRD from stakeholder input |
-| **4: Elaboration** | **Epic Decomposition** | `/epic-split` | Break PRD into Epics |
-| **4: Elaboration** | **Story Agent** | `/story-gen` | Break Epic into Stories |
-| **4: Design** | **UX Agent** | `/ux-personas` | Personas & Wireframes |
-| **4: Design** | **Interface Agent** | `/interface-spec` | API/Interface contracts |
-| **4: Design** | **Architecture Agent** | `/arch-design` | C4 Diagrams, ADRs |
-| **4: Build** | **Code Governance** | `/code-review` | Compliance check |
-| **4: Test** | **Test Plan Agent** | `/test-plan` | E2E/Unit test plans |
-| **4: Test** | **Simulation Agent** | `/simulate-persona` | User behavior simulation |
-| **4: Test** | **Resilience Agent** | `/chaos-test` | Load & failure testing |
-| **4: Release** | **Integration Agent** | `/ci-check` | Release readiness |
+| **5: Requirements** | **PRD Agent** | `/prd-discover` | PRD from stakeholder input |
+| **5: Elaboration** | **Epic Decomposition** | `/epic-split` | Break PRD into Epics |
+| **5: Elaboration** | **Story Agent** | `/story-gen` | Break Epic into Stories |
+| **5: Design** | **UX Agent** | `/ux-personas` | Personas & Wireframes |
+| **5: Design** | **Interface Agent** | `/interface-spec` | API/Interface contracts |
+| **5: Design** | **Architecture Agent** | `/arch-design` | C4 Diagrams, ADRs |
+| **5: Build** | **Code Governance** | `/code-review` | Compliance check |
+| **5: Test** | **Test Plan Agent** | `/test-plan` | E2E/Unit test plans |
+| **5: Test** | **Simulation Agent** | `/simulate-persona` | User behavior simulation |
+| **5: Test** | **Resilience Agent** | `/chaos-test` | Load & failure testing |
+| **5: Release** | **Integration Agent** | `/ci-check` | Release readiness |
 | **8: Planning** | **AI Planning Agent** | `/dep-discover` <br> `/dep-health` <br> `/dep-sequence` <br> `/sprint-readiness` | Dependency & Health check |
 | **9: Change** | **Change Mgmt Agent** | `/impact-assess` <br> `/scope-change` <br> `/architecture-impact` | What-If Impact Analysis |
 
 > ℹ️ **Note:** All agents are run from VS Code terminal or chat.
+
+---
+
+## Appendix B: Prompt Registry
+
+### Requirements Prompts (2)
+
+| Prompt ID | File | Purpose | Technique / Output |
+|:----------|:-----|:--------|:-------------------|
+| `PRD_GEN` | `PRD_GEN-synthesize-prd.md` | Synthesize PRD | **NotebookLM** Synthesis |
+| `PRD_GAP` | `PRD_GAP-identify-gaps.md` | Identify gaps | **Gap Analysis** Matrix |
+
+### Elaboration Prompts (2)
+
+| Prompt ID | File | Purpose | Technique / Output |
+|:----------|:-----|:--------|:-------------------|
+| `EPIC_GEN` | `EPIC_GEN-decompose-epics.md` | Decompose PRD | **SPIDR** & **Vertical Slicing** |
+| `STORY_GEN` | `STORY_GEN-generate-stories.md` | Generate Stories | **Gherkin** (BDD) & **Prompt Package** |
+
+### UX Design Prompts (3)
+
+| Prompt ID | File | Purpose | Technique / Output |
+|:----------|:-----|:--------|:-------------------|
+| `UX_001` | `UX_001-flow-mapping.md` | User flows | **Mermaid** Flowchart & **Happy/Sad Paths** |
+| `UX_002` | `UX_002-heuristic-review.md` | Usability review | **Nielsen's 10 Heuristics** Scorecard |
+| `UX_003` | `UX_003-generate-wireframe.md` | Wireframes | **12-Column Grid** & Component Specs |
+
+### Architecture Prompts (7)
+
+| Prompt ID | File | Purpose | Technique / Output |
+|:----------|:-----|:--------|:-------------------|
+| `ARCH_001` | `ARCH_001-generate-c4.md` | C4 Diagrams | **Mermaid C4Context** |
+| `ARCH_002` | `ARCH_002-generate-dbml.md` | Data Models | **DBML** Schema |
+| `ARCH_003` | `ARCH_003-generate-openapi.md` | API Specs | **OpenAPI 3.0** (YAML) |
+| `ARCH_004` | `ARCH_004-generate-python-diagrams.md` | Infrastructure | **Diagrams as Code** (Python) |
+| `INT_DISCOVER`| `INT_DISCOVER-interface-discovery.md` | Interface Discovery | **Context Mapping** |
+| `INT_SPEC` | `INT_SPEC-interface-specification.md` | Interface Spec | **Contract Definition** |
+| `INT_TEST` | `INT_TEST-interface-tests.md` | Contract Tests | **Pact / Pandera** |
+
+### Testing Prompts (4)
+
+| Prompt ID | File | Purpose | Technique / Output |
+|:----------|:-----|:--------|:-------------------|
+| `TEST_GEN` | `TEST_GEN-generate-test-plan.md` | Test Plans | **Playwright** & **Gherkin** |
+| `SIM_001` | `SIM_001-persona-simulation.md` | Persona Sim | **Persona Roleplay** & **WCAG Audit** |
+| `LOAD_001` | `LOAD_001-generate-load-tests.md` | Load Tests | **k6** Scripts & **Thresholds** |
+| `CHAOS_001` | `CHAOS_001-chaos-scenarios.md` | Chaos Eng | **Chaos Mesh** YAML & **Blast Radius** |
+
+### Supported Stacks
+**Polyglot Testing Support:**
+*   **Frontend**: JavaScript/TypeScript (Jest, Playwright, Vitest)
+*   **Backend**: Python (Pytest, Pandera), Node.js (Jest)
+
+---
+
+
+---
+
+## Appendix C: Modern Techniques Glossary
+
+**A guide to the industry-leading techniques used throughout this framework.**
+
+### Prompt Engineering Techniques
+
+| Technique | Description | Where Used |
+|:----------|:------------|:-----------|
+| **Critical Friend** | AI persona that challenges assumptions, points out risks, and offers constructive critique rather than blind compliance. | All V3 Prompts (Role Section) |
+| **Chain-of-Thought (CoT)** | Prompting method that forces AI to "think step-by-step" and plan its logic before generating content, reducing hallucinations. | All V3 Prompts (Instructions) |
+| **Standards Injection** | Automatically inserting the project's `STYLEGUIDE.md` into every prompt context to ensure code consistency. | Architecture & Implementation Agents |
+| **Persona Simulation** | Using AI to roleplay specifically defined user personas (e.g., "The Frustrated Novice") to stress-test UX. | Testing Agent (`SIM_001`) |
+
+### Architecture & Design Techniques
+
+| Technique | Description | Where Used |
+|:----------|:------------|:-----------|
+| **C4 Model** | Hierarchical approach to software architecture diagrams (Context, Containers, Components, Code). | Architecture Agent (`ARCH_001`) |
+| **Diagrams as Code** | Generating visuals from text (Mermaid, DBML) to ensure diagrams are version-controlled and editable. | Architecture Pillar |
+| **Anti-Corruption Layer (ACL)** | Pattern for isolating a new system from the domain model of a legacy system it integrates with. | Interface Agent |
+| **Strangler Fig** | Migration pattern of gradually creating a new system around the edges of the old, growing until the old system is choked off. | Interface Agent |
+| **Circuit Breaker** | Resilience pattern that detects failures and encapsulates the logic of preventing a failure from constantly recurring. | Architecture / Resilience |
+
+### Planning & Agile Techniques
+
+| Technique | Description | Where Used |
+|:----------|:------------|:-----------|
+| **SPIDR** | Method for splitting Epics: **S**pike, **P**ath, **I**nterface, **D**ata, **R**ules. | Epic Agent (`EPIC_GEN`) |
+| **Vertical Slicing** | Delivering work that cuts through all layers (UI, API, DB) rather than building complete horizontal layers one by one. | Epic & Story Agents |
+| **Gherkin (BDD)** | Structured "Given-When-Then" language for defining requirements that can be automatically tested. | Story Agent (`STORY_GEN`) |
+| **INVEST** | Criteria for quality User Stories: **I**ndependent, **N**egotiable, **V**aluable, **E**stimable, **S**mall, **T**estable. | Story Agent |
+
+### Quality & Testing Techniques
+
+| Technique | Description | Where Used |
+|:----------|:------------|:-----------|
+| **Chaos Engineering** | Controlled experiments on a distributed system (e.g., injecting latency) to build confidence in its resilience. | Resilience Agent (`CHAOS_001`) |
+| **Contract Testing** | Verifying that services communicate correctly by checking against a shared "contract" (e.g., OpenAPI spec). | Interface Agent (`INT_TEST`) |
+| **Heuristic Evaluation** | Inspection method using Nielsen's 10 Usability Heuristics to identify usability problems. | UX Agent (`UX_002`) |
+| **Blast Radius Analysis** | Assessing the full impact of a change across documentation, code, and tests before execution. | Change Management Agent |
