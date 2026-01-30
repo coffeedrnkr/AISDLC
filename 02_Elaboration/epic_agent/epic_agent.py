@@ -82,3 +82,37 @@ class EpicAgent(GenAIBaseAgent):
             with open(path, "w", encoding="utf-8") as f:
                 f.write(f"# Epic: {title_line}\n" + "\n".join(lines[1:]))
             console.print(f"[green]Saved: {filename}[/green]")
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Epic Agent")
+    subparsers = parser.add_subparsers(dest="command", help="Command to run", required=True)
+
+    gen_parser = subparsers.add_parser("generate", help="Generate Epics")
+    gen_parser.add_argument("--prd", required=True, help="Path to PRD file")
+    gen_parser.add_argument("--arch", required=True, help="Path to Architecture file")
+    gen_parser.add_argument("--specs", required=True, help="Directory containing detailed specs")
+    gen_parser.add_argument("--output", default="outputs/epics", help="Output directory")
+
+    args = parser.parse_args()
+    agent = EpicAgent()
+
+    if args.command == "generate":
+        try:
+             with open(args.prd, "r", encoding="utf-8") as f: prd = f.read()
+             with open(args.arch, "r", encoding="utf-8") as f: arch = f.read()
+             specs = agent.load_specifications(args.specs)
+             
+             # Load Template
+             template_path = os.path.join(os.path.dirname(__file__), "templates/epic_template.md")
+             if os.path.exists(template_path):
+                  with open(template_path, "r", encoding="utf-8") as f: template = f.read()
+             else:
+                  template = ""
+
+             agent.generate_epics(prd, arch, specs, template, args.output)
+        except Exception as e:
+             console.print(f"[red]Error: {e}[/red]")
+
+if __name__ == "__main__":
+    main()

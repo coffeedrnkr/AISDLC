@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Contracts Loader (The "Syringe")
---------------------------------
-This utility is responsible for injecting the "Definition of Done (DoD)" 
+Contracts Loader (The "Runtime Policy Enforcer")
+------------------------------------------------
+This utility is responsible for enforcing the "Definition of Done (DoD)" 
 into the System Prompt of every Agent.
 
 It ensures that:

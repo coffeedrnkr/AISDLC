@@ -30,7 +30,7 @@
 ## Slide 4: The Agent Workforce
 **Built on Proven, Widely Used, Modern Techniques**
 
-We didn't just ask AI to "write code." We researched the most proven methodologies for each role and baked them into the agents:
+We didn't just ask AI to "write code." We researched the most proven methodologies for each role and baked them into **17 Specialized Agents** offering **27 Distinct Agentic Capabilities**:
 
 **1. Requirements & Design Squad (7 Agents)**
 *   **PRD Agent:** Synthesizes using **Critical Friend** logic + **Gap Analysis Matrix**.

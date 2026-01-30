@@ -601,7 +601,7 @@ We debunked the myth of "Autonomous Execution." Our system is designed to **PAUS
 
 ## Appendix A: Agent Registry
 
-**Master inventory of specialized AI agents:**
+**Master inventory of 17 Specialized Agents offering 27 Agentic Capabilities:**
 
 | Pillar | Agent | Key Slash Commands | Output/Purpose |
 |:-------|:------|:-------------------|:---------------|

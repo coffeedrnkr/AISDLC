@@ -190,6 +190,7 @@ An AI Agent is a specialized AI program designed to perform a specific task. Unl
 - Can integrate with other tools (Jira, Git, etc.)
 
 **The Agents in This Framework:**
+The system is comprised of **17 Specialized Agents** providing a total of **27 Agentic Capabilities** (distinct autonomous functions).
 
 | Phase | Agent | What It Does |
 |:------|:------|:-------------|

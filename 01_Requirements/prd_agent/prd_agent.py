@@ -250,17 +250,26 @@ class PRDAgent(GenAIBaseAgent):
 
 def main():
     import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--interactive", action="store_true", help="Run in interactive discovery mode")
-    parser.add_argument("--input", default="inputs", help="Input directory")
-    parser.add_argument("--output", default="outputs", help="Output directory")
+    parser = argparse.ArgumentParser(description="PRD Agent")
+    subparsers = parser.add_subparsers(dest="command", help="Command to run", required=True)
+
+    # Interactive Command
+    interactive_parser = subparsers.add_parser("interactive", help="Run in interactive discovery mode")
+    interactive_parser.add_argument("--input", default="inputs", help="Input directory")
+    interactive_parser.add_argument("--output", default="outputs", help="Output directory")
+
+    # Generate Command (Batch)
+    generate_parser = subparsers.add_parser("generate", help="Run in batch generation mode")
+    generate_parser.add_argument("--input", default="inputs", help="Input directory")
+    generate_parser.add_argument("--output", default="outputs", help="Output directory")
+
     args = parser.parse_args()
     
     agent = PRDAgent()
     
-    if args.interactive:
+    if args.command == "interactive":
         agent.interactive_session(args.input, args.output)
-    else:
+    elif args.command == "generate":
         # Classic Batch Mode
         documents = agent.load_documents(args.input)
         if documents:

@@ -139,9 +139,18 @@ class ArchitectureAgent(GenAIBaseAgent):
 
 def main():
     parser = argparse.ArgumentParser(description="Architecture Agent")
-    parser.add_argument("--task", choices=['system_design', 'dbml', 'openapi', 'diagrams'], required=True)
-    parser.add_argument("--input", required=True, help="Path to input file (e.g., PRD)")
-    parser.add_argument("--output", required=True, help="Path to output file")
+    subparsers = parser.add_subparsers(dest="command", help="Task to run", required=True)
+
+    # Parent parser for common arguments
+    parent_parser = argparse.ArgumentParser(add_help=False)
+    parent_parser.add_argument("--input", required=True, help="Path to input file (e.g., PRD)")
+    parent_parser.add_argument("--output", required=True, help="Path to output file")
+
+    # Subcommands
+    subparsers.add_parser("system_design", parents=[parent_parser], help="Generate System Design")
+    subparsers.add_parser("dbml", parents=[parent_parser], help="Generate DBML Schema")
+    subparsers.add_parser("openapi", parents=[parent_parser], help="Generate OpenAPI Spec")
+    subparsers.add_parser("diagrams", parents=[parent_parser], help="Generate Python/C4 Diagrams")
     
     args = parser.parse_args()
     
@@ -150,19 +159,15 @@ def main():
     with open(args.input, 'r', encoding='utf-8') as f:
         input_content = f.read()
 
-    if args.task == 'system_design':
+    if args.command == 'system_design':
         # ARCH_001
         agent.generate_artifact(
             "System Design", 
-            "ARCH_001.md", # Need to confirm exact filename if it exists, or ARCH_GEN
-            "ARCH_001.md",
-            {
-                "PRD_CONTENT": input_content,
-                "TEMPLATE_CONTENT": self._load_template("templates/system_design_template.md")
-            }, 
+            "ARCH_001.md", 
+            {"PRD_CONTENT": input_content, "TEMPLATE_CONTENT": agent._load_template("templates/system_design_template.md")}, 
             args.output
         )
-    elif args.task == 'dbml':
+    elif args.command == 'dbml':
         # ARCH_002
         agent.generate_artifact(
             "DBML Schema", 
@@ -170,7 +175,7 @@ def main():
             {"ARCHITECTURE_CONTENT": input_content}, 
             args.output
         )
-    elif args.task == 'openapi':
+    elif args.command == 'openapi':
         # ARCH_003
         agent.generate_artifact(
             "OpenAPI Spec", 
@@ -178,7 +183,7 @@ def main():
             {"ARCHITECTURE_CONTENT": input_content}, 
             args.output
         )
-    elif args.task == 'diagrams':
+    elif args.command == 'diagrams':
         # ARCH_004
         agent.generate_artifact(
             "Python Diagrams", 
