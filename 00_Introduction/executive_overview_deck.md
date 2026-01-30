@@ -54,7 +54,7 @@ We didn't just ask AI to "write code." We researched the most proven methodologi
 
 *   **The Capability:** We have automated the translation of loose concepts into rigid specs.
 *   **The Agentic Workflow:**
-    *   **PRD Agent:** Uses *NotebookLM* to crystallize brainstorming sessions into structured Program Requirements Documents.
+    *   **PRD Agent:** Uses *NotebookLM* as an "Ingestion Engine," performing a **Conflict Audit** on raw transcripts and **Vertical Slicing** features into clean, hallucination-free context chunks.
     *   **Epic Agent:** Uses *SPIDR* patterns to slice large ideas into deliverable chunks.
 *   **Result:** Developers start with unambiguous, standards-compliant specs every time.
 
