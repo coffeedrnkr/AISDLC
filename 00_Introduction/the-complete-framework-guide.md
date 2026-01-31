@@ -11,7 +11,7 @@ Every concept is explained from first principles, with real-world examples and p
 ## Table of Contents
 
 1. [Introduction: What is the AI-Augmented SDLC?](#1-introduction-what-is-the-ai-augmented-sdlc)
-2. [The Ten Pillars](#2-the-ten-pillars)
+2. [The Twelve Pillars](#2-the-twelve-pillars)
 
 4. [Requirements: The Three-Layer Framework](#4-requirements-the-three-layer-framework)
 5. [Requirements: The States of Information](#5-requirements-the-states-of-information)
@@ -30,7 +30,7 @@ Every concept is explained from first principles, with real-world examples and p
 18. [Context Management: Getting the Best from AI](#18-context-management-getting-the-best-from-ai)
 19. [Prompt Engineering: Smart Prompts and Methodologies](#19-prompt-engineering-smart-prompts-and-methodologies)
 20. [Audit & Governance: The Definition of Done Engine](#20-audit--governance-the-definition-of-done-engine)
-21. [The Human-in-the-Loop Protocol (Pillar 13)](#21-the-human-in-the-loop-protocol-pillar-13)
+21. [The Human-in-the-Loop Protocol](#21-the-human-in-the-loop-protocol)
 
 ---
 
@@ -75,9 +75,9 @@ AI assistance can dramatically reduce this time, allowing teams to:
 
 ---
 
-## 2. The Ten Pillars
+## 2. The Twelve Pillars
 
-The AI-Augmented SDLC is built on ten foundational pillars that govern how work is organized, tracked, and executed.
+The AI-Augmented SDLC is built on twelve foundational pillars that govern how work is organized, tracked, and executed.
 
 ### Pillar 1: VS Code as Home Base
 
@@ -377,6 +377,28 @@ This means:
 
 ---
 
+### Pillar 11: Prompt Engineering
+
+**The Intelligence Engine:**
+We don't just "chat" with AI. We engineer **Structured Prompts** using advanced techniques:
+*   **Critical Friend:** Agents challenge assumptions rather than blindly complying.
+*   **Chain-of-Thought:** Agents plan logic step-by-step before coding.
+*   **Standards Injection:** `STYLEGUIDE.md` is automatically validated in every prompt.
+
+> 📖 **Full Details:** See Chapter 19.
+
+### Pillar 12: Audit & Governance
+
+**The "Definition of Done" Engine:**
+We strictly validate every output against **Immutable Contracts**:
+*   **Contract Registry:** `contracts/*.md` define success criteria (e.g., "Must have Test Plan").
+*   **Runtime Enforcement:** Agents cannot run without loading the Contract.
+*   **Project Dashboard:** A "Live Truth" board that scans for compliance (Green/Red status).
+
+> 📖 **Full Details:** See Chapter 20.
+
+---
+
 ## 3. Requirements: The Three-Layer Framework
 
 ### What Are Requirements?
@@ -405,7 +427,7 @@ This layer focuses on business outcomes, not features:
 > 
 > ✅ Good: "Users must be able to securely access their accounts, reducing support calls by 30%"
 
-**Output:** Program Requirements Document (PRD)
+**Output:** Product Requirements Document (PRD)
 
 #### Layer 2: Logic & Design (The "What")
 
@@ -1344,30 +1366,24 @@ Even with 1 million tokens, you can't fit everything into a single prompt:
 
 This framework uses a four-layer approach to manage context effectively:
 
-#### Layer 1: Pre-Processing (NotebookLM)
+#### Layer 1: Pre-Processing (The "Ingestion Engine")
 
-**What it does:** Converts large documents into digestible summaries before they enter the development workflow.
+**What it does:** Uses **NotebookLM** to sanitize and structure raw inputs before they enter the coding workflow.
 
-**Best for:**
-- Regulatory documents
-- Existing system documentation
-- Meeting transcripts
-- Legacy code analysis
+**Key Techniques:**
+*   **The Conflict Audit:** NotebookLM acts as a **Senior Technical Program Manager**, scanning conflicting stakeholder transcripts (e.g., "CEO says X, CTO says Y") and generates a `gap_agenda.md` for resolution *before* requirements are gathered.
+*   **Vertical Slicing:** It chunks large documentation into "Topic Files" (e.g., `auth_flow.md`, `payment_logic.md`) using specialized personas (**Security Architect**, **Lead DBA**) that fit the AI's context window.
 
 **Process:**
 ```
-Large Document (10,000+ tokens)
+Raw PDFs/Recordings
         ↓
-    NotebookLM
+    NotebookLM (Conflict Audit & Slicing)
         ↓
-Summary Document (500-1,000 tokens)
+Cleaned "Vertical Slices" (Context Ready)
         ↓
-Saved to docs/context/
+Saved to inputs/ & docs/context/
 ```
-
-**Example:**
-- Input: 50-page regulatory compliance document
-- Output: 2-page summary with key requirements, stored as `docs/context/compliance-summary.md`
 
 #### Layer 2: Hierarchical Chunking
 
@@ -2944,7 +2960,7 @@ We realized we were losing the "Why" behind decisions. We implemented a **Decisi
 ### Summary
 This system moves us from **"AI-Generated"** to **"AI-Verified."** We don't just hope the code is good; we scientifically prove it matches the requirements.
 
-## 21. The Human-in-the-Loop Protocol (Pillar 13)
+## 21. The Human-in-the-Loop Protocol
 
 ### The Myth of Autonomy
 The biggest lie in GenAI is "Autonomous Agents." The idea that you can give an AI a vague goal and come back in a week to a finished app is dangerous. It leads to **Error Cascades**.

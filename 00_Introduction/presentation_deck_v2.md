@@ -1,6 +1,6 @@
 # AI-AUGMENTED SDLC FRAMEWORK
 
-## Introduction: The Ten Pillars of AI-Augmented SDLC
+## Introduction: The Twelve Pillars of AI-Augmented SDLC
 1.  **VS Code as Home Base**
 2.  **Documentation as Code**
 3.  **Diagrams as Code**
@@ -190,7 +190,7 @@ Requirements are organized into 3 interlocking layers:
 ### The Outputs
 | Layer | Artifact Type | Format |
 | :--- | :--- | :--- |
-| **Layer 1** | Program Requirements Document (PRD) | Markdown |
+| **Layer 1** | Product Requirements Document (PRD) | Markdown |
 | **Layer 2** | Epic Definitions & User Stories | Markdown + Gherkin |
 | **Layer 2** | Wireframes | PNG/Excalidraw |
 | **Layer 3** | Architecture Constraints | ADRs, Diagrams |
@@ -589,7 +589,16 @@ An autonomous agents (`project_dashboard_agent.py`) scans the entire codebase to
 *   **Decision Audit:** checks `decision_log.json` for Architectural Decision Records (ADRs).
 *   **Guideline Audit:** Ensures every pillar has a `guidelines/` folder.
 
-> **Status:** 🔴 Red (Missing) / 🟢 Green (Complete). No nuance.
+> **Dashboard Output:** Strict binary evaluation—🔴 Red (Fail) or 🟢 Green (Pass)—with no nuance.
+
+## Slide 5: Smart Requirements
+**Turning Ideas into Specifications**
+
+*   **The Capability:** We have automated the translation of loose concepts into rigid specs.
+*   **The Agentic Workflow:**
+    *   **PRD Agent:** Uses *NotebookLM* as an "Ingestion Engine," performing a **Conflict Audit** (Persona: Senior TPM) on raw transcripts and **Vertical Slicing** (Personas: Security Architect, Lead DBA) into hallucination-free specs.
+    *   **Epic Agent:** Uses *SPIDR* patterns to slice large ideas into deliverable chunks.
+*   **Result:** Developers start with unambiguous, standards-compliant specs every time.
 
 ### 4. The Sign-off Protocol (Stop-and-Wait)
 We debunked the myth of "Autonomous Execution." Our system is designed to **PAUSE**.
@@ -630,8 +639,8 @@ We debunked the myth of "Autonomous Execution." Our system is designed to **PAUS
 
 | Prompt ID | File | Purpose | Technique / Output |
 |:----------|:-----|:--------|:-------------------|
-| `PRD_GEN` | `PRD_GEN-synthesize-prd.md` | Synthesize PRD | **NotebookLM** Synthesis |
-| `PRD_GAP` | `PRD_GAP-identify-gaps.md` | Identify gaps | **Gap Analysis** Matrix |
+| `PRD_GEN` | `PRD_GEN-synthesize-prd.md` | Synthesize PRD | **NotebookLM** & **Context Slicing** |
+| `PRD_GAP` | `PRD_GAP-identify-gaps.md` | Identify gaps | **Senior TPM** Gap Analysis |
 
 ### Elaboration Prompts (2)
 
